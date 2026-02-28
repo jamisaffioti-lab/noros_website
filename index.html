@@ -35,12 +35,15 @@
         .bg-dark {
             background-color: #000000;
             background-image: url('images/norosBbg.png');
+            background-position: center top;
         }
 
         .bg-light {
             background-color: #ffffff;
             background-image: url('images/norosWbg.png');
+            background-position: center bottom;
             opacity: 0;
+            transform: scaleY(-1);
         }
 
         /* ── Navigation ── */
@@ -505,9 +508,9 @@
 
             bgLight.style.opacity = progress;
 
-            // Parallax drift
+            // Parallax drift (light layer is flipped vertically, so drift direction inverts)
             bgDark.style.transform  = `translateY(-${scrollY * 0.25}px)`;
-            bgLight.style.transform = `translateY(-${scrollY * 0.15}px)`;
+            bgLight.style.transform = `scaleY(-1) translateY(${scrollY * 0.15}px)`;
 
             // Flip nav at 50%
             nav.classList.toggle('light-nav', progress > 0.5);
