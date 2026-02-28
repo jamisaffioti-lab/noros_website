@@ -474,6 +474,11 @@
     </div>
 
     <script>
+        // Ease in-out cubic: slow start, slow end
+        function easeInOut(t) {
+            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        }
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -492,10 +497,11 @@
             const scrollY  = window.scrollY;
             const totalH   = document.body.scrollHeight - window.innerHeight;
 
-            // Crossfade: start fading at 30% scroll, fully light by 65%
-            const fadeStart = totalH * 0.30;
-            const fadeEnd   = totalH * 0.65;
-            const progress  = Math.min(1, Math.max(0, (scrollY - fadeStart) / (fadeEnd - fadeStart)));
+            // Crossfade: start fading at 20% scroll, fully light by 75% — wide & gradual
+            const fadeStart = totalH * 0.20;
+            const fadeEnd   = totalH * 0.75;
+            const linear    = Math.min(1, Math.max(0, (scrollY - fadeStart) / (fadeEnd - fadeStart)));
+            const progress  = easeInOut(linear);
 
             bgLight.style.opacity = progress;
 
