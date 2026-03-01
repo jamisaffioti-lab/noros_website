@@ -35,7 +35,7 @@
         .bg-dark {
             background-color: #000000;
             background-image: url('images/norosBbg.png');
-            background-position: center top;
+            background-position: center 35%;
         }
 
         .bg-light {
@@ -156,11 +156,10 @@
         /* ── Hero ── */
         .hero-section {
             height: 100vh;
-            padding-top: 0;
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            padding-top: 12vh;
+            padding-top: 18vh;
             text-align: center;
         }
 
@@ -506,10 +505,6 @@
             const progress  = easeInOut(linear);
 
             bgLight.style.opacity = progress;
-
-            // Blur dark layer out as light fades in (max 12px blur)
-            const blurAmount = progress * 12;
-            bgDark.style.filter = `blur(${blurAmount}px)`;
 
             // Parallax drift
             bgDark.style.transform  = `translateY(-${scrollY * 0.25}px)`;
