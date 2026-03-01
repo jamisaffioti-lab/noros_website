@@ -158,9 +158,9 @@
             height: 100vh;
             padding-top: 0;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-            padding-bottom: 0;
+            padding-top: 12vh;
             text-align: center;
         }
 
@@ -506,6 +506,10 @@
             const progress  = easeInOut(linear);
 
             bgLight.style.opacity = progress;
+
+            // Blur dark layer out as light fades in (max 12px blur)
+            const blurAmount = progress * 12;
+            bgDark.style.filter = `blur(${blurAmount}px)`;
 
             // Parallax drift
             bgDark.style.transform  = `translateY(-${scrollY * 0.25}px)`;
