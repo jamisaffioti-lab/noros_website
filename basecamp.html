@@ -81,9 +81,9 @@
   }
   .hero-mountain {
     position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
-    height: 50vh; overflow: hidden;
+    height: 90vh; overflow: hidden;
   }
-  .hero-mountain svg { width: 100%; height: 100%; }
+  .hero-mountain img { width: 100%; height: 100%; object-fit: cover; object-position: 0% 0%; opacity: 0.08; filter: brightness(2.5) grayscale(1); }
   .hero-content {
     position: relative; z-index: 3;
     max-width: 860px;
@@ -529,6 +529,89 @@
     .sticky-cta { bottom: 20px; right: 16px; left: 16px; }
     .sticky-cta a { justify-content: center; }
   }
+
+  /* ── MOBILE FIXES ── */
+  @media (max-width: 768px) {
+
+    /* Mobile nav — solid background so menu is readable */
+    .nav-links.open {
+      background: rgba(26,24,20,0.98) !important;
+      backdrop-filter: blur(16px);
+      padding: 32px 24px !important;
+    }
+    .nav-links.open a {
+      color: var(--snow) !important;
+      font-size: 16px !important;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(184,178,168,0.1);
+      display: block;
+      width: 100%;
+    }
+    .nav-links.open .nav-cta {
+      margin-top: 16px;
+      text-align: center;
+      display: block;
+      padding: 14px !important;
+    }
+
+    /* Mobile mountain — reposition so peak is visible */
+    .hero-mountain {
+      height: 60vh !important;
+    }
+    .hero-mountain img {
+      object-position: 50% 20% !important;
+      opacity: 0.15 !important;
+    }
+
+    /* Mobile hero content — better spacing */
+    #hero, #hero-section {
+      padding: 0 24px 48px !important;
+      min-height: 100vh;
+    }
+    .hero-headline {
+      font-size: clamp(32px, 10vw, 52px) !important;
+    }
+    .hero-sub {
+      font-size: 16px !important;
+    }
+    .hero-actions {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-ghost {
+      text-align: center !important;
+      width: 100% !important;
+    }
+
+    /* Mobile stats bar */
+    .stats-bar {
+      grid-template-columns: 1fr 1fr !important;
+    }
+
+    /* Mobile products grid */
+    .products-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Mobile sections padding */
+    .section, section {
+      padding: 56px 24px !important;
+    }
+
+    /* Mobile footer */
+    footer {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 24px !important;
+      padding: 32px 24px !important;
+    }
+    .footer-links {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -547,11 +630,7 @@
   <div class="hero-bg"></div>
   <div class="hero-texture"></div>
   <div class="hero-mountain">
-    <svg viewBox="0 0 1440 400" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,400 200,180 360,280 520,100 680,240 820,60 960,200 1100,120 1260,220 1440,80 1440,400" fill="rgba(46,43,38,0.6)"/>
-      <polygon points="0,400 300,220 480,320 640,160 800,280 940,140 1080,250 1200,170 1320,260 1440,150 1440,400" fill="rgba(46,43,38,0.85)"/>
-      <polygon points="0,400 400,280 560,340 720,220 880,320 1040,240 1200,310 1360,260 1440,290 1440,400" fill="#2e2b26"/>
-    </svg>
+    <img src="/images/neuro_mountain.png" alt="Noros mountain">
   </div>
   <div class="hero-content">
     <div class="hero-eyebrow">Noros Base Camp · Founding Cohort · Beta 2026</div>
@@ -581,7 +660,7 @@
     <div class="stat-label">Average ROI for graduates in year one</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">$2,997</div>
+    <div class="stat-num">$997</div>
     <div class="stat-label">Beta price · Founding Climbers only</div>
   </div>
 </div>
@@ -804,11 +883,11 @@
   <div class="section-inner">
     <div class="reveal">
       <div class="section-eyebrow">Investment</div>
-      <h2 class="section-title">$2,997 —<br><em>and here's why it's free.</em></h2>
+      <h2 class="section-title">$997 —<br><em>and here's why it's free.</em></h2>
     </div>
     <div class="pricing-block">
       <div class="pricing-left reveal reveal-delay-1">
-        <div class="price-main">$2,997</div>
+        <div class="price-main">$997</div>
         <div class="price-note">Beta founding cohort price · Will increase after Cohort 1 closes</div>
         <div class="price-features">
           <div class="price-feature"><span class="price-feature-check">✓</span><span class="price-feature-text">4-week self-paced curriculum (20 lessons)</span></div>
@@ -824,12 +903,12 @@
       <div class="pricing-right reveal reveal-delay-2">
         <div class="price-split">
           <div class="price-split-label">Payment plan available</div>
-          <div class="price-split-value">2 × $1,599</div>
-          <div class="price-split-note">First payment at enrollment · Second auto-charged 30 days later</div>
+          <div class="price-split-value">$1,497 after founding cohort</div>
+          <div class="price-split-note">Founding cohort only · Price increases to $1,497 after Cohort 1 closes</div>
         </div>
         <div class="roi-block">
           <div class="roi-label">Why this is actually free</div>
-          <div class="roi-text">Every Base Camp graduate who activates even one income stream with their new skills generates <strong>$2–3K per month</strong> in repeatable revenue. That's your investment back in <strong>30 days</strong> — and up to <strong>$36,000 in year one.</strong> A 12× return. A business coach charges $500/hour. A bootcamp charges $15,000. This is 4 weeks of guided, hands-on building with someone who has done exactly what you want to do.</div>
+          <div class="roi-text">Every Base Camp graduate who activates even one income stream with their new skills generates <strong>$2–3K per month</strong> in repeatable revenue. That's your investment back in <strong>2 weeks</strong> — and up to <strong>$36,000 in year one.</strong> A 12× return. A business coach charges $500/hour. A bootcamp charges $15,000. This is 4 weeks of guided, hands-on building with someone who has done exactly what you want to do.</div>
         </div>
       </div>
     </div>
@@ -853,8 +932,8 @@
         <div class="objection-a">Base Camp is designed for people with full lives — 3 to 5 focused hours per week. That's one early morning and a weekend afternoon. If you can find the time to scroll for AI tips, you can find the time to actually learn them. The curriculum is self-paced, so you work when it works for you.</div>
       </div>
       <div class="objection-item">
-        <div class="objection-q">"$2,997 is a lot of money."<span class="objection-toggle">+</span></div>
-        <div class="objection-a">It is. And graduates who use what they learn generate $2–3K/month in their first 90 days. That's a 12× return in year one. The real cost is two more years of scrolling without a map. A split pay option is available: 2 × $1,599. And this is the lowest this price will ever be — it increases after the founding cohort closes.</div>
+        <div class="objection-q">"$997 is a lot of money."<span class="objection-toggle">+</span></div>
+        <div class="objection-a">It is. And graduates who use what they learn generate $2–3K/month in their first 90 days. That's a 12× return in year one. The real cost is two more years of scrolling without a map. A split pay option is available: $1,497 after founding cohort. And this is the lowest this price will ever be — it increases after the founding cohort closes.</div>
       </div>
       <div class="objection-item">
         <div class="objection-q">"How is this different from a YouTube course?"<span class="objection-toggle">+</span></div>
@@ -877,7 +956,7 @@
       <p class="section-sub">5–10 spots. Jami reviews every application personally. If it's a fit, she'll send you a payment link within 24 hours.</p>
     </div>
     <div class="apply-form reveal reveal-delay-1">
-      <form class="form-grid" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form class="form-grid" action="https://formspree.io/f/xykvpzvb" method="POST">
         <div class="form-group">
           <label class="form-label" for="fname">First name</label>
           <input class="form-input" type="text" id="fname" name="first_name" placeholder="Jami" required>
@@ -906,8 +985,8 @@
           <label class="form-label" for="payment">Payment preference</label>
           <select class="form-select" id="payment" name="payment">
             <option value="">Select one...</option>
-            <option value="full">Full pay — $2,997</option>
-            <option value="split">Split pay — 2 × $1,599</option>
+            <option value="full">Full pay — $997</option>
+            <option value="split">Split pay — $1,497 after founding cohort</option>
             <option value="unsure">Not sure yet</option>
           </select>
         </div>
@@ -937,7 +1016,7 @@
 
 <!-- STICKY CTA -->
 <div class="sticky-cta" id="sticky-cta">
-  <a href="#apply">Apply to Base Camp · $2,997 →</a>
+  <a href="#apply">Apply to Base Camp · $997 →</a>
 </div>
 
 <script>

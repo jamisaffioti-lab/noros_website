@@ -543,6 +543,89 @@
     footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
     .hero-scroll { display: none; }
   }
+
+  /* ── MOBILE FIXES ── */
+  @media (max-width: 768px) {
+
+    /* Mobile nav — solid background so menu is readable */
+    .nav-links.open {
+      background: rgba(26,24,20,0.98) !important;
+      backdrop-filter: blur(16px);
+      padding: 32px 24px !important;
+    }
+    .nav-links.open a {
+      color: var(--snow) !important;
+      font-size: 16px !important;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(184,178,168,0.1);
+      display: block;
+      width: 100%;
+    }
+    .nav-links.open .nav-cta {
+      margin-top: 16px;
+      text-align: center;
+      display: block;
+      padding: 14px !important;
+    }
+
+    /* Mobile mountain — reposition so peak is visible */
+    .hero-mountain {
+      height: 60vh !important;
+    }
+    .hero-mountain img {
+      object-position: 50% 20% !important;
+      opacity: 0.15 !important;
+    }
+
+    /* Mobile hero content — better spacing */
+    #hero, #hero-section {
+      padding: 0 24px 48px !important;
+      min-height: 100vh;
+    }
+    .hero-headline {
+      font-size: clamp(32px, 10vw, 52px) !important;
+    }
+    .hero-sub {
+      font-size: 16px !important;
+    }
+    .hero-actions {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-ghost {
+      text-align: center !important;
+      width: 100% !important;
+    }
+
+    /* Mobile stats bar */
+    .stats-bar {
+      grid-template-columns: 1fr 1fr !important;
+    }
+
+    /* Mobile products grid */
+    .products-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Mobile sections padding */
+    .section, section {
+      padding: 56px 24px !important;
+    }
+
+    /* Mobile footer */
+    footer {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 24px !important;
+      padding: 32px 24px !important;
+    }
+    .footer-links {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -643,8 +726,8 @@
       </div>
       <h3 class="product-name">Base Camp</h3>
       <p class="product-tagline">A 4-week AI-powered launchpad for everyday humans ready to climb.</p>
-      <div class="flagship-price">$2,997</div>
-      <div class="flagship-price-note">Beta price · Full pay or 2 × $1,599</div>
+      <div class="flagship-price">$997</div>
+      <div class="flagship-price-note">Founders price · Increases to $1,497 after Cohort 1</div>
       <p class="product-desc">
         Go from "I want to use AI but have no idea where to start" to a working, deployed AI-powered tool — built for your actual life or business. No CS degree required. No prior coding experience. Just you, a guide who has done exactly this, and 4 weeks of focused work.
       </p>

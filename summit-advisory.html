@@ -1,443 +1,692 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>summit advisory - noros solutions</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Summit Advisory — Custom AI automation and digital solutions for businesses ready to transform. By Noros Solutions.">
+<title>Summit Advisory · Noros Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --stone: #1a1814;
+    --ash: #2e2b26;
+    --bark: #4a4540;
+    --mist: #b8b2a8;
+    --snow: #f4f1ec;
+    --cream: #faf8f4;
+    --summit: #b68877;
+    --pine: #3d5a3e;
+    --sky: #7ba3c0;
+    --ember: #c4603a;
+    --rule: 1px solid rgba(184,178,168,0.2);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--stone);
+    color: var(--snow);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-        body {
-            font-family: 'Courier New', monospace;
-            color: #ffffff;
-            min-height: 100vh;
-            position: relative;
-        }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    background: rgba(26,24,20,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: var(--rule);
+    transition: padding 0.3s;
+  }
+  nav.scrolled { padding: 14px 48px; }
+  .nav-logo img { height: 32px; width: auto; display: block; }
+  .nav-back {
+    font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--mist); text-decoration: none;
+    display: flex; align-items: center; gap: 8px; transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--snow); }
+  .nav-cta {
+    font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--stone); background: var(--summit);
+    padding: 8px 18px; text-decoration: none; transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
 
-        /* Mountain background */
-        .mountain-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('images/noros_life.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: -1;
-        }
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 0 48px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-texture {
+    position: absolute; inset: 0; z-index: 1;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px);
+  }
+  .hero-mountain {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+    height: 90vh; overflow: hidden;
+  }
+  .hero-mountain img { width: 100%; height: 100%; object-fit: cover; object-position: 0% 0%; opacity: 0.08; filter: brightness(2.5) grayscale(1); }
+  .hero-content { position: relative; z-index: 3; max-width: 820px; }
+  .hero-eyebrow {
+    font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--summit); margin-bottom: 20px;
+    animation: fadeUp 1s 0.1s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 6.5vw, 76px);
+    font-weight: 600; line-height: 1.0; color: var(--snow); margin-bottom: 24px;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-headline em { font-style: italic; color: var(--summit); }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.2vw, 20px); font-style: italic;
+    color: var(--mist); max-width: 560px; line-height: 1.6; margin-bottom: 40px;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 1s 0.4s ease both; }
+  .btn-primary {
+    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--summit); color: var(--stone);
+    padding: 14px 32px; text-decoration: none; transition: opacity 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost {
+    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    border: 1px solid rgba(184,178,168,0.3); color: var(--mist);
+    padding: 14px 32px; text-decoration: none; transition: all 0.2s; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--snow); color: var(--snow); }
 
-        .mountain-background::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-        }
+  /* ── SELECTIVE BAR ── */
+  .selective-bar {
+    background: var(--ash); border-top: var(--rule); border-bottom: var(--rule);
+    padding: 24px 48px; display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+  }
+  .selective-label {
+    font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--summit);
+    white-space: nowrap;
+  }
+  .selective-text {
+    font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic;
+    color: var(--mist); line-height: 1.5;
+  }
+  .selective-text strong { color: var(--snow); font-style: normal; font-weight: 400; }
 
-        .base-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #1a1a2e;
-            z-index: -2;
-        }
+  /* ── SECTIONS ── */
+  .section { padding: 100px 48px; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-eyebrow {
+    font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--summit); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; line-height: 1.05;
+    color: var(--snow); margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; color: var(--summit); }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 20px 40px;
-        }
+  /* ── WHAT WE BUILD ── */
+  #services { background: var(--stone); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: rgba(184,178,168,0.08); margin-top: 48px;
+  }
+  .service-card {
+    background: var(--stone); padding: 36px 32px;
+    transition: background 0.2s; position: relative; overflow: hidden;
+  }
+  .service-card:hover { background: var(--ash); }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 600;
+    color: rgba(182,136,119,0.07); line-height: 1;
+    position: absolute; top: 16px; right: 20px; pointer-events: none;
+  }
+  .service-icon { font-size: 20px; margin-bottom: 16px; color: var(--summit); }
+  .service-title {
+    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--snow); margin-bottom: 10px;
+  }
+  .service-desc { font-size: 12px; color: var(--mist); line-height: 1.7; }
 
-        .nav-link {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 1px;
-            transition: opacity 0.3s;
-        }
+  /* ── PROOF ── */
+  #proof { background: var(--ash); }
+  .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(184,178,168,0.08); margin-top: 48px; }
+  .proof-card { background: var(--ash); padding: 36px 32px; }
+  .proof-tag {
+    font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--summit); margin-bottom: 14px;
+  }
+  .proof-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600;
+    color: var(--snow); margin-bottom: 10px; line-height: 1.2;
+  }
+  .proof-desc { font-size: 12px; color: var(--mist); line-height: 1.7; margin-bottom: 16px; }
+  .proof-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+  .proof-pill {
+    font-size: 10px; color: var(--bark); border: 1px solid rgba(184,178,168,0.15);
+    padding: 4px 10px; letter-spacing: 0.04em;
+  }
 
-        .nav-link:hover {
-            opacity: 0.7;
-        }
+  /* ── HOW IT WORKS ── */
+  #process { background: var(--stone); }
+  .process-steps { margin-top: 48px; border: var(--rule); }
+  .process-step {
+    display: grid; grid-template-columns: 64px 1fr;
+    border-bottom: var(--rule);
+  }
+  .process-step:last-child { border-bottom: none; }
+  .process-step-num {
+    border-right: var(--rule); display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600;
+    color: var(--summit); padding: 24px 0;
+  }
+  .process-step-content { padding: 24px 28px; }
+  .process-step-title {
+    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--snow); margin-bottom: 6px;
+  }
+  .process-step-desc { font-size: 12px; color: var(--mist); line-height: 1.7; }
 
-        /* Content */
-        .content {
-            position: relative;
-            z-index: 1;
-            padding-top: 100px;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 100px 20px 40px;
-        }
+  /* ── RIGHT FIT ── */
+  #fit { background: var(--ash); }
+  .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(184,178,168,0.08); margin-top: 48px; }
+  .fit-col { background: var(--ash); padding: 36px 32px; }
+  .fit-col-label {
+    font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px;
+  }
+  .fit-col-label.yes { color: #5DCAA5; }
+  .fit-col-label.no { color: var(--ember); }
+  .fit-item { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+  .fit-icon { font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+  .fit-icon.yes { color: #5DCAA5; }
+  .fit-icon.no { color: var(--ember); }
+  .fit-text {
+    font-family: 'Cormorant Garamond', serif; font-size: 17px;
+    color: var(--snow); line-height: 1.5;
+  }
 
-        .container {
-            background: rgba(52, 73, 94, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 60px 50px;
-            max-width: 700px;
-            width: 100%;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-        }
+  /* ── REQUEST FORM ── */
+  #consult { background: var(--stone); }
+  .consult-inner { max-width: 700px; margin: 0 auto; }
+  .consult-inner .section-title { text-align: center; }
+  .consult-note {
+    font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic;
+    color: var(--mist); text-align: center; line-height: 1.6; margin-bottom: 48px;
+  }
+  .consult-form {
+    background: var(--ash); border: var(--rule); padding: 48px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-label {
+    font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--mist);
+  }
+  .form-input, .form-textarea, .form-select {
+    background: var(--stone); border: var(--rule);
+    color: var(--snow); font-family: 'DM Mono', monospace;
+    font-size: 12px; padding: 12px 16px;
+    outline: none; transition: border-color 0.2s; width: 100%;
+  }
+  .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--summit); }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--bark); }
+  .form-textarea { resize: vertical; min-height: 110px; }
+  .form-select option { background: var(--stone); }
+  .form-submit-row {
+    grid-column: 1 / -1; display: flex;
+    justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    margin-top: 8px;
+  }
+  .form-submit-note { font-size: 11px; color: var(--mist); line-height: 1.5; }
+  .form-submit {
+    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--summit); color: var(--stone); border: none;
+    padding: 14px 32px; cursor: pointer; transition: opacity 0.2s;
+  }
+  .form-submit:hover { opacity: 0.85; }
 
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-transform: lowercase;
-            color: #ffffff;
-        }
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ash); padding: 40px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: var(--rule); flex-wrap: wrap; gap: 20px;
+  }
+  .footer-logo img { height: 28px; width: auto; }
+  .footer-links { display: flex; gap: 28px; list-style: none; flex-wrap: wrap; }
+  .footer-links a { font-size: 10px; letter-spacing: 0.1em; color: var(--bark); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--mist); }
+  .footer-copy { font-size: 10px; color: var(--bark); letter-spacing: 0.06em; }
 
-        .subtitle {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
 
-        /* Services section */
-        .services {
-            background: rgba(140, 201, 240, 0.1);
-            border: 1px solid rgba(140, 201, 240, 0.3);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 40px;
-        }
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    #hero { padding: 0 24px 60px; }
+    .selective-bar { padding: 20px 24px; gap: 12px; }
+    .section { padding: 72px 24px; }
+    .services-grid, .proof-grid, .fit-grid { grid-template-columns: 1fr; }
+    .process-step { grid-template-columns: 48px 1fr; }
+    .consult-form { grid-template-columns: 1fr; padding: 28px 24px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+  }
 
-        .services h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #8cc9f0;
-            text-transform: lowercase;
-        }
+  /* ── MOBILE FIXES ── */
+  @media (max-width: 768px) {
 
-        .services ul {
-            list-style: none;
-            padding: 0;
-        }
+    /* Mobile nav — solid background so menu is readable */
+    .nav-links.open {
+      background: rgba(26,24,20,0.98) !important;
+      backdrop-filter: blur(16px);
+      padding: 32px 24px !important;
+    }
+    .nav-links.open a {
+      color: var(--snow) !important;
+      font-size: 16px !important;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(184,178,168,0.1);
+      display: block;
+      width: 100%;
+    }
+    .nav-links.open .nav-cta {
+      margin-top: 16px;
+      text-align: center;
+      display: block;
+      padding: 14px !important;
+    }
 
-        .services li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 14px;
-            line-height: 1.6;
-        }
+    /* Mobile mountain — reposition so peak is visible */
+    .hero-mountain {
+      height: 60vh !important;
+    }
+    .hero-mountain img {
+      object-position: 50% 20% !important;
+      opacity: 0.15 !important;
+    }
 
-        .services li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #8cc9f0;
-            font-weight: bold;
-        }
+    /* Mobile hero content — better spacing */
+    #hero, #hero-section {
+      padding: 0 24px 48px !important;
+      min-height: 100vh;
+    }
+    .hero-headline {
+      font-size: clamp(32px, 10vw, 52px) !important;
+    }
+    .hero-sub {
+      font-size: 16px !important;
+    }
+    .hero-actions {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-ghost {
+      text-align: center !important;
+      width: 100% !important;
+    }
 
-        /* Form */
-        .form-group {
-            margin-bottom: 25px;
-        }
+    /* Mobile stats bar */
+    .stats-bar {
+      grid-template-columns: 1fr 1fr !important;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            color: rgba(255, 255, 255, 0.9);
-        }
+    /* Mobile products grid */
+    .products-grid {
+      grid-template-columns: 1fr !important;
+    }
 
-        input[type="text"],
-        input[type="email"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            background: rgba(22, 33, 62, 0.6);
-            color: #ffffff;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
+    /* Mobile sections padding */
+    .section, section {
+      padding: 56px 24px !important;
+    }
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        textarea:focus,
-        select:focus {
-            outline: none;
-            border-color: #8cc9f0;
-            background: rgba(22, 33, 62, 0.8);
-        }
+    /* Mobile footer */
+    footer {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 24px !important;
+      padding: 32px 24px !important;
+    }
+    .footer-links {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+  }
 
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        select {
-            cursor: pointer;
-        }
-
-        /* Submit button */
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: rgba(140, 201, 240, 0.25);
-            border: 1px solid rgba(140, 201, 240, 0.4);
-            border-radius: 50px;
-            color: #ffffff;
-            font-family: 'Courier New', monospace;
-            font-weight: 700;
-            font-size: 16px;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: lowercase;
-        }
-
-        .submit-btn:hover {
-            background: rgba(140, 201, 240, 0.35);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(140, 201, 240, 0.3);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* Success message */
-        .success-message {
-            display: none;
-            background: rgba(46, 204, 113, 0.2);
-            border: 1px solid rgba(46, 204, 113, 0.4);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            color: #2ecc71;
-            text-align: center;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        /* Error message */
-        .error-message {
-            display: none;
-            background: rgba(231, 76, 60, 0.2);
-            border: 1px solid rgba(231, 76, 60, 0.4);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            color: #e74c3c;
-            text-align: center;
-        }
-
-        .error-message.show {
-            display: block;
-        }
-
-        /* Footer note */
-        .footer-note {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .container {
-                padding: 40px 25px;
-            }
-
-            h1 {
-                font-size: 32px;
-            }
-
-            nav {
-                padding: 15px 20px;
-            }
-        }
-    </style>
+</style>
 </head>
 <body>
-    <div class="base-background"></div>
-    <div class="mountain-background"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="index.html" class="nav-link">← back to noros</a>
-    </nav>
+<nav id="navbar">
+  <a href="index.html" class="nav-back">← Noros Solutions</a>
+  <a href="index.html" class="nav-logo">
+    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
+  </a>
+  <a href="#consult" class="nav-cta">Request consultation</a>
+</nav>
 
-    <div class="content">
-        <div class="container">
-            <h1>summit advisory</h1>
-            <p class="subtitle">Custom AI solutions tailored to your business needs</p>
-
-            <!-- Services offered -->
-            <div class="services">
-                <h2>we can help with:</h2>
-                <ul>
-                    <li><strong>Custom AI Assistants:</strong> Build personalized AI tools using OpenClaw that work exactly the way you need</li>
-                    <li><strong>Workflow Automation:</strong> Streamline repetitive tasks like email management, document processing, and data entry</li>
-                    <li><strong>Business Intelligence:</strong> Extract insights from your data with AI-powered analysis</li>
-                    <li><strong>Personal Productivity Apps:</strong> One-off tools designed for your specific use case—installed locally for your personal use</li>
-                </ul>
-            </div>
-
-            <!-- Success/Error messages -->
-            <div class="success-message" id="successMessage">
-                <strong>Thank you for your submission!</strong><br>
-                We'll review your request and get back to you within 2 business days.
-            </div>
-
-            <div class="error-message" id="errorMessage">
-                <strong>Oops! Something went wrong.</strong><br>
-                Please try again or email us directly at connect@noros.life
-            </div>
-
-            <!-- Submission form -->
-            <form id="consultationForm">
-                <div class="form-group">
-                    <label for="name">your name *</label>
-                    <input type="text" id="name" name="name" required placeholder="Jane Smith">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">your email *</label>
-                    <input type="email" id="email" name="email" required placeholder="jane@company.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="company">company / organization (optional)</label>
-                    <input type="text" id="company" name="company" placeholder="Acme Corp">
-                </div>
-
-                <div class="form-group">
-                    <label for="projectType">what are you looking for? *</label>
-                    <select id="projectType" name="projectType" required>
-                        <option value="">-- select one --</option>
-                        <option value="ai-assistant">Custom AI Assistant (OpenClaw)</option>
-                        <option value="automation">Workflow Automation</option>
-                        <option value="productivity-tool">Personal Productivity Tool</option>
-                        <option value="business-intelligence">Business Intelligence / Data Analysis</option>
-                        <option value="other">Other / Not Sure</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="description">describe your project *</label>
-                    <textarea id="description" name="description" required placeholder="Tell us what you're trying to accomplish, what problems you're facing, or what you'd like to automate..."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="timeline">when do you need this by? (optional)</label>
-                    <input type="text" id="timeline" name="timeline" placeholder="e.g., 2-3 months, ASAP, flexible">
-                </div>
-
-                <button type="submit" class="submit-btn" id="submitBtn">submit request →</button>
-
-                <p class="footer-note">
-                    By submitting, you agree to be contacted about your project inquiry.<br>
-                    We typically respond within 2 business days.
-                </p>
-            </form>
-        </div>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-mountain">
+    <img src="/images/neuro_mountain.png" alt="Noros mountain">
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Summit Advisory · Selective engagements</div>
+    <h1 class="hero-headline">
+      AI that works<br>for your business.<br><em>Built by a real builder.</em>
+    </h1>
+    <p class="hero-sub">Custom automation, AI-powered tools, and workflow systems — designed, built, and deployed by someone who does this for her own business every single day.</p>
+    <div class="hero-actions">
+      <a href="#consult" class="btn-primary">Request a consultation →</a>
+      <a href="#services" class="btn-ghost">See what we build</a>
     </div>
+  </div>
+</section>
 
-    <script>
-        const form = document.getElementById('consultationForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
+<!-- SELECTIVE BAR -->
+<div class="selective-bar">
+  <div class="selective-label">Important</div>
+  <div class="selective-text">Summit Advisory engagements are accepted <strong>selectively and by application only.</strong> Not every business is the right fit — and that's intentional. Jami takes on work she can do exceptionally well, not everything that comes in.</div>
+</div>
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">What we build</div>
+      <h2 class="section-title">AI that solves<br><em>real business problems.</em></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">01</div>
+        <div class="service-icon">◈</div>
+        <div class="service-title">Workflow automation</div>
+        <div class="service-desc">Eliminate the repetitive manual work that's eating your time. Lead intake, document generation, quote creation, client follow-up — automated end-to-end so you can focus on the work that actually requires you.</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">02</div>
+        <div class="service-icon">▶</div>
+        <div class="service-title">AI-powered customer tools</div>
+        <div class="service-desc">SMS answering systems, after-hours AI, customer-facing chatbots and intake forms — built for service businesses that need to be responsive around the clock without hiring more staff.</div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-num">03</div>
+        <div class="service-icon">⬡</div>
+        <div class="service-title">Custom AI applications</div>
+        <div class="service-desc">Need something built from scratch? Calculators, tools, internal dashboards, data processors — custom-coded with AI at the core. If it can be built, it can be built better with AI woven in.</div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">04</div>
+        <div class="service-icon">✦</div>
+        <div class="service-title">AI strategy consulting</div>
+        <div class="service-desc">Not sure where AI fits in your business? A focused strategy session to map your highest-leverage opportunities, prioritize what to build first, and create a realistic roadmap your team can actually execute.</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">05</div>
+        <div class="service-icon">◎</div>
+        <div class="service-title">Sales and lead automation</div>
+        <div class="service-desc">For sales-driven businesses: AI systems that read incoming leads, generate custom quotes and proposals, route to the right person, and follow up — all without manual input after setup.</div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-num">06</div>
+        <div class="service-icon">◻</div>
+        <div class="service-title">Education and training platforms</div>
+        <div class="service-desc">AI-powered tutoring tools, interactive learning platforms, and student-facing applications — built by an educator who understands both the technology and the pedagogy required to make them actually work.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            // Disable button during submission
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'submitting...';
+<!-- PROOF -->
+<section id="proof" class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Real work, real results</div>
+      <h2 class="section-title">Not theoretical.<br><em>Already deployed.</em></h2>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-card reveal reveal-delay-1">
+        <div class="proof-tag">Automotive · Service business</div>
+        <div class="proof-title">SMS-first AI answering system</div>
+        <div class="proof-desc">An after-hours AI system for a foreign motor repair shop — incoming customer texts are handled intelligently, appointments are fielded, and the owner stops losing leads after 5pm. Built and deployed end-to-end.</div>
+        <div class="proof-stack">
+          <span class="proof-pill">Twilio</span>
+          <span class="proof-pill">Claude API</span>
+          <span class="proof-pill">SendGrid</span>
+          <span class="proof-pill">Flask</span>
+        </div>
+      </div>
+      <div class="proof-card reveal reveal-delay-2">
+        <div class="proof-tag">Sales · B2B services</div>
+        <div class="proof-title">Lead-to-quote automation</div>
+        <div class="proof-desc">A complete workflow that reads incoming sales leads, pulls the relevant data, generates formatted quotes and proposal documents, and sends them — with zero manual input after setup. Hours of work eliminated per week.</div>
+        <div class="proof-stack">
+          <span class="proof-pill">OpenClaw</span>
+          <span class="proof-pill">Claude API</span>
+          <span class="proof-pill">Google Docs</span>
+          <span class="proof-pill">Gmail automation</span>
+        </div>
+      </div>
+      <div class="proof-card reveal reveal-delay-1">
+        <div class="proof-tag">Construction · Trades</div>
+        <div class="proof-title">Custom calculation tool</div>
+        <div class="proof-desc">A specialized metal bending calculator for a tradesperson working with a specific bending tool — precise calculations that previously required manual lookup and mental math are now instant and automatic.</div>
+        <div class="proof-stack">
+          <span class="proof-pill">Python</span>
+          <span class="proof-pill">HTML/CSS</span>
+          <span class="proof-pill">GitHub Pages</span>
+        </div>
+      </div>
+      <div class="proof-card reveal reveal-delay-2">
+        <div class="proof-tag">Education · AP courses</div>
+        <div class="proof-title">AI-powered tutoring platform</div>
+        <div class="proof-desc">A Socratic AI tutor for AP Computer Science students — guides discovery without giving answers, connects to real past AP exam questions, and adapts to the student's understanding level in real time.</div>
+        <div class="proof-stack">
+          <span class="proof-pill">Claude API</span>
+          <span class="proof-pill">Flask</span>
+          <span class="proof-pill">Python</span>
+          <span class="proof-pill">Google OAuth</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            // Hide any previous messages
-            successMessage.classList.remove('show');
-            errorMessage.classList.remove('show');
+<!-- PROCESS -->
+<section id="process" class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">How it works</div>
+      <h2 class="section-title">Simple, focused,<br><em>no surprises.</em></h2>
+    </div>
+    <div class="process-steps reveal reveal-delay-1">
+      <div class="process-step">
+        <div class="process-step-num">1</div>
+        <div class="process-step-content">
+          <div class="process-step-title">You apply</div>
+          <div class="process-step-desc">Fill out the consultation request below. Tell Jami about your business, your biggest pain point, and what you've already tried. She reads every application personally within 24 hours.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">2</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Discovery call</div>
+          <div class="process-step-desc">If it looks like a fit, Jami schedules a 30-minute discovery call. No pitch, no hard sell — just a real conversation about your situation and whether Summit Advisory can genuinely help. If it's not the right fit, she'll tell you that too.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">3</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Proposal and agreement</div>
+          <div class="process-step-desc">A clear scope, a fixed price, and a timeline. No billable-hour surprises. Payment terms: 50% deposit to begin, 50% on delivery. You own everything that's built — no recurring license fees, no vendor lock-in.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">4</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Build and deploy</div>
+          <div class="process-step-desc">Jami builds, tests, and deploys your solution. You're involved at key checkpoints — not buried in daily status updates. When it's done, it works. And Jami walks you through how to maintain it yourself.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">5</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Handoff and independence</div>
+          <div class="process-step-desc">You get the code, the documentation, and a walkthrough. The goal is your independence, not your dependency. If something breaks six months later, Jami is reachable — but most clients don't need her after handoff.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                company: document.getElementById('company').value,
-                projectType: document.getElementById('projectType').value,
-                description: document.getElementById('description').value,
-                timeline: document.getElementById('timeline').value,
-                timestamp: new Date().toISOString()
-            };
+<!-- FIT -->
+<section id="fit" class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Right fit</div>
+      <h2 class="section-title">The businesses<br><em>Summit Advisory serves.</em></h2>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-col reveal reveal-delay-1">
+        <div class="fit-col-label yes">Good fit if...</div>
+        <div class="fit-item"><span class="fit-icon yes">✓</span><span class="fit-text">You run a service business losing time to manual, repetitive tasks</span></div>
+        <div class="fit-item"><span class="fit-icon yes">✓</span><span class="fit-text">You're a solopreneur or small team — under 20 people</span></div>
+        <div class="fit-item"><span class="fit-icon yes">✓</span><span class="fit-text">You have a specific, clearly-defined problem you want solved</span></div>
+        <div class="fit-item"><span class="fit-icon yes">✓</span><span class="fit-text">You're in trades, education, sales, customer service, or healthcare-adjacent work</span></div>
+        <div class="fit-item"><span class="fit-icon yes">✓</span><span class="fit-text">You want to own your solution — not pay monthly for someone else's platform</span></div>
+        <div class="fit-item"><span class="fit-icon yes">✓</span><span class="fit-text">You're ready to move in the next 30–60 days</span></div>
+      </div>
+      <div class="fit-col reveal reveal-delay-2">
+        <div class="fit-col-label no">Not a fit if...</div>
+        <div class="fit-item"><span class="fit-icon no">✕</span><span class="fit-text">You need a full engineering team or enterprise-scale infrastructure</span></div>
+        <div class="fit-item"><span class="fit-icon no">✕</span><span class="fit-text">You want someone to manage ongoing operations for you</span></div>
+        <div class="fit-item"><span class="fit-icon no">✕</span><span class="fit-text">Your problem is vague — "we want to do something with AI"</span></div>
+        <div class="fit-item"><span class="fit-icon no">✕</span><span class="fit-text">You need something built in under a week</span></div>
+        <div class="fit-item"><span class="fit-icon no">✕</span><span class="fit-text">You're not willing to be involved in the discovery and feedback process</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            try {
-                // TODO: Replace with your actual form submission endpoint
-                // For now, we'll use Formspree or similar service
-                const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
+<!-- CONSULT FORM -->
+<section id="consult" class="section" style="background: var(--ash);">
+  <div class="consult-inner">
+    <div class="reveal">
+      <div class="section-eyebrow" style="text-align:center">Request a consultation</div>
+      <h2 class="section-title" style="text-align:center">Tell Jami<br><em>about your business.</em></h2>
+      <p class="consult-note">Every application is read personally. If it looks like a fit, you'll hear back within 24 hours to schedule a discovery call. No sales pitch — just a real conversation.</p>
+    </div>
+    <form class="consult-form reveal reveal-delay-1" action="https://formspree.io/f/xqeyaogb" method="POST">
+      <div class="form-group">
+        <label class="form-label" for="name">Your name</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="Full name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email address</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="you@business.com" required>
+      </div>
+      <div class="form-group full">
+        <label class="form-label" for="business">Business name and what you do</label>
+        <input class="form-input" type="text" id="business" name="business" placeholder="e.g. Smith Auto Repair — foreign motor specialist, 1 location, 3 staff" required>
+      </div>
+      <div class="form-group full">
+        <label class="form-label" for="problem">What problem do you want solved?</label>
+        <textarea class="form-textarea" id="problem" name="problem" placeholder="Be specific — what's the task that's eating your time or costing you leads? What does your current workaround look like?" required></textarea>
+      </div>
+      <div class="form-group full">
+        <label class="form-label" for="tried">What have you already tried?</label>
+        <textarea class="form-textarea" id="tried" name="tried" placeholder="Any tools, platforms, or previous attempts? What worked, what didn't?" style="min-height:90px;"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="budget">Approximate budget range</label>
+        <select class="form-select" id="budget" name="budget">
+          <option value="">Select one...</option>
+          <option value="under2k">Under $2,000</option>
+          <option value="2k-5k">$2,000 – $5,000</option>
+          <option value="5k-10k">$5,000 – $10,000</option>
+          <option value="over10k">$10,000+</option>
+          <option value="unsure">Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="timeline">Ideal start timeline</label>
+        <select class="form-select" id="timeline" name="timeline">
+          <option value="">Select one...</option>
+          <option value="asap">As soon as possible</option>
+          <option value="30days">Within 30 days</option>
+          <option value="60days">Within 60 days</option>
+          <option value="flexible">Flexible</option>
+        </select>
+      </div>
+      <div class="form-submit-row">
+        <div class="form-submit-note">Jami reads every application.<br>Response within 24 hours.</div>
+        <button type="submit" class="form-submit">Submit request →</button>
+      </div>
+    </form>
+  </div>
+</section>
 
-                if (response.ok) {
-                    // Show success message
-                    successMessage.classList.add('show');
-                    
-                    // Reset form
-                    form.reset();
-                    
-                    // Scroll to success message
-                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } else {
-                    throw new Error('Submission failed');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                errorMessage.classList.add('show');
-                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } finally {
-                // Re-enable button
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'submit request →';
-            }
-        });
-    </script>
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">
+    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
+  </a>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#products">Products</a></li>
+    <li><a href="basecamp.html">Base Camp</a></li>
+    <li><a href="ascent-scholars.html">Ascent Scholars</a></li>
+    <li><a href="mailto:hello@noros.life">Contact</a></li>
+    <li><a href="https://instagram.com/noros.life" target="_blank" rel="noopener">Instagram</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Noros Solutions LLC · All rights reserved</div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
