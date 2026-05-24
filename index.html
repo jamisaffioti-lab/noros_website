@@ -152,35 +152,36 @@
 
   /* MOBILE */
   @media (max-width: 768px) {
+    /* ── MOBILE NAV ── */
     .nav-links { display: none; }
+    .nav-menu-btn { display: flex; }
+    .nav-close-btn {
+      display: none;
+      position: fixed; top: 16px; right: 20px;
+      z-index: 200; background: none; border: none;
+      color: #f4f1ec; font-size: 28px;
+      cursor: pointer; padding: 4px 10px; line-height: 1;
+    }
     .nav-links.open {
       display: flex !important;
       flex-direction: column;
       position: fixed;
-      inset: 0;
+      top: 68px; left: 0; right: 0; bottom: 0;
       background: #1a1814;
-      padding: 70px 24px 24px;
+      padding: 16px 24px 40px;
       gap: 0;
-      z-index: 98;
+      z-index: 97;
       overflow-y: auto;
     }
-    .nav-links.open li { display: block; border-bottom: 1px solid rgba(184,178,168,0.15); }
-    .nav-links.open a { display: block !important; padding: 13px 0; font-size: 13px !important; color: #f4f1ec !important; letter-spacing: 0.08em; }
+    .nav-links.open ~ .nav-close-btn,
+    .nav-close-btn.visible { display: block !important; }
+    .nav-links.open li { display: block !important; border-bottom: 1px solid rgba(184,178,168,0.15); }
+    .nav-links.open a { display: block !important; padding: 16px 0; font-size: 16px !important; color: #f4f1ec !important; letter-spacing: 0.06em; }
 
-  
-  .nav-close-btn {
-    display: none;
-    background: none; border: none;
-    color: #f4f1ec; font-size: 26px;
-    cursor: pointer; padding: 4px 8px; line-height: 1;
-  }
-  .nav-menu-btn { display: flex; }
+    /* ── MOBILE LAYOUT ── */
     nav { padding: 16px 24px; }
     .nav-logo img { height: 40px; }
-  @media (max-width: 768px) {
-  }
-    #home { padding: 140px 48px 80px; }
-    .hero-top { grid-template-columns: 1fr; gap: 0; margin-bottom: 36px; }
+    #home { padding: 100px 24px 56px; }
     .hero-sub { margin-bottom: 36px; }
     .path-grid { grid-template-columns: 1fr; }
     .path-card { padding: 28px 24px; }
@@ -409,7 +410,9 @@
 <script>
   // Nav scroll
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
 
   // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
@@ -424,7 +427,6 @@
     }, { threshold: 0.05 });
     reveals.forEach(el => observer.observe(el));
   } else {
-    // Fallback — show all if IntersectionObserver not supported
     reveals.forEach(el => el.classList.add('visible'));
   }
 
@@ -435,14 +437,14 @@
 
   function openNav() {
     navLinks.classList.add('open');
-    menuBtn.style.display = 'none';
-    navCloseBtn.style.display = 'block';
+    navCloseBtn.classList.add('visible');
+    menuBtn.style.visibility = 'hidden';
     document.body.style.overflow = 'hidden';
   }
   function closeNav() {
     navLinks.classList.remove('open');
-    menuBtn.style.display = '';
-    navCloseBtn.style.display = '';
+    navCloseBtn.classList.remove('visible');
+    menuBtn.style.visibility = 'visible';
     document.body.style.overflow = '';
   }
 
