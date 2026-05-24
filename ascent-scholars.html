@@ -34,8 +34,8 @@
 
   /* ── HERO ── */
   #hero {
-    min-height: 100vh; display: flex; flex-direction: column;
-    justify-content: center; padding: 140px 48px 80px;
+    min-height: 60vh; display: flex; flex-direction: column;
+    justify-content: flex-start; padding: 100px 48px 48px;
     position: relative; overflow: hidden;
   }
   .hero-texture {
@@ -59,13 +59,13 @@
   .section-sub { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--mist); line-height: 1.6; max-width: 560px; }
 
   /* ── TAGLINE BAR ── */
-  .tagline-bar { background: var(--ash); border-top: var(--rule); border-bottom: var(--rule); padding: 24px 48px; display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+  .tagline-bar { background: var(--ash); border-top: var(--rule); border-bottom: var(--rule); padding: 16px 48px; display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
   .tagline-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--summit); white-space: nowrap; }
   .tagline-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: var(--mist); line-height: 1.5; }
   .tagline-text strong { color: var(--snow); font-style: normal; font-weight: 400; }
 
   /* ── PRODUCTS ── */
-  #products { background: var(--stone); }
+  #products { background: var(--stone); padding-top: 48px; }
   .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(184,178,168,0.1); margin-top: 48px; }
   .product-card { background: var(--stone); padding: 48px 44px; position: relative; overflow: hidden; text-decoration: none; color: inherit; display: block; transition: background 0.3s; }
   .product-card:hover { background: var(--ash); }
@@ -168,7 +168,7 @@
     .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block !important; padding: 16px !important; }
     .nav-menu-btn { display: flex; }
     nav { padding: 16px 24px; }
-    #hero { padding: 88px 24px 48px !important; justify-content: flex-start; }
+    #hero { padding: 88px 24px 24px !important; min-height: auto !important; justify-content: flex-start; }
     .section { padding: 72px 24px; }
     .tagline-bar { padding: 20px 24px; gap: 12px; }
     .products-grid, .beta-grid, .architect-grid { grid-template-columns: 1fr; }
