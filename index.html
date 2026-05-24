@@ -32,12 +32,10 @@
 
   /* HERO */
   #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 48px 80px; position: relative; overflow: hidden; }
+  .hero-bg-mountain { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: 5% 20%; opacity: 0.07; filter: brightness(3) grayscale(1); pointer-events: none; }
   .hero-texture { position: absolute; inset: 0; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px); }
   .hero-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; width: 100%; }
-  .hero-top { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 48px; }
-  .hero-top-left { }
-  .hero-top-right { position: relative; height: 280px; overflow: hidden; border-radius: 2px; }
-  .hero-top-right img { width: 100%; height: 100%; object-fit: cover; object-position: 5% 30%; opacity: 0.55; filter: brightness(1.8) grayscale(0.3); }
+  .hero-top { margin-bottom: 48px; }
   .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--summit); margin-bottom: 20px; animation: fadeUp 1s 0.1s ease both; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 600; line-height: 1.05; color: var(--snow); margin-bottom: 16px; animation: fadeUp 1s 0.2s ease both; }
@@ -148,14 +146,12 @@
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
-    .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; top: 68px; background: rgba(26,24,20,0.98); backdrop-filter: blur(16px); padding: 40px 24px; gap: 0; z-index: 99; }
+    .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; top: 0; background: #1a1814; padding: 80px 24px 40px; gap: 0; z-index: 98; overflow-y: auto; }
     .nav-links.open li { border-bottom: var(--rule); }
     .nav-links.open a { display: block; padding: 16px 0; font-size: 14px; color: var(--snow) !important; }
     .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block; padding: 14px !important; }
     .nav-menu-btn { display: flex; }
     #home { padding: 100px 24px 56px; }
-    .hero-top { grid-template-columns: 1fr; gap: 28px; }
-    .hero-top-right { height: 180px; }
     .mountain-footer { height: 80px; padding: 0 24px; }
     .mountain-footer-text { font-size: 14px; }
     .path-grid { grid-template-columns: 1fr; }
@@ -191,18 +187,14 @@
 
 <section id="home">
   <div class="hero-texture"></div>
+  <img src="/images/neuro_mountain.png" alt="" class="hero-bg-mountain" aria-hidden="true">
   <div class="hero-content">
     <div class="hero-top">
-      <div class="hero-top-left">
         <div class="hero-eyebrow">Noros Solutions · Est. 2026</div>
         <h1 class="hero-headline">
           AI education and tools<br>for <em>every kind of climber.</em>
         </h1>
         <p class="hero-sub">Students, solopreneurs, and small businesses — find your path and start climbing.</p>
-      </div>
-      <div class="hero-top-right">
-        <img src="/images/neuro_mountain.png" alt="Noros mountain">
-      </div>
     </div>
 
     <div class="path-grid">
