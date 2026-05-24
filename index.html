@@ -2,644 +2,185 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/png" href="/images/noros-logo.png">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Noros Solutions — AI-powered education and consulting for everyday humans ready to climb.">
+<meta name="description" content="Noros Solutions — AI education and consulting for students, solopreneurs, and small businesses.">
+<link rel="icon" type="image/png" href="/images/noros-logo.png">
 <title>Noros Solutions</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --stone: #1a1814;
-    --ash: #2e2b26;
-    --bark: #8a8278;
-    --mist: #d4cec8;
-    --snow: #f4f1ec;
-    --cream: #faf8f4;
-    --summit: #b68877;
-    --pine: #3d5a3e;
-    --sky: #7ba3c0;
-    --ember: #c4603a;
-    --rule: 1px solid rgba(184,178,168,0.2);
+    --stone: #1a1814; --ash: #2e2b26; --bark: #8a8278;
+    --mist: #d4cec8; --snow: #f4f1ec; --cream: #faf8f4;
+    --summit: #b68877; --pine: #3d5a3e; --sky: #7ba3c0;
+    --ember: #c4603a; --rule: 1px solid rgba(184,178,168,0.2);
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
+  body { background: var(--stone); color: var(--snow); font-family: 'DM Mono', monospace; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
 
-  body {
-    background: var(--stone);
-    color: var(--snow);
-    font-family: 'DM Mono', monospace;
-    font-size: 15px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 48px;
-    background: rgba(26,24,20,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: var(--rule);
-    transition: padding 0.3s ease;
-  }
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(26,24,20,0.95); backdrop-filter: blur(12px); border-bottom: var(--rule); transition: padding 0.3s ease; }
   nav.scrolled { padding: 14px 48px; }
-  .nav-logo img {
-    height: 36px; width: auto;
-    display: block;
-  }
-  .nav-logo img.dark-logo { display: block; }
-  .nav-logo img.light-logo { display: none; }
-  .nav-links {
-    display: flex; gap: 36px; align-items: center;
-    list-style: none;
-  }
-  .nav-links a {
-    font-family: 'Syne', sans-serif;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--mist); text-decoration: none;
-    transition: color 0.2s;
-  }
+  .nav-logo img { height: 52px; width: auto; display: block; }
+  .nav-links { display: flex; gap: 36px; align-items: center; list-style: none; }
+  .nav-links a { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mist); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--snow); }
-  .nav-cta {
-    font-family: 'Syne', sans-serif;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--stone) !important;
-    background: var(--summit);
-    padding: 8px 18px;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
+  .nav-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone) !important; background: var(--summit); padding: 8px 18px; text-decoration: none; transition: opacity 0.2s; }
   .nav-cta:hover { opacity: 0.85; }
-  .nav-menu-btn {
-    display: none; background: none; border: none;
-    cursor: pointer; padding: 4px; flex-direction: column; gap: 5px;
-  }
-  .nav-menu-btn span {
-    display: block; width: 22px; height: 1px; background: var(--snow);
-    transition: all 0.3s;
-  }
+  .nav-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 4px; flex-direction: column; gap: 5px; }
+  .nav-menu-btn span { display: block; width: 22px; height: 1px; background: var(--snow); }
 
-  /* ── HERO ── */
-  #home {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 48px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: var(--stone);
-    z-index: 0;
-  }
-  .hero-texture {
-    position: absolute; inset: 0; z-index: 1;
-    background-image:
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 60px,
-        rgba(184,178,168,0.03) 60px,
-        rgba(184,178,168,0.03) 61px
-      ),
-      repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 60px,
-        rgba(184,178,168,0.03) 60px,
-        rgba(184,178,168,0.03) 61px
-      );
-  }
-  .hero-mountain {
-    position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
-    height: 90vh; overflow: hidden;
-  }
-  .hero-mountain img { width: 100%; height: 100%; object-fit: cover; object-position: 0% 0%; opacity: 0.08; filter: brightness(2.5) grayscale(1); }
-  .hero-content {
-    position: relative; z-index: 3;
-    max-width: 780px;
-    animation: fadeUp 1s ease both;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .hero-eyebrow {
-    font-family: 'Syne', sans-serif;
-    font-size: 12px; font-weight: 700;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--summit); margin-bottom: 20px;
-    animation: fadeUp 1s 0.1s ease both;
-  }
-  .hero-headline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(44px, 7vw, 80px);
-    font-weight: 600; line-height: 1.0;
-    color: var(--snow); margin-bottom: 24px;
-    animation: fadeUp 1s 0.2s ease both;
-  }
-  .hero-headline em {
-    font-style: italic; color: var(--summit);
-  }
-  .hero-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(17px, 2.5vw, 22px);
-    font-style: italic; color: var(--mist);
-    max-width: 560px; line-height: 1.6;
-    margin-bottom: 40px;
-    animation: fadeUp 1s 0.3s ease both;
-  }
-  .hero-actions {
-    display: flex; gap: 16px; flex-wrap: wrap;
-    animation: fadeUp 1s 0.4s ease both;
-  }
-  .btn-primary {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    background: var(--summit); color: var(--stone);
-    padding: 14px 28px; text-decoration: none;
-    transition: opacity 0.2s; display: inline-block;
-  }
-  .btn-primary:hover { opacity: 0.85; }
-  .btn-ghost {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    border: 1px solid rgba(184,178,168,0.3);
-    color: var(--mist); padding: 14px 28px;
-    text-decoration: none; transition: border-color 0.2s, color 0.2s;
-    display: inline-block;
-  }
-  .btn-ghost:hover { border-color: var(--snow); color: var(--snow); }
-  .hero-scroll {
-    position: absolute; bottom: 32px; right: 48px; z-index: 3;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    animation: fadeUp 1s 0.6s ease both;
-  }
-  .hero-scroll span {
-    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--mist); writing-mode: vertical-rl;
-  }
-  .scroll-line {
-    width: 1px; height: 48px; background: var(--mist);
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; transform: scaleY(1); }
-    50% { opacity: 1; transform: scaleY(1.2); }
-  }
+  /* HERO */
+  #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 48px 80px; position: relative; overflow: hidden; }
+  .hero-texture { position: absolute; inset: 0; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px); }
+  .hero-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; width: 100%; }
+  .hero-top { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 48px; }
+  .hero-top-left { }
+  .hero-top-right { position: relative; height: 280px; overflow: hidden; border-radius: 2px; }
+  .hero-top-right img { width: 100%; height: 100%; object-fit: cover; object-position: 5% 30%; opacity: 0.55; filter: brightness(1.8) grayscale(0.3); }
+  .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--summit); margin-bottom: 20px; animation: fadeUp 1s 0.1s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 600; line-height: 1.05; color: var(--snow); margin-bottom: 16px; animation: fadeUp 1s 0.2s ease both; }
+  .hero-headline em { font-style: italic; color: var(--summit); }
+  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2vw, 20px); font-style: italic; color: var(--mist); max-width: 560px; line-height: 1.6; margin-bottom: 56px; animation: fadeUp 1s 0.3s ease both; }
 
-  /* ── SECTION BASE ── */
-  section { padding: 100px 48px; }
-  .section-eyebrow {
-    font-family: 'Syne', sans-serif;
-    font-size: 12px; font-weight: 700;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--summit); margin-bottom: 16px;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 600; line-height: 1.05;
-    color: var(--snow); margin-bottom: 20px;
-  }
-  .section-title em { font-style: italic; color: var(--summit); }
-  .section-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px; font-style: italic;
-    color: var(--mist); line-height: 1.6;
-    max-width: 560px;
-  }
-  .rule { border: none; border-top: var(--rule); margin: 0; }
+  /* PATH CARDS */
+  .path-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(184,178,168,0.1); animation: fadeUp 1s 0.4s ease both; }
+  .path-card { background: var(--ash); padding: 36px 32px; text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: background 0.3s; border-top: 3px solid transparent; }
+  .path-card:hover { background: #363228; }
+  .path-card.scholars { border-top-color: var(--sky); }
+  .path-card.basecamp { border-top-color: var(--summit); background: #332e29; }
+  .path-card.basecamp:hover { background: #3a342e; }
+  .path-card.advisory { border-top-color: var(--pine); }
+  .path-eyebrow { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .path-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .path-dot.scholars { background: var(--sky); }
+  .path-dot.basecamp { background: var(--summit); }
+  .path-dot.advisory { background: #5DCAA5; }
+  .path-eyebrow.scholars { color: var(--sky); }
+  .path-eyebrow.basecamp { color: var(--summit); }
+  .path-eyebrow.advisory { color: #5DCAA5; }
+  .path-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 2.5vw, 34px); font-weight: 600; line-height: 1.0; color: var(--snow); margin-bottom: 8px; }
+  .path-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--mist); margin-bottom: 20px; line-height: 1.5; flex: 1; }
+  .path-audience { font-size: 11px; color: var(--bark); line-height: 1.6; margin-bottom: 24px; }
+  .path-price { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; margin-bottom: 4px; }
+  .path-price.scholars { color: var(--sky); }
+  .path-price.basecamp { color: var(--summit); }
+  .path-price.advisory { color: #5DCAA5; }
+  .path-price-note { font-size: 11px; color: var(--bark); margin-bottom: 20px; }
+  .path-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s; }
+  .path-cta.scholars { color: var(--sky); }
+  .path-cta.basecamp { color: var(--summit); }
+  .path-cta.advisory { color: #5DCAA5; }
+  .path-card:hover .path-cta { gap: 14px; }
+  .path-badge { position: absolute; top: 0; right: 24px; font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; background: var(--summit); color: var(--stone); }
 
-  /* ── MISSION ── */
-  #mission {
-    background: var(--ash);
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: center;
-  }
-  .mission-left { }
-  .mission-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(22px, 3.5vw, 34px);
-    font-weight: 400; line-height: 1.4;
-    color: var(--snow); margin-bottom: 32px;
-  }
-  .mission-quote strong {
-    font-style: italic; color: var(--summit);
-    font-weight: 400;
-  }
-  .mission-right { }
-  .mission-stats {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 0; border: var(--rule);
-  }
-  .stat-cell {
-    padding: 28px 24px;
-    border-right: var(--rule); border-bottom: var(--rule);
-  }
+  /* MISSION */
+  #mission { background: var(--ash); padding: 100px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .mission-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 3vw, 32px); font-weight: 400; line-height: 1.5; color: var(--snow); }
+  .mission-quote strong { font-style: italic; color: var(--summit); font-weight: 400; }
+  .mission-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: var(--rule); }
+  .stat-cell { padding: 28px 24px; border-right: var(--rule); border-bottom: var(--rule); }
   .stat-cell:nth-child(2n) { border-right: none; }
   .stat-cell:nth-last-child(-n+2) { border-bottom: none; }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 44px; font-weight: 600;
-    color: var(--summit); line-height: 1;
-    margin-bottom: 6px;
-  }
-  .stat-label {
-    font-size: 13px; color: var(--mist); line-height: 1.5;
-  }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 600; color: var(--summit); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 13px; color: var(--mist); line-height: 1.5; }
 
-  /* ── PRODUCTS ── */
-  #products { background: var(--stone); }
-  .products-header {
-    display: flex; justify-content: space-between;
-    align-items: flex-end; margin-bottom: 56px;
-    padding-bottom: 32px; border-bottom: var(--rule);
-  }
-  .products-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    background: rgba(184,178,168,0.1);
-  }
-  .product-card {
-    background: var(--stone);
-    padding: 44px 40px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-    text-decoration: none; color: inherit;
-    display: block;
-  }
-  .product-card:hover { background: var(--ash); }
-  .product-card.flagship { grid-column: 1 / -1; }
-  .product-card.flagship { background: var(--ash); }
-  .product-card.flagship:hover { background: #363228; }
-  .product-status {
-    font-family: 'Syne', sans-serif;
-    font-size: 9px; font-weight: 700;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
-  }
-  .status-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    display: inline-block; flex-shrink: 0;
-  }
-  .status-dot.active { background: var(--pine); }
-  .status-dot.selective { background: var(--summit); }
-  .status-dot.soon { background: var(--mist); }
-  .status-active { color: #5DCAA5; }
-  .status-selective { color: var(--summit); }
-  .status-soon { color: var(--mist); }
-  .product-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 600; line-height: 1.0;
-    color: var(--snow); margin-bottom: 8px;
-  }
-  .product-tagline {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-size: 17px;
-    color: var(--mist); margin-bottom: 24px;
-    line-height: 1.5;
-  }
-  .product-desc {
-    font-size: 14px; color: var(--bark);
-    line-height: 1.8; max-width: 540px;
-    margin-bottom: 32px;
-  }
-  .product-link {
-    font-family: 'Syne', sans-serif;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--summit); text-decoration: none;
-    display: inline-flex; align-items: center; gap: 8px;
-    transition: gap 0.2s;
-  }
-  .product-card:hover .product-link { gap: 14px; }
-  .product-link-soon {
-    font-family: 'Syne', sans-serif;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--mist);
-  }
-  .flagship-badge {
-    position: absolute; top: 44px; right: 40px;
-    background: var(--summit); color: var(--stone);
-    font-family: 'Syne', sans-serif;
-    font-size: 9px; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    padding: 6px 14px;
-  }
-  .flagship-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 52px; font-weight: 600;
-    color: var(--summit); line-height: 1;
-    margin-bottom: 4px;
-  }
-  .flagship-price-note {
-    font-size: 11px; color: var(--mist);
-    margin-bottom: 28px; letter-spacing: 0.04em;
-  }
-  .flagship-features {
-    display: flex; flex-wrap: wrap; gap: 10px;
-    margin-bottom: 32px;
-  }
-  .feature-pill {
-    font-size: 10px; color: var(--mist);
-    border: 1px solid rgba(184,178,168,0.2);
-    padding: 5px 12px; letter-spacing: 0.04em;
-  }
-  .product-corner-num {
-    position: absolute; bottom: 32px; right: 36px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 80px; font-weight: 600;
-    color: rgba(184,178,168,0.05); line-height: 1;
-    pointer-events: none; user-select: none;
-  }
-
-  /* ── ABOUT ── */
-  #about {
-    background: var(--ash);
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: start;
-  }
-  .about-story {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px; line-height: 1.8;
-    color: var(--snow);
-  }
+  /* ABOUT */
+  #about { background: var(--stone); padding: 100px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .section-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--summit); margin-bottom: 16px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 600; line-height: 1.05; color: var(--snow); margin-bottom: 20px; }
+  .section-title em { font-style: italic; color: var(--summit); }
+  .about-story { font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.8; color: var(--snow); }
   .about-story p { margin-bottom: 20px; }
   .about-story p:last-child { margin-bottom: 0; }
   .about-story em { font-style: italic; color: var(--summit); }
-  .about-right { }
-  .about-credentials {
-    border: var(--rule); margin-bottom: 32px;
-  }
-  .credential-row {
-    display: flex; gap: 16px; padding: 16px 20px;
-    border-bottom: var(--rule); align-items: flex-start;
-  }
+  .about-credentials { border: var(--rule); margin-bottom: 32px; }
+  .credential-row { display: flex; gap: 16px; padding: 16px 20px; border-bottom: var(--rule); align-items: flex-start; }
   .credential-row:last-child { border-bottom: none; }
-  .credential-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--summit); flex-shrink: 0;
-    margin-top: 6px;
-  }
-  .credential-text {
-    font-size: 12px; color: var(--mist); line-height: 1.6;
-  }
+  .credential-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--summit); flex-shrink: 0; margin-top: 6px; }
+  .credential-text { font-size: 13px; color: var(--mist); line-height: 1.6; }
   .credential-text strong { color: var(--snow); font-weight: 500; }
-  .about-connect {
-    font-family: 'Syne', sans-serif;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--mist); margin-bottom: 16px;
-  }
+  .about-connect { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mist); margin-bottom: 16px; }
   .about-links { display: flex; flex-direction: column; gap: 10px; }
-  .about-link {
-    font-size: 12px; color: var(--mist);
-    text-decoration: none;
-    display: flex; align-items: center; gap: 10px;
-    transition: color 0.2s;
-  }
+  .about-link { font-size: 13px; color: var(--mist); text-decoration: none; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
   .about-link:hover { color: var(--snow); }
   .about-link-arrow { color: var(--summit); font-size: 14px; }
 
-  /* ── CONTACT ── */
-  #contact {
-    background: var(--stone);
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: start;
-    border-top: var(--rule);
-  }
-  .contact-left { }
+  /* CONTACT */
+  #contact { background: var(--ash); padding: 100px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; border-top: var(--rule); }
   .contact-options { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
-  .contact-option {
-    border: var(--rule); padding: 24px 28px;
-    text-decoration: none; color: inherit;
-    display: block; transition: border-color 0.2s, background 0.2s;
-  }
-  .contact-option:hover { border-color: var(--summit); background: var(--ash); }
-  .contact-option-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 9px; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--summit); margin-bottom: 8px;
-  }
-  .contact-option-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px; color: var(--snow);
-    margin-bottom: 4px;
-  }
-  .contact-option-desc {
-    font-size: 11px; color: var(--mist); line-height: 1.5;
-  }
-  .contact-right {
-    padding-top: 0;
-  }
+  .contact-option { border: var(--rule); padding: 24px 28px; text-decoration: none; color: inherit; display: block; transition: border-color 0.2s, background 0.2s; }
+  .contact-option:hover { border-color: var(--summit); background: var(--stone); }
+  .contact-option-label { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--summit); margin-bottom: 8px; }
+  .contact-option-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--snow); margin-bottom: 4px; }
+  .contact-option-desc { font-size: 12px; color: var(--mist); line-height: 1.5; }
   .contact-form { display: flex; flex-direction: column; gap: 16px; }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
-  .form-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 9px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--mist);
-  }
-  .form-input, .form-textarea, .form-select {
-    background: var(--ash); border: var(--rule);
-    color: var(--snow); font-family: 'DM Mono', monospace;
-    font-size: 12px; padding: 12px 16px;
-    outline: none; transition: border-color 0.2s;
-    width: 100%;
-  }
-  .form-input:focus, .form-textarea:focus, .form-select:focus {
-    border-color: var(--summit);
-  }
-  .form-input::placeholder, .form-textarea::placeholder {
-    color: #8a8278;
-  }
+  .form-label { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mist); }
+  .form-input, .form-textarea, .form-select { background: var(--stone); border: var(--rule); color: var(--snow); font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--summit); }
+  .form-input::placeholder, .form-textarea::placeholder { color: #8a8278; }
   .form-textarea { resize: vertical; min-height: 100px; }
   .form-select option { background: var(--ash); }
-  .form-submit {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    background: var(--summit); color: var(--stone);
-    border: none; padding: 14px 28px;
-    cursor: pointer; transition: opacity 0.2s;
-    align-self: flex-start;
-  }
+  .form-submit { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; background: var(--summit); color: var(--stone); border: none; padding: 14px 28px; cursor: pointer; transition: opacity 0.2s; align-self: flex-start; }
   .form-submit:hover { opacity: 0.85; }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--ash);
-    padding: 40px 48px;
-    display: flex; justify-content: space-between;
-    align-items: center; border-top: var(--rule);
-    flex-wrap: wrap; gap: 20px;
-  }
-  .footer-logo img { height: 28px; width: auto; }
-  .footer-links {
-    display: flex; gap: 28px; list-style: none;
-    flex-wrap: wrap;
-  }
-  .footer-links a {
-    font-size: 12px; letter-spacing: 0.1em;
-    color: var(--bark); text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--mist); }
-  .footer-copy {
-    font-size: 12px; color: var(--bark);
-    letter-spacing: 0.06em;
-  }
+  /* MOUNTAIN FOOTER */
+  .mountain-footer { position: relative; height: 120px; display: flex; align-items: center; background: var(--stone); border-top: var(--rule); padding: 0 48px; }
+  .mountain-footer-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.5vw, 26px); font-style: italic; color: rgba(244,241,236,0.4); }
 
-  /* ── SCROLL ANIMATIONS ── */
-  .reveal {
-    opacity: 0; transform: translateY(20px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
+  /* FOOTER */
+  footer { background: var(--ash); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; border-top: var(--rule); flex-wrap: wrap; gap: 20px; }
+  .footer-logo img { height: 42px; width: auto; }
+  .footer-links { display: flex; gap: 28px; list-style: none; flex-wrap: wrap; }
+  .footer-links a { font-size: 12px; letter-spacing: 0.1em; color: var(--bark); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--mist); }
+  .footer-copy { font-size: 12px; color: var(--bark); }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
 
-  /* ── MOBILE ── */
+  /* MOBILE */
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
-    nav.scrolled { padding: 12px 24px; }
     .nav-links { display: none; }
-    .nav-links.open {
-      display: flex; flex-direction: column;
-      position: fixed; inset: 0; top: 60px;
-      background: var(--stone); padding: 40px 24px;
-      gap: 28px; z-index: 99;
-    }
-    .nav-links a { font-size: 14px; }
+    .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; top: 68px; background: rgba(26,24,20,0.98); backdrop-filter: blur(16px); padding: 40px 24px; gap: 0; z-index: 99; }
+    .nav-links.open li { border-bottom: var(--rule); }
+    .nav-links.open a { display: block; padding: 16px 0; font-size: 14px; color: var(--snow) !important; }
+    .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block; padding: 14px !important; }
     .nav-menu-btn { display: flex; }
-
-    #home { padding: 0 24px 60px; }
-    section { padding: 72px 24px; }
-
-    #mission { grid-template-columns: 1fr; gap: 48px; }
-    #about { grid-template-columns: 1fr; gap: 48px; }
-    #contact { grid-template-columns: 1fr; gap: 48px; }
-
-    .products-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .products-grid { grid-template-columns: 1fr; }
-    .product-card.flagship { grid-column: 1; }
-    .flagship-badge { top: 24px; right: 24px; }
-
-    footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
-    .hero-scroll { display: none; }
+    #home { padding: 100px 24px 56px; }
+    .hero-top { grid-template-columns: 1fr; gap: 28px; }
+    .hero-top-right { height: 180px; }
+    .mountain-footer { height: 80px; padding: 0 24px; }
+    .mountain-footer-text { font-size: 14px; }
+    .path-grid { grid-template-columns: 1fr; }
+    .path-card { padding: 28px 24px; }
+    #mission { grid-template-columns: 1fr; gap: 48px; padding: 72px 24px; }
+    #about { grid-template-columns: 1fr; gap: 48px; padding: 72px 24px; }
+    #contact { grid-template-columns: 1fr; gap: 48px; padding: 72px 24px; }
+    .mountain-footer { height: 180px; }
+    .mountain-footer-text { left: 24px; bottom: 20px; font-size: 16px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; gap: 24px; }
+    .footer-links { flex-direction: column; gap: 12px; }
   }
-
-  /* ── MOBILE FIXES ── */
-  @media (max-width: 768px) {
-
-    /* Mobile nav — solid background so menu is readable */
-    .nav-links.open {
-      background: rgba(26,24,20,0.98) !important;
-      backdrop-filter: blur(16px);
-      padding: 32px 24px !important;
-    }
-    .nav-links.open a {
-      color: var(--snow) !important;
-      font-size: 16px !important;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(184,178,168,0.1);
-      display: block;
-      width: 100%;
-    }
-    .nav-links.open .nav-cta {
-      margin-top: 16px;
-      text-align: center;
-      display: block;
-      padding: 14px !important;
-    }
-
-    /* Mobile mountain — reposition so peak is visible */
-    .hero-mountain {
-      height: 60vh !important;
-    }
-    .hero-mountain img {
-      object-position: 50% 20% !important;
-      opacity: 0.15 !important;
-    }
-
-    /* Mobile hero content — better spacing */
-    #hero, #hero-section {
-      padding: 0 24px 48px !important;
-      min-height: 100vh;
-    }
-    .hero-headline {
-      font-size: clamp(32px, 10vw, 52px) !important;
-    }
-    .hero-sub {
-      font-size: 16px !important;
-    }
-    .hero-actions {
-      flex-direction: column !important;
-      gap: 12px !important;
-    }
-    .hero-actions .btn-primary,
-    .hero-actions .btn-ghost {
-      text-align: center !important;
-      width: 100% !important;
-    }
-
-    /* Mobile stats bar */
-    .stats-bar {
-      grid-template-columns: 1fr 1fr !important;
-    }
-
-    /* Mobile products grid */
-    .products-grid {
-      grid-template-columns: 1fr !important;
-    }
-
-    /* Mobile sections padding */
-    .section, section {
-      padding: 56px 24px !important;
-    }
-
-    /* Mobile footer */
-    footer {
-      flex-direction: column !important;
-      align-items: flex-start !important;
-      gap: 24px !important;
-      padding: 32px 24px !important;
-    }
-    .footer-links {
-      flex-direction: column !important;
-      gap: 12px !important;
-    }
-  }
-
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="navbar">
   <a href="#home" class="nav-logo">
-    <img src="/images/noros-logo-white.png" alt="Noros Solutions" class="dark-logo">
+    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
   </a>
   <ul class="nav-links" id="nav-links">
-    <li><a href="#mission">About</a></li>
-    <li><a href="#products">Products</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="ascent-scholars.html">Ascent Scholars</a></li>
-    <li><a href="#about">Jami</a></li>
+    <li><a href="basecamp.html">Base Camp</a></li>
+    <li><a href="summit-advisory.html">Summit Advisory</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="basecamp.html" class="nav-cta">Apply to Base Camp</a></li>
   </ul>
@@ -648,152 +189,99 @@
   </button>
 </nav>
 
-<!-- HERO -->
 <section id="home">
-  <div class="hero-bg"></div>
   <div class="hero-texture"></div>
-  <div class="hero-mountain">
-    <img src="/images/neuro_mountain.png" alt="Noros mountain">
-  </div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Noros Solutions · Est. 2026</div>
-    <h1 class="hero-headline">
-      The mountain<br>doesn't wait.<br><em>Neither should you.</em>
-    </h1>
-    <p class="hero-sub">AI-powered education and tools for everyday humans who are done watching from the base and ready to climb.</p>
-    <div class="hero-actions">
-      <a href="basecamp.html" class="btn-primary">Apply to Base Camp →</a>
-      <a href="#products" class="btn-ghost">See all products</a>
+    <div class="hero-top">
+      <div class="hero-top-left">
+        <div class="hero-eyebrow">Noros Solutions · Est. 2026</div>
+        <h1 class="hero-headline">
+          AI education and tools<br>for <em>every kind of climber.</em>
+        </h1>
+        <p class="hero-sub">Students, solopreneurs, and small businesses — find your path and start climbing.</p>
+      </div>
+      <div class="hero-top-right">
+        <img src="/images/neuro_mountain.png" alt="Noros mountain">
+      </div>
     </div>
-  </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
+
+    <div class="path-grid">
+
+      <a href="ascent-scholars.html" class="path-card scholars">
+        <div class="path-eyebrow scholars">
+          <span class="path-dot scholars"></span>
+          Ascent Scholars · Students &amp; parents
+        </div>
+        <div class="path-name">Ascent Scholars</div>
+        <div class="path-tagline">AI literacy and tools built for the students who will shape what comes next.</div>
+        <div class="path-audience">For students ages 14–18 and their parents. The AI Architect course and Beta AI study companion, both in beta.</div>
+        <div class="path-price scholars">From $249</div>
+        <div class="path-price-note">Beta pricing · Founding cohort</div>
+        <span class="path-cta scholars">Explore Ascent Scholars →</span>
+      </a>
+
+      <a href="basecamp.html" class="path-card basecamp">
+        <div class="path-badge">Enrolling now</div>
+        <div class="path-eyebrow basecamp">
+          <span class="path-dot basecamp"></span>
+          Base Camp · Adults &amp; solopreneurs
+        </div>
+        <div class="path-name">Base Camp</div>
+        <div class="path-tagline">A 4-week AI-powered launchpad for everyday humans ready to build something real.</div>
+        <div class="path-audience">For solopreneurs, career-changers, and creators who want to use AI to build tools, automations, and income — without a CS degree.</div>
+        <div class="path-price basecamp">$997</div>
+        <div class="path-price-note">Founders price · Increases to $1,497 after Cohort 1</div>
+        <span class="path-cta basecamp">Apply to Base Camp →</span>
+      </a>
+
+      <a href="summit-advisory.html" class="path-card advisory">
+        <div class="path-eyebrow advisory">
+          <span class="path-dot advisory"></span>
+          Summit Advisory · Small businesses
+        </div>
+        <div class="path-name">Summit Advisory</div>
+        <div class="path-tagline">Custom AI automation and workflow systems — built and deployed for your business.</div>
+        <div class="path-audience">For small business owners who want done-with-you AI implementation. Selective engagements, by application only.</div>
+        <div class="path-price advisory">By scope</div>
+        <div class="path-price-note">Custom engagements · Application required</div>
+        <span class="path-cta advisory">Request a consultation →</span>
+      </a>
+
+    </div>
   </div>
 </section>
 
-<!-- MISSION -->
-<section id="mission">
-  <div class="mission-left reveal">
-    <div class="section-eyebrow">Our mission</div>
+<section id="mission" class="reveal">
+  <div>
     <p class="mission-quote">
       We build AI-powered solutions that meet you <strong>exactly where you are</strong> — and give you everything you need to keep climbing.
     </p>
-    <p style="font-size:12px; color:var(--mist); line-height:1.8; max-width:460px;">
+    <p style="font-size:13px; color:var(--mist); line-height:1.8; max-width:460px; margin-top:24px;">
       Founded by a PhD engineer, educator, and mom who figured it out with a wiped laptop and a lot of early mornings. Noros exists because the best guide is someone who has walked the exact path you're on.
     </p>
   </div>
-  <div class="mission-right reveal reveal-delay-2">
-    <div class="mission-stats">
-      <div class="stat-cell">
-        <div class="stat-num">PhD</div>
-        <div class="stat-label">Mechanical Engineering · Founded by a real builder</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num">10+</div>
-        <div class="stat-label">Years teaching at university and high school level</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num">4wk</div>
-        <div class="stat-label">From zero to deployed AI tool — Base Camp timeline</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num">12×</div>
-        <div class="stat-label">Average ROI for Base Camp graduates in year one</div>
-      </div>
+  <div class="mission-stats">
+    <div class="stat-cell">
+      <div class="stat-num">PhD</div>
+      <div class="stat-label">Mechanical Engineering · Founded by a real builder</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Years teaching at university and high school level</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">4wk</div>
+      <div class="stat-label">From zero to deployed AI tool — Base Camp timeline</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">12×</div>
+      <div class="stat-label">Average ROI for Base Camp graduates in year one</div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section id="products">
-  <div class="products-header">
-    <div>
-      <div class="section-eyebrow">Products</div>
-      <h2 class="section-title">Every climb<br><em>starts somewhere.</em></h2>
-    </div>
-    <p class="section-sub" style="max-width:340px;">From your first AI tool to a fully transformed business — there's a Noros product for every stage of your journey.</p>
-  </div>
-
-  <div class="products-grid">
-
-    <!-- BASE CAMP — flagship -->
-    <a href="basecamp.html" class="product-card flagship reveal">
-      <div class="flagship-badge">Flagship · Beta open</div>
-      <div class="product-status">
-        <span class="status-dot active"></span>
-        <span class="status-active">Available now · Founding cohort</span>
-      </div>
-      <h3 class="product-name">Base Camp</h3>
-      <p class="product-tagline">A 4-week AI-powered launchpad for everyday humans ready to climb.</p>
-      <div class="flagship-price">$997</div>
-      <div class="flagship-price-note">Founders price · Increases to $1,497 after Cohort 1</div>
-      <p class="product-desc">
-        Go from "I want to use AI but have no idea where to start" to a working, deployed AI-powered tool — built for your actual life or business. No CS degree required. No prior coding experience. Just you, a guide who has done exactly this, and 4 weeks of focused work.
-      </p>
-      <div class="flagship-features">
-        <span class="feature-pill">Self-paced curriculum</span>
-        <span class="feature-pill">5 lessons per week</span>
-        <span class="feature-pill">Private community</span>
-        <span class="feature-pill">Weekly AI news drops</span>
-        <span class="feature-pill">Live summit calls</span>
-        <span class="feature-pill">Lifetime access</span>
-      </div>
-      <span class="product-link">Apply for the founding cohort →</span>
-      <div class="product-corner-num">01</div>
-    </a>
-
-    <!-- SUMMIT ADVISORY -->
-    <a href="summit-advisory.html" class="product-card reveal reveal-delay-1">
-      <div class="product-status">
-        <span class="status-dot selective"></span>
-        <span class="status-selective">Selective engagements · By application</span>
-      </div>
-      <h3 class="product-name">Summit Advisory</h3>
-      <p class="product-tagline">Custom AI automation and digital solutions for your business.</p>
-      <p class="product-desc">
-        For businesses ready to transform how they operate with AI. Custom automations, workflow systems, and AI-powered tools — built and deployed by someone who builds for real. Engagements accepted selectively.
-      </p>
-      <span class="product-link">Request a consultation →</span>
-      <div class="product-corner-num">02</div>
-    </a>
-
-    <!-- TRAILHEAD AI -->
-    <div class="product-card reveal reveal-delay-2">
-      <div class="product-status">
-        <span class="status-dot soon"></span>
-        <span class="status-soon">Coming 2027</span>
-      </div>
-      <h3 class="product-name">Trailhead AI</h3>
-      <p class="product-tagline">Where children discover what AI is and how it works.</p>
-      <p class="product-desc">
-        Interactive AI literacy tools designed for the next generation — teaching kids not just to use AI, but to understand it. Built by an educator who has spent her career making complex things feel accessible.
-      </p>
-      <span class="product-link-soon">Joining the waitlist soon →</span>
-      <div class="product-corner-num">03</div>
-    </div>
-
-    <!-- ASCENT -->
-    <div class="product-card reveal reveal-delay-3">
-      <div class="product-status">
-        <span class="status-dot soon"></span>
-        <span class="status-soon">Coming 2027</span>
-      </div>
-      <h3 class="product-name">Ascent</h3>
-      <p class="product-tagline">Navigate your career in the age of AI.</p>
-      <p class="product-desc">
-        For high school graduates and young adults asking the question every 18-year-old should be asking right now: "What does a career look like when AI is reshaping every industry?" A course built at the intersection of real technical knowledge and human futures.
-      </p>
-      <span class="product-link-soon">Joining the waitlist soon →</span>
-      <div class="product-corner-num">04</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ABOUT JAMI -->
-<section id="about">
-  <div class="about-left reveal">
+<section id="about" class="reveal">
+  <div>
     <div class="section-eyebrow">The guide</div>
     <h2 class="section-title">Built by someone<br><em>who did it anyway.</em></h2>
     <div class="about-story" style="margin-top:32px;">
@@ -803,57 +291,37 @@
       <p>Noros exists because the best guide is someone who has walked the exact path you're on — and can hand you the map.</p>
     </div>
   </div>
-  <div class="about-right reveal reveal-delay-2">
+  <div class="reveal reveal-delay-2">
     <div class="about-credentials">
-      <div class="credential-row">
-        <div class="credential-dot"></div>
-        <div class="credential-text"><strong>PhD, Mechanical Engineering</strong> — University of Utah</div>
-      </div>
-      <div class="credential-row">
-        <div class="credential-dot"></div>
-        <div class="credential-text"><strong>AP Computer Science Teacher</strong> — New Jersey, 2021–present</div>
-      </div>
-      <div class="credential-row">
-        <div class="credential-dot"></div>
-        <div class="credential-text"><strong>Adjunct Faculty</strong> — Rowan University, engineering courses</div>
-      </div>
-      <div class="credential-row">
-        <div class="credential-dot"></div>
-        <div class="credential-text"><strong>Certified Doula</strong> — human-centered guidance across transitions</div>
-      </div>
-      <div class="credential-row">
-        <div class="credential-dot"></div>
-        <div class="credential-text"><strong>AI Builder</strong> — tutoring platforms, automation systems, business tools</div>
-      </div>
-      <div class="credential-row">
-        <div class="credential-dot"></div>
-        <div class="credential-text"><strong>Founder & CEO</strong> — Noros Solutions LLC, New Jersey</div>
-      </div>
+      <div class="credential-row"><div class="credential-dot"></div><div class="credential-text"><strong>PhD, Mechanical Engineering</strong> — University of Utah</div></div>
+      <div class="credential-row"><div class="credential-dot"></div><div class="credential-text"><strong>AP Computer Science Teacher</strong> — New Jersey, 2021–present</div></div>
+      <div class="credential-row"><div class="credential-dot"></div><div class="credential-text"><strong>Adjunct Faculty</strong> — Rowan University, engineering courses</div></div>
+      <div class="credential-row"><div class="credential-dot"></div><div class="credential-text"><strong>Certified Doula</strong> — human-centered guidance across transitions</div></div>
+      <div class="credential-row"><div class="credential-dot"></div><div class="credential-text"><strong>AI Builder</strong> — tutoring platforms, automation systems, business tools</div></div>
+      <div class="credential-row"><div class="credential-dot"></div><div class="credential-text"><strong>Founder &amp; CEO</strong> — Noros Solutions LLC, New Jersey</div></div>
     </div>
     <div class="about-connect">Connect</div>
     <div class="about-links">
-      <a href="mailto:hello@noros.life" class="about-link">
-        <span class="about-link-arrow">→</span>
-        hello@noros.life
-      </a>
-      <a href="https://instagram.com/noros.life" target="_blank" rel="noopener" class="about-link">
-        <span class="about-link-arrow">→</span>
-        @noros.life on Instagram
-      </a>
+      <a href="mailto:hello@noros.life" class="about-link"><span class="about-link-arrow">→</span>hello@noros.life</a>
+      <a href="https://instagram.com/noros.life" target="_blank" rel="noopener" class="about-link"><span class="about-link-arrow">→</span>@noros.life on Instagram</a>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-left reveal">
+<section id="contact" class="reveal">
+  <div>
     <div class="section-eyebrow">Get in touch</div>
     <h2 class="section-title">Ready to<br><em>start climbing?</em></h2>
     <div class="contact-options">
       <a href="basecamp.html" class="contact-option">
         <div class="contact-option-label">Most popular</div>
         <div class="contact-option-title">Apply to Base Camp</div>
-        <div class="contact-option-desc">5–10 founding cohort spots. Beta price. Start in 4 weeks.</div>
+        <div class="contact-option-desc">Founding cohort spots. $997. Start in 4 weeks.</div>
+      </a>
+      <a href="ascent-scholars.html" class="contact-option">
+        <div class="contact-option-label">For students</div>
+        <div class="contact-option-title">Explore Ascent Scholars</div>
+        <div class="contact-option-desc">AI Architect course and Beta companion. From $249.</div>
       </a>
       <a href="summit-advisory.html" class="contact-option">
         <div class="contact-option-label">For businesses</div>
@@ -867,7 +335,7 @@
       </a>
     </div>
   </div>
-  <div class="contact-right reveal reveal-delay-2">
+  <div class="reveal reveal-delay-2">
     <div class="section-eyebrow" style="margin-bottom:24px;">Quick message</div>
     <form class="contact-form" action="https://formspree.io/f/xpqnlwja" method="POST">
       <div class="form-group">
@@ -883,8 +351,8 @@
         <select class="form-select" id="interest" name="interest">
           <option value="">Select one...</option>
           <option value="basecamp">Base Camp — 4-week program</option>
+          <option value="scholars">Ascent Scholars — student programs</option>
           <option value="summit">Summit Advisory — business consulting</option>
-          <option value="waitlist">Trailhead AI or Ascent waitlist</option>
           <option value="other">Something else</option>
         </select>
       </div>
@@ -897,14 +365,16 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<div class="mountain-footer">
+  <div class="mountain-footer-text">The mountain doesn't wait. Neither should you. ⛰</div>
+</div>
+
 <footer>
   <a href="#home" class="footer-logo">
     <img src="/images/noros-logo-white.png" alt="Noros Solutions">
   </a>
   <ul class="footer-links">
-    <li><a href="#mission">About</a></li>
-    <li><a href="#products">Products</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="ascent-scholars.html">Ascent Scholars</a></li>
     <li><a href="basecamp.html">Base Camp</a></li>
     <li><a href="summit-advisory.html">Summit Advisory</a></li>
@@ -916,30 +386,16 @@
 
 <script>
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
-  });
-
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
   const menuBtn = document.getElementById('menu-btn');
   const navLinks = document.getElementById('nav-links');
-  menuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
-
+  menuBtn.addEventListener('click', () => { navLinks.classList.toggle('open'); });
+  navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => navLinks.classList.remove('open')); });
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
