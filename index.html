@@ -145,20 +145,24 @@
 
   /* MOBILE */
   @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    .nav-logo img { height: 40px; }
     .nav-links { display: none; }
     .nav-links.open {
-      display: flex; flex-direction: column;
-      position: fixed; inset: 0;
+      display: flex !important;
+      flex-direction: column;
+      position: fixed;
+      inset: 0;
       background: #1a1814;
       padding: 80px 24px 40px;
-      gap: 0; z-index: 98; overflow-y: auto;
+      gap: 0;
+      z-index: 98;
+      overflow-y: auto;
     }
     .nav-links.open li { display: block; border-bottom: 1px solid rgba(184,178,168,0.15); }
-    .nav-links.open a { display: block; padding: 18px 0; font-size: 15px !important; letter-spacing: 0.08em; color: #f4f1ec !important; }
-    .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block; padding: 16px !important; background: var(--summit); color: var(--stone) !important; }
+    .nav-links.open a { display: block !important; padding: 18px 0; font-size: 15px !important; color: #f4f1ec !important; letter-spacing: 0.08em; }
+    .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block !important; padding: 16px !important; }
     .nav-menu-btn { display: flex; }
+    nav { padding: 16px 24px; }
+    .nav-logo img { height: 40px; }
   @media (max-width: 768px) {
   }
     #home { padding: 140px 48px 80px; }
@@ -392,24 +396,7 @@
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
 
-  // Mobile menu
-  const menuBtn = document.getElementById('menu-btn');
-  const navLinks = document.getElementById('nav-links');
-  menuBtn.addEventListener('click', () => {
-    const isOpen = navLinks.classList.contains('open');
-    if (isOpen) {
-      navLinks.classList.remove('open');
-      document.body.style.overflow = '';
-    } else {
-      navLinks.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-  });
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+  
   });
 
   // Reveal on scroll
@@ -428,6 +415,25 @@
     // Fallback — show all if IntersectionObserver not supported
     reveals.forEach(el => el.classList.add('visible'));
   }
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const navLinks = document.getElementById('nav-links');
+  menuBtn.addEventListener('click', () => {
+    if (navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    } else {
+      navLinks.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
 </script>
 </body>
 </html>

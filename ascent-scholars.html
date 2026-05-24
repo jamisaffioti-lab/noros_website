@@ -151,6 +151,22 @@
   .footer-copy { font-size: 13px; color: var(--mist); }
 
   @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex !important;
+      flex-direction: column;
+      position: fixed;
+      inset: 0;
+      background: #1a1814;
+      padding: 80px 24px 40px;
+      gap: 0;
+      z-index: 98;
+      overflow-y: auto;
+    }
+    .nav-links.open li { display: block; border-bottom: 1px solid rgba(184,178,168,0.15); }
+    .nav-links.open a { display: block !important; padding: 18px 0; font-size: 15px !important; color: #f4f1ec !important; letter-spacing: 0.08em; }
+    .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block !important; padding: 16px !important; }
+    .nav-menu-btn { display: flex; }
     nav { padding: 16px 24px; }
     #hero { padding: 88px 24px 48px !important; justify-content: flex-start; }
     .section { padding: 72px 24px; }
@@ -399,6 +415,25 @@
     entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
   }, { threshold: 0.08 });
   reveals.forEach(el => observer.observe(el));
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const navLinks = document.getElementById('nav-links');
+  menuBtn.addEventListener('click', () => {
+    if (navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    } else {
+      navLinks.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
 </script>
 </body>
 </html>
