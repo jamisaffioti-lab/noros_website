@@ -31,9 +31,7 @@
   .nav-menu-btn span { display: block; width: 22px; height: 1px; background: var(--snow); }
 
   /* HERO */
-  #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 48px 80px; position: relative; overflow: hidden; }
-  .hero-mountain { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; height: 90vh; overflow: hidden; }
-  .hero-mountain img { width: 100%; height: 100%; object-fit: cover; object-position: 20% 15%; opacity: 0.08; filter: brightness(2.5) grayscale(1); }
+  #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 48px 80px; position: relative; overflow: hidden; }
   .hero-top { margin-bottom: 48px; }
   .hero-top-left { }
   .hero-texture { position: absolute; inset: 0; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px); }
@@ -161,10 +159,9 @@
     .nav-links.open a { display: block; padding: 18px 0; font-size: 15px !important; letter-spacing: 0.08em; color: #f4f1ec !important; }
     .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block; padding: 16px !important; background: var(--summit); color: var(--stone) !important; }
     .nav-menu-btn { display: flex; }
-    .hero-mountain { display: none; }
   @media (max-width: 768px) {
   }
-    #home { padding: 100px 24px 56px; }
+    #home { padding: 140px 48px 80px; }
     .hero-top { grid-template-columns: 1fr; gap: 0; margin-bottom: 36px; }
     .hero-sub { margin-bottom: 36px; }
     .path-grid { grid-template-columns: 1fr; }
@@ -200,9 +197,6 @@
 
 <section id="home">
   <div class="hero-texture"></div>
-  <div class="hero-mountain">
-    <img src="/images/neuro_mountain.png" alt="Noros mountain">
-  </div>
   <div class="hero-content">
     <div class="hero-top">
       <div class="hero-top-left">
