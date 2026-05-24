@@ -32,13 +32,12 @@
 
   /* HERO */
   #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 48px 80px; position: relative; overflow: hidden; }
-  .hero-bg-mountain { display: none; }
-  .hero-top { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-bottom: 48px; }
+  .hero-mountain { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; height: 90vh; overflow: hidden; }
+  .hero-mountain img { width: 100%; height: 100%; object-fit: cover; object-position: 20% 15%; opacity: 0.08; filter: brightness(2.5) grayscale(1); }
+  .hero-top { margin-bottom: 48px; }
   .hero-top-left { }
-  .hero-top-right { position: relative; overflow: hidden; height: 320px; }
-  .hero-top-right img { width: 100%; height: 100%; object-fit: cover; object-position: 10% 20%; mix-blend-mode: screen; opacity: 0.9; }
   .hero-texture { position: absolute; inset: 0; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px); }
-  .hero-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; width: 100%; }
+  .hero-content { position: relative; z-index: 3; max-width: 1100px; margin: 0 auto; width: 100%; }
   .hero-top { margin-bottom: 48px; }
   .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--summit); margin-bottom: 20px; animation: fadeUp 1s 0.1s ease both; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -162,13 +161,11 @@
     .nav-links.open a { display: block; padding: 18px 0; font-size: 15px !important; letter-spacing: 0.08em; color: #f4f1ec !important; }
     .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block; padding: 16px !important; background: var(--summit); color: var(--stone) !important; }
     .nav-menu-btn { display: flex; }
-    .nav-close { display: none; position: fixed; top: 18px; right: 20px; z-index: 200; background: none; border: none; color: #f4f1ec; font-size: 28px; cursor: pointer; padding: 4px 8px; line-height: 1; }
-    .nav-close.visible { display: block; }
+    .hero-mountain { display: none; }
   @media (max-width: 768px) {
   }
     #home { padding: 100px 24px 56px; }
     .hero-top { grid-template-columns: 1fr; gap: 0; margin-bottom: 36px; }
-    .hero-top-right { display: none; }
     .hero-sub { margin-bottom: 36px; }
     .path-grid { grid-template-columns: 1fr; }
     .path-card { padding: 28px 24px; }
@@ -199,11 +196,13 @@
   <button class="nav-menu-btn" id="menu-btn" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
-  <button class="nav-close" id="nav-close" aria-label="Close menu">✕</button>
 </nav>
 
 <section id="home">
   <div class="hero-texture"></div>
+  <div class="hero-mountain">
+    <img src="/images/neuro_mountain.png" alt="Noros mountain">
+  </div>
   <div class="hero-content">
     <div class="hero-top">
       <div class="hero-top-left">
@@ -212,9 +211,6 @@
           AI education and tools<br>for <em>every kind of climber.</em>
         </h1>
         <p class="hero-sub">Students, solopreneurs, and small businesses — find your path and start climbing.</p>
-      </div>
-      <div class="hero-top-right">
-        <img src="/images/neuro_mountain.png" alt="Noros mountain">
       </div>
     </div>
 
@@ -401,7 +397,6 @@
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
   const menuBtn = document.getElementById('menu-btn');
-  const navClose = document.getElementById('nav-close');
   const navLinks = document.getElementById('nav-links');
 
   function openMenu() {
