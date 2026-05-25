@@ -158,7 +158,7 @@
     .nav-close-btn {
       display: none;
       position: fixed; top: 16px; right: 20px;
-      z-index: 200; background: none; border: none;
+      z-index: 1000; background: none; border: none;
       color: #f4f1ec; font-size: 28px;
       cursor: pointer; padding: 4px 10px; line-height: 1;
     }
@@ -166,11 +166,11 @@
       display: flex !important;
       flex-direction: column;
       position: fixed;
-      top: 68px; left: 0; right: 0; bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: #1a1814;
-      padding: 8px 24px 24px;
+      padding: 72px 24px 40px;
       gap: 0;
-      z-index: 97;
+      z-index: 999;
       overflow-y: auto;
     }
     .nav-links.open ~ .nav-close-btn,
@@ -181,7 +181,7 @@
     /* ── MOBILE LAYOUT ── */
     nav { padding: 16px 24px; }
     .nav-logo img { height: 40px; }
-    #home { padding: 100px 24px 56px; }
+    #home { padding: 100px 24px 56px; overflow: visible; }
     .hero-sub { margin-bottom: 36px; }
     .path-grid { grid-template-columns: 1fr; }
     .path-card { padding: 28px 24px; }
