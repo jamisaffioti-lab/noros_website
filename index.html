@@ -19,7 +19,7 @@
   body { background: var(--stone); color: var(--snow); font-family: 'DM Mono', monospace; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
 
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(26,24,20,0.95); backdrop-filter: blur(12px); border-bottom: var(--rule); transition: padding 0.3s ease; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(26,24,20,0.95); backdrop-filter: blur(12px); border-bottom: var(--rule); transition: padding 0.3s ease; overflow: visible; }
   nav.scrolled { padding: 14px 48px; }
   .nav-logo img { height: 52px; width: auto; display: block; }
   .nav-links { display: flex; gap: 36px; align-items: center; list-style: none; }
@@ -152,7 +152,6 @@
 
   /* MOBILE */
   @media (max-width: 768px) {
-    /* ── MOBILE NAV ── */
     .nav-links { display: none; }
     .nav-menu-btn { display: flex; }
     .nav-close-btn {
@@ -163,20 +162,19 @@
       cursor: pointer; padding: 4px 10px; line-height: 1;
     }
     .nav-links.open {
-      display: flex !important;
-      flex-direction: column;
+      display: block !important;
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
       background: #1a1814;
-      padding: 72px 24px 40px;
-      gap: 0;
+      padding: 80px 32px 40px;
       z-index: 999;
       overflow-y: auto;
+      box-sizing: border-box;
     }
-    .nav-links.open ~ .nav-close-btn,
+    .nav-links.open li { display: block !important; border-bottom: 1px solid rgba(184,178,168,0.15); list-style: none; }
+    .nav-links.open a { display: block !important; padding: 16px 0; font-size: 18px !important; color: #f4f1ec !important; letter-spacing: 0.06em; text-decoration: none; }
     .nav-close-btn.visible { display: block !important; }
-    .nav-links.open li { display: block !important; border-bottom: 1px solid rgba(184,178,168,0.15); }
-    .nav-links.open a { display: block !important; padding: 12px 0; font-size: 14px !important; color: #f4f1ec !important; letter-spacing: 0.06em; }
 
     /* ── MOBILE LAYOUT ── */
     nav { padding: 16px 24px; }
