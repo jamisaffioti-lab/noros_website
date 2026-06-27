@@ -60,8 +60,7 @@
   .path-card:hover { background: #363228; }
   .path-card.scholars { border-top-color: var(--ascent-1); }
   .path-card.scholars2 { border-top-color: var(--ascent-2); }
-  .path-card.basecamp { border-top-color: var(--ridge-1); background: #2a3640; }
-  .path-card.basecamp:hover { background: #303d48; }
+  .path-card.basecamp { border-top-color: var(--ridge-1); }
   .path-card.advisory { border-top-color: var(--ridge-3); }
   .path-dot.scholars { background: var(--ascent-1); }
   .path-dot.scholars2 { background: var(--ascent-2); }
@@ -226,7 +225,7 @@
   .path-badge.soon { background: var(--bark); color: var(--snow); }
   .track-row { margin-bottom: 28px; }
   .track-row-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
-  .track-row-label { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--snow); }
+  .track-row-label { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ridge-2); }
   .track-row-label.row2 { color: var(--ascent-2); }
   .track-row-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--bark); }
   .path-card.firsttracks { border-top-color: var(--ridge-2); }
@@ -278,6 +277,20 @@
       </div>
       <div class="path-grid">
 
+        <a href="firsttracks.html" class="path-card firsttracks">
+          <div class="path-badge">Enrolling now</div>
+          <div class="path-eyebrow firsttracks">
+            <span class="path-dot firsttracks"></span>
+            First Tracks · Aspiring founders
+          </div>
+          <div class="path-name">First Tracks</div>
+          <div class="path-tagline">From idea to open for business — in four weeks. The on-ramp before Base Camp.</div>
+          <div class="path-audience">For first-time founders who haven't started yet — idea validation, legal setup, brand, and your first paying customer.</div>
+          <div class="path-price firsttracks">$197</div>
+          <div class="path-price-note">Founders price · Increases to $297 after Cohort 1</div>
+          <span class="path-cta firsttracks">Enroll in First Tracks →</span>
+        </a>
+
         <a href="basecamp.html" class="path-card basecamp">
           <div class="path-badge">Enrolling now</div>
           <div class="path-eyebrow basecamp">
@@ -290,20 +303,6 @@
           <div class="path-price basecamp">$997</div>
           <div class="path-price-note">Founders price · Increases to $1,497 after Cohort 1</div>
           <span class="path-cta basecamp">Apply to Base Camp →</span>
-        </a>
-
-        <a href="firsttracks.html" class="path-card firsttracks">
-          <div class="path-badge">Enrolling now</div>
-          <div class="path-eyebrow firsttracks">
-            <span class="path-dot firsttracks"></span>
-            First Tracks · Aspiring founders
-          </div>
-          <div class="path-name">First Tracks</div>
-          <div class="path-tagline">From idea to open for business — in four weeks. The on-ramp before Base Camp.</div>
-          <div class="path-audience">For first-time founders who haven't started yet — idea validation, legal setup, brand, and your first paying customer.</div>
-          <div class="path-price firsttracks">Founding cohort</div>
-          <div class="path-price-note">Pricing announced soon</div>
-          <span class="path-cta firsttracks">Explore First Tracks →</span>
         </a>
 
         <a href="summit-advisory.html" class="path-card advisory">
@@ -500,7 +499,15 @@
     <li><a href="builders-ridge.html">Builder's Ridge</a></li>
     <li><a href="ascent-scholars.html">Ascent Scholars</a></li>
     <li><a href="mailto:hello@noros.life">Contact</a></li>
-    <li><a href="https://instagram.com/noros.life" target="_blank" rel="noopener">Instagram</a></li>
+    <li>
+      <a href="https://instagram.com/noros.life" target="_blank" rel="noopener" aria-label="Noros Solutions on Instagram" style="display:flex; align-items:center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/>
+        </svg>
+      </a>
+    </li>
   </ul>
   <div class="footer-copy">© 2026 Noros Solutions LLC · All rights reserved</div>
 </footer>
