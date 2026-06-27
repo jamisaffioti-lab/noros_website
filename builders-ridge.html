@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Builder's Ridge — AI-powered paths for solopreneurs, founders, and small businesses. Base Camp, First Tracks, and Summit Advisory. By Noros Solutions.">
+<link rel="icon" type="image/png" href="/images/noros-logo.png">
+<title>Builder's Ridge · Noros Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --stone: #1a1814; --ash: #2e2b26; --bark: #8a8278;
+    --mist: #d4cec8; --snow: #f4f1ec; --cream: #faf8f4;
+    --rule: 1px solid rgba(184,178,168,0.2);
+    --ridge-1: #2f5d80; --ridge-2: #5b8db8; --ridge-3: #9fc1da;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--stone); color: var(--snow); font-family: 'DM Mono', monospace; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+
+  nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(26,24,20,0.95); backdrop-filter: blur(12px); border-bottom: var(--rule); flex-wrap: wrap; gap: 16px; }
+  .nav-back { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--mist); font-size: 12px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--snow); }
+  .nav-back img { height: 40px; width: auto; }
+  .nav-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone) !important; background: var(--ridge-2); padding: 10px 20px; text-decoration: none; transition: opacity 0.2s; }
+  .nav-cta:hover { opacity: 0.85; }
+
+  .hero { padding: 80px 48px 60px; max-width: 1000px; margin: 0 auto; }
+  .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ridge-2); margin-bottom: 20px; }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 60px); font-weight: 600; line-height: 1.05; color: var(--snow); margin-bottom: 20px; }
+  .hero-headline em { font-style: italic; color: var(--ridge-2); }
+  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2vw, 19px); font-style: italic; color: var(--mist); max-width: 600px; line-height: 1.6; }
+
+  .mission-strip { background: var(--ash); padding: 48px; border-top: var(--rule); border-bottom: var(--rule); }
+  .mission-strip-inner { max-width: 1000px; margin: 0 auto; }
+  .mission-strip p { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.2vw, 22px); line-height: 1.6; color: var(--snow); }
+  .mission-strip strong { font-style: italic; color: var(--ridge-2); font-weight: 400; }
+
+  .offerings { max-width: 1000px; margin: 0 auto; padding: 80px 48px; }
+  .section-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ridge-2); margin-bottom: 16px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 600; line-height: 1.1; color: var(--snow); margin-bottom: 48px; }
+  .section-title em { font-style: italic; color: var(--ridge-2); }
+
+  .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(184,178,168,0.1); }
+  .ridge-card { background: var(--ash); padding: 36px 32px; text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: background 0.3s; border-top: 3px solid transparent; }
+  .ridge-card:hover { background: #363228; }
+  .ridge-card.c1 { border-top-color: var(--ridge-1); }
+  .ridge-card.c2 { border-top-color: var(--ridge-2); }
+  .ridge-card.c3 { border-top-color: var(--ridge-3); }
+  .ridge-badge { position: absolute; top: 0; right: 24px; font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; background: var(--ridge-2); color: var(--stone); }
+  .ridge-badge.soon { background: var(--bark); }
+  .ridge-eyebrow { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .ridge-eyebrow.c1 { color: var(--ridge-1); }
+  .ridge-eyebrow.c2 { color: var(--ridge-2); }
+  .ridge-eyebrow.c3 { color: var(--ridge-3); }
+  .ridge-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .ridge-dot.c1 { background: var(--ridge-1); }
+  .ridge-dot.c2 { background: var(--ridge-2); }
+  .ridge-dot.c3 { background: var(--ridge-3); }
+  .ridge-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.5vw, 30px); font-weight: 600; line-height: 1.0; color: var(--snow); margin-bottom: 8px; }
+  .ridge-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--mist); margin-bottom: 20px; line-height: 1.5; flex: 1; }
+  .ridge-audience { font-size: 11px; color: var(--bark); line-height: 1.6; margin-bottom: 24px; }
+  .ridge-price { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin-bottom: 4px; }
+  .ridge-price.c1 { color: var(--ridge-1); }
+  .ridge-price.c2 { color: var(--ridge-2); }
+  .ridge-price.c3 { color: var(--ridge-3); }
+  .ridge-price-note { font-size: 11px; color: var(--bark); margin-bottom: 20px; }
+  .ridge-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s; }
+  .ridge-cta.c1 { color: var(--ridge-1); }
+  .ridge-cta.c2 { color: var(--ridge-2); }
+  .ridge-cta.c3 { color: var(--ridge-3); }
+  .ridge-card:hover .ridge-cta { gap: 14px; }
+
+  footer { background: var(--ash); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; border-top: var(--rule); flex-wrap: wrap; gap: 20px; }
+  .footer-logo img { height: 38px; width: auto; }
+  .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+  .footer-links a { font-size: 12px; letter-spacing: 0.1em; color: var(--bark); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--mist); }
+  .footer-copy { font-size: 12px; color: var(--bark); }
+
+  @media (max-width: 900px) {
+    .card-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 16px 24px; }
+    .hero { padding: 56px 24px 40px; }
+    .mission-strip { padding: 32px 24px; }
+    .offerings { padding: 56px 24px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">
+    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
+    ← Noros Solutions
+  </a>
+  <a href="mailto:hello@noros.life" class="nav-cta">Get in touch</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">Builder's Ridge</div>
+  <h1 class="hero-headline">AI-powered paths<br>for <em>those building something real.</em></h1>
+  <p class="hero-sub">Three programs. One mission — give solopreneurs, first-time founders, and small businesses the tools and confidence to build, launch, and grow with AI.</p>
+</section>
+
+<section class="mission-strip">
+  <div class="mission-strip-inner">
+    <p>Whether you're still validating an idea, ready to build your first AI-powered tool, or running a business that needs custom automation — there's a path here built for <strong>exactly where you are</strong>, not where you're supposed to be.</p>
+  </div>
+</section>
+
+<section class="offerings">
+  <div class="section-eyebrow">Three paths</div>
+  <h2 class="section-title">Where are you<br><em>starting from?</em></h2>
+
+  <div class="card-grid">
+
+    <a href="firsttracks.html" class="ridge-card c3">
+      <div class="ridge-badge">Enrolling now</div>
+      <div class="ridge-eyebrow c3">
+        <span class="ridge-dot c3"></span>
+        First Tracks · Haven't started yet
+      </div>
+      <div class="ridge-name">First Tracks</div>
+      <div class="ridge-tagline">From idea to open for business — in four weeks.</div>
+      <div class="ridge-audience">For first-time founders who haven't started yet — idea validation, legal setup, brand, and your first paying customer.</div>
+      <div class="ridge-price c3">Founding cohort</div>
+      <div class="ridge-price-note">Pricing announced soon</div>
+      <span class="ridge-cta c3">Explore First Tracks →</span>
+    </a>
+
+    <a href="basecamp.html" class="ridge-card c1">
+      <div class="ridge-badge">Enrolling now</div>
+      <div class="ridge-eyebrow c1">
+        <span class="ridge-dot c1"></span>
+        Base Camp · Ready to build
+      </div>
+      <div class="ridge-name">Base Camp</div>
+      <div class="ridge-tagline">A 4-week AI-powered launchpad for everyday humans ready to build something real.</div>
+      <div class="ridge-audience">For solopreneurs, career-changers, and creators who want to use AI to build tools, automations, and income — without a CS degree.</div>
+      <div class="ridge-price c1">$997</div>
+      <div class="ridge-price-note">Founders price · Increases to $1,497 after Cohort 1</div>
+      <span class="ridge-cta c1">Apply to Base Camp →</span>
+    </a>
+
+    <a href="summit-advisory.html" class="ridge-card c2">
+      <div class="ridge-eyebrow c2">
+        <span class="ridge-dot c2"></span>
+        Summit Advisory · Already running a business
+      </div>
+      <div class="ridge-name">Summit Advisory</div>
+      <div class="ridge-tagline">Custom AI automation and workflow systems — built and deployed for your business.</div>
+      <div class="ridge-audience">For small business owners who want done-with-you AI implementation. Selective engagements, by application only.</div>
+      <div class="ridge-price c2">By scope</div>
+      <div class="ridge-price-note">Custom engagements · Application required</div>
+      <span class="ridge-cta c2">Request a consultation →</span>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">
+    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
+  </a>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="ascent-scholars.html">Ascent Scholars</a></li>
+    <li><a href="mailto:hello@noros.life">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Noros Solutions LLC · All rights reserved</div>
+</footer>
+
+</body>
+</html>

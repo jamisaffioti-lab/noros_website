@@ -13,6 +13,10 @@
     --mist: #d4cec8; --snow: #f4f1ec; --cream: #faf8f4;
     --summit: #b68877; --pine: #3d5a3e; --sky: #7ba3c0;
     --ember: #c4603a; --rule: 1px solid rgba(184,178,168,0.2);
+    /* Builder's Ridge — blue family */
+    --ridge-1: #2f5d80; --ridge-2: #5b8db8; --ridge-3: #9fc1da;
+    /* Ascent Scholars — green family */
+    --ascent-1: #2f6b4f; --ascent-2: #5a9b78; --ascent-3: #94c4a8;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -54,30 +58,35 @@
   .path-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(184,178,168,0.1); animation: fadeUp 1s 0.4s ease both; }
   .path-card { background: var(--ash); padding: 36px 32px; text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: background 0.3s; border-top: 3px solid transparent; }
   .path-card:hover { background: #363228; }
-  .path-card.scholars { border-top-color: var(--sky); }
-  .path-card.basecamp { border-top-color: var(--summit); background: #332e29; }
-  .path-card.basecamp:hover { background: #3a342e; }
-  .path-card.advisory { border-top-color: var(--pine); }
+  .path-card.scholars { border-top-color: var(--ascent-1); }
+  .path-card.scholars2 { border-top-color: var(--ascent-2); }
+  .path-card.basecamp { border-top-color: var(--ridge-1); background: #2a3640; }
+  .path-card.basecamp:hover { background: #303d48; }
+  .path-card.advisory { border-top-color: var(--ridge-3); }
+  .path-dot.scholars { background: var(--ascent-1); }
+  .path-dot.scholars2 { background: var(--ascent-2); }
+  .path-dot.basecamp { background: var(--ridge-1); }
+  .path-dot.advisory { background: var(--ridge-3); }
+  .path-eyebrow.scholars { color: var(--ascent-1); }
+  .path-eyebrow.scholars2 { color: var(--ascent-2); }
+  .path-eyebrow.basecamp { color: var(--ridge-1); }
+  .path-eyebrow.advisory { color: var(--ridge-3); }
+  .path-price.scholars { color: var(--ascent-1); }
+  .path-price.scholars2 { color: var(--ascent-2); }
+  .path-price.basecamp { color: var(--ridge-2); }
+  .path-price.advisory { color: var(--ridge-3); }
+  .path-cta.scholars { color: var(--ascent-1); }
+  .path-cta.scholars2 { color: var(--ascent-2); }
+  .path-cta.basecamp { color: var(--ridge-2); }
+  .path-cta.advisory { color: var(--ridge-3); }
   .path-eyebrow { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
   .path-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-  .path-dot.scholars { background: var(--sky); }
-  .path-dot.basecamp { background: var(--summit); }
-  .path-dot.advisory { background: #5DCAA5; }
-  .path-eyebrow.scholars { color: var(--sky); }
-  .path-eyebrow.basecamp { color: var(--summit); }
-  .path-eyebrow.advisory { color: #5DCAA5; }
   .path-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 2.5vw, 34px); font-weight: 600; line-height: 1.0; color: var(--snow); margin-bottom: 8px; }
   .path-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--mist); margin-bottom: 20px; line-height: 1.5; flex: 1; }
   .path-audience { font-size: 11px; color: var(--bark); line-height: 1.6; margin-bottom: 24px; }
   .path-price { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; margin-bottom: 4px; }
-  .path-price.scholars { color: var(--sky); }
-  .path-price.basecamp { color: var(--summit); }
-  .path-price.advisory { color: #5DCAA5; }
   .path-price-note { font-size: 11px; color: var(--bark); margin-bottom: 20px; }
   .path-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s; }
-  .path-cta.scholars { color: var(--sky); }
-  .path-cta.basecamp { color: var(--summit); }
-  .path-cta.advisory { color: #5DCAA5; }
   .path-card:hover .path-cta { gap: 14px; }
   .path-badge { position: absolute; top: 0; right: 24px; font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; background: var(--summit); color: var(--stone); }
 
@@ -211,6 +220,23 @@
   }
   .noros-origin-text strong { color: var(--summit); font-weight: 400; }
   .noros-origin-text em { font-style: italic; color: var(--mist); }
+
+  /* TRACK ROWS */
+  .path-badge { position: absolute; top: 0; right: 24px; font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; background: var(--summit); color: var(--stone); }
+  .path-badge.soon { background: var(--bark); color: var(--snow); }
+  .track-row { margin-bottom: 28px; }
+  .track-row-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+  .track-row-label { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--snow); }
+  .track-row-label.row2 { color: var(--ascent-2); }
+  .track-row-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--bark); }
+  .path-card.firsttracks { border-top-color: var(--ridge-2); }
+  .path-dot.firsttracks { background: var(--ridge-2); }
+  .path-eyebrow.firsttracks { color: var(--ridge-2); }
+  .path-price.firsttracks { color: var(--ridge-2); }
+  .path-cta.firsttracks { color: var(--ridge-2); }
+  @media (max-width: 768px) {
+    .track-row-header { flex-direction: column; gap: 4px; }
+  }
 </style>
 </head>
 <body>
@@ -220,9 +246,8 @@
     <img src="/images/noros-logo-white.png" alt="Noros Solutions">
   </a>
   <ul class="nav-links" id="nav-links">
+    <li><a href="builders-ridge.html">Builder's Ridge</a></li>
     <li><a href="ascent-scholars.html">Ascent Scholars</a></li>
-    <li><a href="basecamp.html">Base Camp</a></li>
-    <li><a href="summit-advisory.html">Summit Advisory</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://instagram.com/noros.life" target="_blank" rel="noopener">Instagram</a></li>
@@ -246,49 +271,95 @@
       </div>
     </div>
 
-    <div class="path-grid">
+    <div class="track-row">
+      <div class="track-row-header">
+        <div class="track-row-label">Builder's Ridge</div>
+        <div class="track-row-sub">For solopreneurs, founders &amp; small businesses — enrolling now</div>
+      </div>
+      <div class="path-grid">
 
-      <a href="ascent-scholars.html" class="path-card scholars">
-        <div class="path-eyebrow scholars">
-          <span class="path-dot scholars"></span>
-          Ascent Scholars · Students &amp; parents
-        </div>
-        <div class="path-name">Ascent Scholars</div>
-        <div class="path-tagline">AI literacy and tools built for the students who will shape what comes next.</div>
-        <div class="path-audience">For students ages 14–18 and their parents. The AI Architect course and Beta AI study companion, both in beta.</div>
-        <div class="path-price scholars">From $249</div>
-        <div class="path-price-note">Beta pricing · Founding cohort</div>
-        <span class="path-cta scholars">Explore Ascent Scholars →</span>
-      </a>
+        <a href="basecamp.html" class="path-card basecamp">
+          <div class="path-badge">Enrolling now</div>
+          <div class="path-eyebrow basecamp">
+            <span class="path-dot basecamp"></span>
+            Base Camp · Adults &amp; solopreneurs
+          </div>
+          <div class="path-name">Base Camp</div>
+          <div class="path-tagline">A 4-week AI-powered launchpad for everyday humans ready to build something real.</div>
+          <div class="path-audience">For solopreneurs, career-changers, and creators who want to use AI to build tools, automations, and income — without a CS degree.</div>
+          <div class="path-price basecamp">$997</div>
+          <div class="path-price-note">Founders price · Increases to $1,497 after Cohort 1</div>
+          <span class="path-cta basecamp">Apply to Base Camp →</span>
+        </a>
 
-      <a href="basecamp.html" class="path-card basecamp">
-        <div class="path-badge">Enrolling now</div>
-        <div class="path-eyebrow basecamp">
-          <span class="path-dot basecamp"></span>
-          Base Camp · Adults &amp; solopreneurs
-        </div>
-        <div class="path-name">Base Camp</div>
-        <div class="path-tagline">A 4-week AI-powered launchpad for everyday humans ready to build something real.</div>
-        <div class="path-audience">For solopreneurs, career-changers, and creators who want to use AI to build tools, automations, and income — without a CS degree.</div>
-        <div class="path-price basecamp">$997</div>
-        <div class="path-price-note">Founders price · Increases to $1,497 after Cohort 1</div>
-        <span class="path-cta basecamp">Apply to Base Camp →</span>
-      </a>
+        <a href="firsttracks.html" class="path-card firsttracks">
+          <div class="path-badge">Enrolling now</div>
+          <div class="path-eyebrow firsttracks">
+            <span class="path-dot firsttracks"></span>
+            First Tracks · Aspiring founders
+          </div>
+          <div class="path-name">First Tracks</div>
+          <div class="path-tagline">From idea to open for business — in four weeks. The on-ramp before Base Camp.</div>
+          <div class="path-audience">For first-time founders who haven't started yet — idea validation, legal setup, brand, and your first paying customer.</div>
+          <div class="path-price firsttracks">Founding cohort</div>
+          <div class="path-price-note">Pricing announced soon</div>
+          <span class="path-cta firsttracks">Explore First Tracks →</span>
+        </a>
 
-      <a href="summit-advisory.html" class="path-card advisory">
-        <div class="path-eyebrow advisory">
-          <span class="path-dot advisory"></span>
-          Summit Advisory · Small businesses
-        </div>
-        <div class="path-name">Summit Advisory</div>
-        <div class="path-tagline">Custom AI automation and workflow systems — built and deployed for your business.</div>
-        <div class="path-audience">For small business owners who want done-with-you AI implementation. Selective engagements, by application only.</div>
-        <div class="path-price advisory">By scope</div>
-        <div class="path-price-note">Custom engagements · Application required</div>
-        <span class="path-cta advisory">Request a consultation →</span>
-      </a>
+        <a href="summit-advisory.html" class="path-card advisory">
+          <div class="path-eyebrow advisory">
+            <span class="path-dot advisory"></span>
+            Summit Advisory · Small businesses
+          </div>
+          <div class="path-name">Summit Advisory</div>
+          <div class="path-tagline">Custom AI automation and workflow systems — built and deployed for your business.</div>
+          <div class="path-audience">For small business owners who want done-with-you AI implementation. Selective engagements, by application only.</div>
+          <div class="path-price advisory">By scope</div>
+          <div class="path-price-note">Custom engagements · Application required</div>
+          <span class="path-cta advisory">Request a consultation →</span>
+        </a>
 
+      </div>
     </div>
+
+    <div class="track-row">
+      <div class="track-row-header">
+        <div class="track-row-label row2">Ascent Scholars</div>
+        <div class="track-row-sub">For students &amp; parents — coming soon</div>
+      </div>
+      <div class="path-grid" style="grid-template-columns: repeat(2, 1fr);">
+
+        <a href="ascent-scholars.html" class="path-card scholars">
+          <div class="path-badge soon">Coming soon</div>
+          <div class="path-eyebrow scholars">
+            <span class="path-dot scholars"></span>
+            The AI Architect · Course
+          </div>
+          <div class="path-name">The AI Architect</div>
+          <div class="path-tagline">AI from mathematical first principles — taught through a real, in-browser IDE.</div>
+          <div class="path-audience">For students ages 14–18 ready to go past "using AI" into actually understanding how it works.</div>
+          <div class="path-price scholars">From $249</div>
+          <div class="path-price-note">Beta pricing · Founding cohort</div>
+          <span class="path-cta scholars">Join the waitlist →</span>
+        </a>
+
+        <a href="ascent-scholars.html" class="path-card scholars2">
+          <div class="path-badge soon">Coming soon</div>
+          <div class="path-eyebrow scholars2">
+            <span class="path-dot scholars2"></span>
+            Beta · Study companion
+          </div>
+          <div class="path-name">Beta</div>
+          <div class="path-tagline">An AI study companion built for students — pick a guide, learn your way.</div>
+          <div class="path-audience">For students who want a smarter, friendlier way to study for AP coursework.</div>
+          <div class="path-price scholars2">TBA</div>
+          <div class="path-price-note">Early access pricing planned</div>
+          <span class="path-cta scholars2">Join the waitlist →</span>
+        </a>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -363,15 +434,20 @@
         <div class="contact-option-title">Apply to Base Camp</div>
         <div class="contact-option-desc">Founding cohort spots. $997. Start in 4 weeks.</div>
       </a>
-      <a href="ascent-scholars.html" class="contact-option">
-        <div class="contact-option-label">For students</div>
-        <div class="contact-option-title">Explore Ascent Scholars</div>
-        <div class="contact-option-desc">AI Architect course and Beta companion. From $249.</div>
+      <a href="firsttracks.html" class="contact-option">
+        <div class="contact-option-label">New</div>
+        <div class="contact-option-title">Explore First Tracks</div>
+        <div class="contact-option-desc">From idea to open for business in 4 weeks. Founding cohort.</div>
       </a>
       <a href="summit-advisory.html" class="contact-option">
         <div class="contact-option-label">For businesses</div>
         <div class="contact-option-title">Request a Summit Advisory consultation</div>
         <div class="contact-option-desc">Custom AI solutions. Selective engagements only.</div>
+      </a>
+      <a href="ascent-scholars.html" class="contact-option">
+        <div class="contact-option-label">For students</div>
+        <div class="contact-option-title">Explore Ascent Scholars</div>
+        <div class="contact-option-desc">The AI Architect course and Beta companion. Coming soon.</div>
       </a>
       <a href="mailto:hello@noros.life" class="contact-option">
         <div class="contact-option-label">Everything else</div>
@@ -396,8 +472,9 @@
         <select class="form-select" id="interest" name="interest">
           <option value="">Select one...</option>
           <option value="basecamp">Base Camp — 4-week program</option>
-          <option value="scholars">Ascent Scholars — student programs</option>
+          <option value="firsttracks">First Tracks — 4-week program</option>
           <option value="summit">Summit Advisory — business consulting</option>
+          <option value="scholars">Ascent Scholars — student programs</option>
           <option value="other">Something else</option>
         </select>
       </div>
@@ -420,9 +497,8 @@
   </a>
   <ul class="footer-links">
     <li><a href="#about">About</a></li>
+    <li><a href="builders-ridge.html">Builder's Ridge</a></li>
     <li><a href="ascent-scholars.html">Ascent Scholars</a></li>
-    <li><a href="basecamp.html">Base Camp</a></li>
-    <li><a href="summit-advisory.html">Summit Advisory</a></li>
     <li><a href="mailto:hello@noros.life">Contact</a></li>
     <li><a href="https://instagram.com/noros.life" target="_blank" rel="noopener">Instagram</a></li>
   </ul>
