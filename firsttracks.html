@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="First Tracks — From idea to open for business, in four weeks. A founding-cohort program for first-time founders. By Noros Solutions.">
+<link rel="icon" type="image/png" href="/images/noros-logo.png">
+<title>First Tracks · Noros Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --stone: #1a1814; --ash: #2e2b26; --bark: #8a8278;
+    --mist: #d4cec8; --snow: #f4f1ec; --cream: #faf8f4;
+    --rule: 1px solid rgba(184,178,168,0.2);
+    --ridge-1: #2f5d80; --ridge-2: #5b8db8; --ridge-3: #9fc1da;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--stone); color: var(--snow); font-family: 'DM Mono', monospace; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+
+  nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(26,24,20,0.95); backdrop-filter: blur(12px); border-bottom: var(--rule); flex-wrap: wrap; gap: 16px; }
+  .nav-back { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--mist); font-size: 12px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--snow); }
+  .nav-back img { height: 36px; width: auto; }
+  .nav-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone) !important; background: var(--ridge-2); padding: 10px 20px; text-decoration: none; transition: opacity 0.2s; }
+  .nav-cta:hover { opacity: 0.85; }
+
+  .hero { padding: 64px 48px 56px; max-width: 1000px; margin: 0 auto; text-align: center; }
+  .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ridge-2); margin-bottom: 20px; }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 5vw, 58px); font-weight: 600; line-height: 1.08; color: var(--snow); margin-bottom: 20px; }
+  .hero-headline em { font-style: italic; color: var(--ridge-2); }
+  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2vw, 19px); font-style: italic; color: var(--mist); max-width: 600px; margin: 0 auto 36px; line-height: 1.6; }
+  .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; background: var(--ridge-2); color: var(--stone); padding: 14px 28px; text-decoration: none; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; border: var(--rule); color: var(--mist); padding: 14px 28px; text-decoration: none; transition: all 0.2s; }
+  .btn-secondary:hover { color: var(--snow); border-color: var(--snow); }
+
+  .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: var(--rule); border-bottom: var(--rule); background: var(--ash); }
+  .stat-cell { padding: 32px 24px; text-align: center; border-right: var(--rule); }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 600; color: var(--ridge-2); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 12px; color: var(--mist); line-height: 1.5; }
+
+  .section { max-width: 1000px; margin: 0 auto; padding: 80px 48px; }
+  .section-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ridge-2); margin-bottom: 16px; text-align: center; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 600; line-height: 1.1; color: var(--snow); margin-bottom: 16px; text-align: center; }
+  .section-title em { font-style: italic; color: var(--ridge-2); }
+  .section-intro { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--mist); text-align: center; max-width: 600px; margin: 0 auto 56px; line-height: 1.7; }
+
+  /* Curriculum */
+  .week-block { border: var(--rule); margin-bottom: 2px; padding: 36px 40px; background: var(--ash); }
+  .week-top { display: flex; align-items: baseline; gap: 20px; margin-bottom: 8px; flex-wrap: wrap; }
+  .week-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 600; color: var(--ridge-2); line-height: 1; }
+  .week-heading { }
+  .week-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bark); margin-bottom: 4px; }
+  .week-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--snow); }
+  .week-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--mist); margin: 12px 0 20px; }
+  .lesson-list { list-style: none; margin-bottom: 20px; }
+  .lesson-list li { font-size: 13px; color: var(--mist); padding: 6px 0; border-bottom: 1px solid rgba(184,178,168,0.08); }
+  .lesson-list li:last-child { border-bottom: none; }
+  .lesson-list li strong { color: var(--ridge-2); font-weight: 500; margin-right: 8px; }
+  .week-deliverable { font-size: 12px; color: var(--bark); border-top: var(--rule); padding-top: 16px; }
+  .week-deliverable strong { color: var(--ridge-2); }
+
+  /* Feature grid */
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(184,178,168,0.1); }
+  .feature-card { background: var(--ash); padding: 32px 28px; }
+  .feature-icon { font-size: 24px; color: var(--ridge-2); margin-bottom: 16px; }
+  .feature-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; color: var(--snow); margin-bottom: 8px; }
+  .feature-desc { font-size: 12.5px; color: var(--mist); line-height: 1.6; }
+
+  /* For you / not for you */
+  .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(184,178,168,0.1); }
+  .fit-col { background: var(--ash); padding: 32px 36px; }
+  .fit-col h3 { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 20px; }
+  .fit-col.yes h3 { color: var(--ridge-2); }
+  .fit-col.no h3 { color: var(--bark); }
+  .fit-col ul { list-style: none; }
+  .fit-col li { font-size: 13px; color: var(--mist); line-height: 1.7; margin-bottom: 10px; padding-left: 22px; position: relative; }
+  .fit-col.yes li::before { content: '✓'; position: absolute; left: 0; color: var(--ridge-2); }
+  .fit-col.no li::before { content: '✕'; position: absolute; left: 0; color: var(--bark); }
+
+  /* Pricing */
+  .price-box { border: var(--rule); background: var(--ash); padding: 48px; text-align: center; max-width: 560px; margin: 0 auto; }
+  .price-num { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: var(--ridge-2); margin-bottom: 8px; }
+  .price-note { font-size: 12px; color: var(--bark); margin-bottom: 28px; }
+  .price-includes { list-style: none; text-align: left; max-width: 360px; margin: 0 auto 32px; }
+  .price-includes li { font-size: 13px; color: var(--mist); padding: 7px 0; padding-left: 24px; position: relative; }
+  .price-includes li::before { content: '✓'; position: absolute; left: 0; color: var(--ridge-2); }
+
+  /* FAQ */
+  .faq-item { border-bottom: var(--rule); padding: 20px 0; }
+  .faq-q { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--snow); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .faq-a { font-size: 13px; color: var(--mist); line-height: 1.7; margin-top: 12px; display: none; }
+  .faq-item.open .faq-a { display: block; }
+  .faq-toggle { color: var(--ridge-2); font-size: 18px; }
+
+  /* Apply form */
+  #apply { background: var(--ash); border-top: var(--rule); }
+  .apply-form { display: flex; flex-direction: column; gap: 16px; max-width: 600px; margin: 0 auto; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mist); }
+  .form-input, .form-textarea, .form-select { background: var(--stone); border: var(--rule); color: var(--snow); font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--ridge-2); }
+  .form-select option { background: var(--ash); }
+  .form-textarea { resize: vertical; min-height: 90px; }
+  .form-submit { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; background: var(--ridge-2); color: var(--stone); border: none; padding: 16px 28px; cursor: pointer; transition: opacity 0.2s; }
+  .form-submit:hover { opacity: 0.85; }
+  .form-note { font-size: 11px; color: var(--bark); text-align: center; }
+
+  footer { background: var(--ash); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; border-top: var(--rule); flex-wrap: wrap; gap: 20px; }
+  .footer-logo img { height: 38px; width: auto; }
+  .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+  .footer-links a { font-size: 12px; letter-spacing: 0.1em; color: var(--bark); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--mist); }
+  .footer-copy { font-size: 12px; color: var(--bark); }
+
+  .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; background: var(--ridge-2); color: var(--stone); text-align: center; padding: 14px; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; z-index: 90; transition: opacity 0.2s; }
+  .sticky-cta:hover { opacity: 0.9; }
+
+  @media (max-width: 900px) {
+    .stat-strip { grid-template-columns: 1fr 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .fit-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 16px 24px; }
+    .hero { padding: 48px 24px 40px; }
+    .section { padding: 56px 24px; }
+    .week-block { padding: 28px 24px; }
+    .price-box { padding: 32px 24px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+    body { padding-bottom: 56px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">
+    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
+    ← Noros Solutions
+  </a>
+  <a href="#apply" class="nav-cta">Join the waitlist</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">First Tracks · Founding Cohort · 2026</div>
+  <h1 class="hero-headline">You don't need a business plan.<br>You need to <em>start.</em></h1>
+  <p class="hero-sub">From idea to open for business — in four weeks. The on-ramp for first-time founders who haven't started yet.</p>
+  <div class="hero-ctas">
+    <a href="#apply" class="btn-primary">Join the founding cohort →</a>
+    <a href="#curriculum" class="btn-secondary">See what you'll build</a>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="stat-cell">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Weeks from idea to your first real customer</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">20</div>
+    <div class="stat-label">Lessons — idea, legal, brand, and your first offer</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">1</div>
+    <div class="stat-label">Real, legally-formed business by the end</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">$0</div>
+    <div class="stat-label">Spent validating your idea before you build anything</div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-eyebrow">Who this is for</div>
+  <h2 class="section-title">The idea you've been<br><em>circling for months.</em></h2>
+  <p class="section-intro">Maybe you've got a business idea that's been living in your notes app for half a year. Maybe you've helped friends with the same thing three times and never thought to charge for it. First Tracks is the four-week path from "I keep thinking about this" to "I have a real offer in front of a real customer."</p>
+</section>
+
+<section class="section" id="curriculum" style="padding-top:0;">
+  <div class="section-eyebrow">The curriculum</div>
+  <h2 class="section-title">Four weeks.<br><em>One real business.</em></h2>
+  <p class="section-intro">Every week ends with a deliverable — something you built, decided, or sent. Not something you read about.</p>
+
+  <div class="week-block">
+    <div class="week-top">
+      <div class="week-num">1</div>
+      <div class="week-heading">
+        <div class="week-label">Week 1 · Find Your Line</div>
+        <div class="week-name">Idea generation &amp; business foundations</div>
+      </div>
+    </div>
+    <p class="week-tagline">The idea you'll actually stick with — and proof people want it, before you spend a dime.</p>
+    <ul class="lesson-list">
+      <li><strong>1.1</strong> The idea you'll actually stick with</li>
+      <li><strong>1.2</strong> Validating without spending a dime</li>
+      <li><strong>1.3</strong> Solopreneur vs. startup — know what you're building</li>
+      <li><strong>1.4</strong> Who is your customer? Nailing your niche</li>
+      <li><strong>1.5</strong> Your competitive landscape</li>
+    </ul>
+    <div class="week-deliverable"><strong>Deliverable:</strong> Your one-page business concept doc</div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-top">
+      <div class="week-num">2</div>
+      <div class="week-heading">
+        <div class="week-label">Week 2 · Plant Your Flag</div>
+        <div class="week-name">Legal setup &amp; financial infrastructure</div>
+      </div>
+    </div>
+    <p class="week-tagline">LLC or sole prop, EIN, a business bank account, and a price you can say without flinching.</p>
+    <ul class="lesson-list">
+      <li><strong>2.1</strong> Sole proprietor vs. LLC — what actually matters</li>
+      <li><strong>2.2</strong> Registering your LLC, step by step</li>
+      <li><strong>2.3</strong> EIN, registered agent &amp; required paperwork</li>
+      <li><strong>2.4</strong> Opening a business bank account</li>
+      <li><strong>2.5</strong> Pricing your services: not too low, not too high</li>
+    </ul>
+    <div class="week-deliverable"><strong>Deliverable:</strong> Your business is legally real</div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-top">
+      <div class="week-num">3</div>
+      <div class="week-heading">
+        <div class="week-label">Week 3 · Mark the Trail</div>
+        <div class="week-name">Brand, domain &amp; digital presence</div>
+      </div>
+    </div>
+    <p class="week-tagline">A name, a domain, a one-page website that converts, and a content rhythm you can actually keep.</p>
+    <ul class="lesson-list">
+      <li><strong>3.1</strong> Naming your business &amp; checking availability</li>
+      <li><strong>3.2</strong> Buying a domain &amp; professional email</li>
+      <li><strong>3.3</strong> Building a simple website that converts</li>
+      <li><strong>3.4</strong> Brand basics: logo, colors, voice</li>
+      <li><strong>3.5</strong> Social platforms &amp; what to post when you have nothing yet</li>
+    </ul>
+    <div class="week-deliverable"><strong>Deliverable:</strong> Live website + active social profile</div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-top">
+      <div class="week-num">4</div>
+      <div class="week-heading">
+        <div class="week-label">Week 4 · Open the Run</div>
+        <div class="week-name">Landing your first customer</div>
+      </div>
+    </div>
+    <p class="week-tagline">A clear offer, real outreach, a simple contract, and the habits that keep momentum going after launch.</p>
+    <ul class="lesson-list">
+      <li><strong>4.1</strong> Writing an offer people actually want to buy</li>
+      <li><strong>4.2</strong> Your first outreach — without feeling gross</li>
+      <li><strong>4.3</strong> Simple contracts, invoices &amp; getting paid</li>
+      <li><strong>4.4</strong> Tools to run your business without drowning in software</li>
+      <li><strong>4.5</strong> What comes after launch — keeping momentum going</li>
+    </ul>
+    <div class="week-deliverable"><strong>Deliverable:</strong> Your first offer sent to a real potential client</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-eyebrow">How it works</div>
+  <h2 class="section-title">Built for people<br><em>who haven't started yet.</em></h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">▶</div>
+      <div class="feature-title">Self-paced curriculum</div>
+      <div class="feature-desc">Short lessons you move through at your own pace — each with a key concept, a real-world example, and a question to sit with.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⬡</div>
+      <div class="feature-title">Private community</div>
+      <div class="feature-desc">A space to post your deliverables each week and get real feedback — from Jami and from others starting at the exact same place you are.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✦</div>
+      <div class="feature-title">Founding cohort status</div>
+      <div class="feature-desc">You're not just a student — you're shaping the program as it's built. That status, and this price, won't come around again.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">◎</div>
+      <div class="feature-title">A real deliverable every week</div>
+      <div class="feature-desc">No theory-only weeks. Each lesson block ends with something concrete: a doc, a filing, a live page, a sent offer.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⛰</div>
+      <div class="feature-title">A natural next step</div>
+      <div class="feature-desc">First Tracks is built as the on-ramp to Base Camp — once you're open for business, Base Camp is where you build your first AI-powered tool.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">◈</div>
+      <div class="feature-title">Built by someone who's done it</div>
+      <div class="feature-desc">Every lesson comes from Dr. Jami Saffioti's own experience founding Noros Solutions LLC — not theory borrowed from a textbook.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-eyebrow">Is this for you?</div>
+  <h2 class="section-title">This IS for you.<br><em>Unless it isn't.</em></h2>
+  <div class="fit-grid">
+    <div class="fit-col yes">
+      <h3>First Tracks is for you if...</h3>
+      <ul>
+        <li>You have a business idea that's been living in your notes app, not in the world</li>
+        <li>You've helped people with the same thing more than once, informally</li>
+        <li>You haven't filed anything, built anything, or sent an offer yet</li>
+        <li>You want a clear, ordered path — not twelve tabs of conflicting advice</li>
+        <li>You're willing to do something every week, even when it's unglamorous paperwork</li>
+        <li>You want a real business — not just an idea you talk about at dinner</li>
+      </ul>
+    </div>
+    <div class="fit-col no">
+      <h3>First Tracks is not for you if...</h3>
+      <ul>
+        <li>You already have an LLC, a website, and paying clients (that's Base Camp)</li>
+        <li>You want someone to build the business for you</li>
+        <li>You're looking for venture funding or a startup-scale plan</li>
+        <li>You can't commit a few hours a week for 4 weeks</li>
+        <li>You're looking for a get-rich-quick shortcut</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="section-eyebrow">Investment</div>
+  <h2 class="section-title">Founding cohort —<br><em>pricing announced soon.</em></h2>
+  <div class="price-box">
+    <div class="price-num">Founding Cohort</div>
+    <div class="price-note">Join the waitlist to be first in line when pricing and enrollment open</div>
+    <ul class="price-includes">
+      <li>4-week self-paced curriculum (20 lessons)</li>
+      <li>Private community — lifetime access</li>
+      <li>A real deliverable every week</li>
+      <li>Founding cohort status — forever</li>
+      <li>Direct path into Base Camp afterward</li>
+    </ul>
+    <a href="#apply" class="btn-primary" style="display:inline-block;">Join the waitlist →</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-eyebrow">Common questions</div>
+  <h2 class="section-title">You're probably<br><em>thinking this.</em></h2>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">"I don't even know if my idea is any good."<span class="faq-toggle">+</span></div>
+    <div class="faq-a">That's exactly what Week 1 is for. You're not expected to arrive with a validated idea — you're expected to arrive with curiosity. The first week is built specifically to test and sharpen whatever you're starting with, using real signals instead of guessing.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">"I'm not ready to spend money on an LLC yet."<span class="faq-toggle">+</span></div>
+    <div class="faq-a">Week 2 walks through both sole proprietorship and LLC formation, and helps you decide which is actually right for where you are — it's not a one-size-fits-all push toward forming an LLC on day one.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">"How is this different from Base Camp?"<span class="faq-toggle">+</span></div>
+    <div class="faq-a">First Tracks is the on-ramp before Base Camp. It's for people who don't have a business yet at all — First Tracks gets you from idea to legally open, with a website and your first offer sent. Base Camp is for people who already have that foundation and are ready to build an AI-powered tool or income stream on top of it.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">"What if I get through Week 2 and realize the idea isn't right?"<span class="faq-toggle">+</span></div>
+    <div class="faq-a">That's still progress, not failure. Week 1 is specifically designed to surface that earlier rather than later — and the same process you learn applies to your next idea, too. Nothing about First Tracks only works once.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">"When does enrollment actually open?"<span class="faq-toggle">+</span></div>
+    <div class="faq-a">First Tracks is finishing its founding-cohort setup now. Join the waitlist below and you'll be the first to hear when pricing and enrollment open — founding cohort spots and pricing won't be available again once they're gone.</div>
+  </div>
+</section>
+
+<section id="apply" class="section">
+  <div class="section-eyebrow">Join the waitlist</div>
+  <h2 class="section-title">Be first in line for the<br><em>Founding Cohort.</em></h2>
+  <p class="section-intro">Jami reads every submission personally. You'll hear from her directly when First Tracks opens.</p>
+
+  <form class="apply-form" action="https://formspree.io/f/xpqnlwja" method="POST">
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="firstname">First name</label>
+        <input class="form-input" type="text" id="firstname" name="firstname" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="lastname">Last name</label>
+        <input class="form-input" type="text" id="lastname" name="lastname" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="email">Email address</label>
+      <input class="form-input" type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="idea">What's the idea you've been circling?</label>
+      <textarea class="form-textarea" id="idea" name="idea" placeholder="Even a rough, unfiltered version is fine."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="stage">Where are you right now?</label>
+      <select class="form-select" id="stage" name="stage">
+        <option value="">Select one...</option>
+        <option value="idea-only">Just an idea — haven't told many people</option>
+        <option value="informal">I've helped people with this informally already</option>
+        <option value="researching">I've started researching but haven't acted</option>
+        <option value="other">Something else</option>
+      </select>
+    </div>
+    <input type="hidden" name="program" value="First Tracks Waitlist">
+    <button type="submit" class="form-submit">Join the waitlist →</button>
+    <div class="form-note">Jami reads every submission. You'll hear back personally.</div>
+  </form>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">
+    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
+  </a>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="builders-ridge.html">Builder's Ridge</a></li>
+    <li><a href="basecamp.html">Base Camp</a></li>
+    <li><a href="mailto:hello@noros.life">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Noros Solutions LLC · All rights reserved</div>
+</footer>
+
+<a href="#apply" class="sticky-cta">Join the First Tracks waitlist →</a>
+
+</body>
+</html>
