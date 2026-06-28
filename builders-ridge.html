@@ -19,11 +19,16 @@
   body { background: var(--stone); color: var(--snow); font-family: 'DM Mono', monospace; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
 
   nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(26,24,20,0.95); backdrop-filter: blur(12px); border-bottom: var(--rule); flex-wrap: wrap; gap: 16px; }
-  .nav-back { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--mist); font-size: 12px; transition: color 0.2s; }
+  nav { position: sticky; top: 0; z-index: 100; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 20px 48px; background: rgba(26,24,20,0.95); backdrop-filter: blur(12px); border-bottom: var(--rule); gap: 16px; }
+  .nav-back { grid-column: 2; display: flex; align-items: center; justify-content: center; gap: 14px; text-decoration: none; color: var(--mist); font-size: 12px; transition: color 0.2s; }
   .nav-back:hover { color: var(--snow); }
   .nav-back img { height: 40px; width: auto; }
-  .nav-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone) !important; background: var(--ridge-2); padding: 10px 20px; text-decoration: none; transition: opacity 0.2s; }
+  .nav-cta { grid-column: 3; justify-self: end; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone) !important; background: var(--ridge-2); padding: 10px 20px; text-decoration: none; transition: opacity 0.2s; }
   .nav-cta:hover { opacity: 0.85; }
+  @media (max-width: 640px) {
+    nav { grid-template-columns: 1fr; justify-items: center; gap: 10px; }
+    .nav-back, .nav-cta { grid-column: 1; }
+  }
 
   .hero { padding: 80px 48px 60px; max-width: 1000px; margin: 0 auto; }
   .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ridge-2); margin-bottom: 20px; }
@@ -127,8 +132,8 @@
       <div class="ridge-name">First Tracks</div>
       <div class="ridge-tagline">From idea to open for business — in four weeks.</div>
       <div class="ridge-audience">For first-time founders who haven't started yet — idea validation, legal setup, brand, and your first paying customer.</div>
-      <div class="ridge-price c3">Founding cohort</div>
-      <div class="ridge-price-note">Pricing announced soon</div>
+      <div class="ridge-price c3">$197</div>
+      <div class="ridge-price-note">Founders price · Increases to $297 after Cohort 1</div>
       <span class="ridge-cta c3">Explore First Tracks →</span>
     </a>
 
@@ -168,7 +173,6 @@
   </a>
   <ul class="footer-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="ascent-scholars.html">Ascent Scholars</a></li>
     <li><a href="mailto:hello@noros.life">Contact</a></li>
   </ul>
   <div class="footer-copy">© 2026 Noros Solutions LLC · All rights reserved</div>
