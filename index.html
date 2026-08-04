@@ -236,6 +236,58 @@
   @media (max-width: 768px) {
     .track-row-header { flex-direction: column; gap: 4px; }
   }
+
+  /* COURSES (path cards — extracted from hero into own section) */
+  #courses { background: var(--stone); padding: 0 48px 80px; border-top: var(--rule); }
+  .courses-inner { max-width: 1100px; margin: 0 auto; width: 100%; padding-top: 60px; }
+  @media (max-width: 768px) {
+    #courses { padding: 0 24px 56px; }
+    .courses-inner { padding-top: 40px; }
+  }
+
+  /* WORKSHOPS */
+  #workshops { background: var(--ash); padding: 100px 48px; border-top: var(--rule); }
+  .workshops-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 3fr 2fr; gap: 80px; align-items: start; }
+  .workshops-body { font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.8; color: var(--snow); margin-bottom: 32px; }
+  .workshops-body p { margin-bottom: 16px; }
+  .workshops-body p:last-child { margin-bottom: 0; }
+
+  .workshop-form { display: flex; flex-direction: column; gap: 12px; max-width: 420px; }
+  .workshop-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .workshop-form-success { display: none; border-left: 3px solid var(--summit); background: rgba(182,136,119,0.07); padding: 20px 24px; }
+  .workshop-form-success.visible { display: block; }
+  .workshop-form-success-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--snow); margin-bottom: 6px; }
+  .workshop-form-success-sub { font-size: 12px; color: var(--mist); line-height: 1.6; }
+
+  .workshops-host { border-left: 3px solid rgba(182,136,119,0.35); padding-left: 28px; }
+  .workshops-host-eyebrow { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--summit); margin-bottom: 14px; }
+  .workshops-host-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2vw, 26px); font-weight: 600; color: var(--snow); line-height: 1.15; margin-bottom: 16px; }
+  .workshops-host-body { font-family: 'Cormorant Garamond', serif; font-size: 16px; line-height: 1.75; color: var(--mist); margin-bottom: 24px; }
+  .workshops-host-link { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--summit); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s; }
+  .workshops-host-link:hover { gap: 14px; }
+
+  @media (max-width: 768px) {
+    #workshops { padding: 72px 24px; }
+    .workshops-inner { grid-template-columns: 1fr; gap: 48px; }
+    .workshop-form-row { grid-template-columns: 1fr; }
+  }
+
+  /* SPONSORSHIP */
+  #sponsorship { background: var(--stone); padding: 80px 48px; border-top: var(--rule); }
+  .sponsorship-inner { max-width: 1100px; margin: 0 auto; }
+  .sponsorship-header { max-width: 600px; margin-bottom: 48px; }
+  .sponsorship-intro { font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.8; color: var(--mist); margin-top: 16px; }
+  .sponsor-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(184,178,168,0.15); margin-bottom: 36px; }
+  .sponsor-tier { background: var(--stone); padding: 32px 28px; display: flex; flex-direction: column; }
+  .sponsor-tier-name { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--summit); margin-bottom: 12px; }
+  .sponsor-tier-desc { font-family: 'Cormorant Garamond', serif; font-size: 16px; line-height: 1.7; color: var(--mist); flex: 1; }
+  .sponsorship-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); background: var(--bark); padding: 12px 24px; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
+  .sponsorship-cta:hover { opacity: 0.8; }
+
+  @media (max-width: 768px) {
+    #sponsorship { padding: 64px 24px; }
+    .sponsor-tiers { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -245,6 +297,7 @@
     <img src="/images/noros-logo-white.png" alt="Noros Solutions">
   </a>
   <ul class="nav-links" id="nav-links">
+    <li><a href="#workshops">Workshops</a></li>
     <li><a href="builders-ridge.html">Builder's Ridge</a></li>
     <li><a href="ascent-scholars.html">Ascent Scholars</a></li>
     <li><a href="#about">About</a></li>
@@ -269,7 +322,58 @@
         <p class="hero-sub">Students, solopreneurs, and small businesses — find your path and start climbing.</p>
       </div>
     </div>
+  </div>
+</section>
 
+<!-- WORKSHOPS -->
+<section id="workshops">
+  <div class="workshops-inner reveal">
+    <div>
+      <div class="section-eyebrow">Group Workshops · Monmouth/Ocean County + Virtual</div>
+      <h2 class="section-title">Group Workshops —<br><em>AI for everyday people.</em></h2>
+      <div class="workshops-body">
+        <p>Small rooms, hands-on, no coding degree required. You leave having built something real — and knowing how to do it again.</p>
+        <p>Built for small business owners, recent grads, and anyone curious about using AI in their work. First workshops coming to the Monmouth/Ocean County area, with virtual sessions to follow.</p>
+      </div>
+
+      <div id="workshop-form-wrap">
+        <div class="section-eyebrow" style="margin-bottom:14px;">Get workshop dates</div>
+        <form class="workshop-form" id="workshop-signup-form" novalidate>
+          <input type="hidden" name="interest" value="workshops">
+          <div class="workshop-form-row">
+            <div class="form-group">
+              <label class="form-label" for="ws-name">Name <span style="color:var(--bark);font-weight:400;">(optional)</span></label>
+              <input class="form-input" type="text" id="ws-name" name="name" placeholder="Your name" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ws-email">Email <span style="color:var(--summit);">*</span></label>
+              <input class="form-input" type="email" id="ws-email" name="email" placeholder="your@email.com" required autocomplete="email">
+            </div>
+          </div>
+          <div>
+            <button type="submit" class="form-submit" id="ws-submit">Get workshop dates →</button>
+          </div>
+          <p id="ws-error" style="display:none;font-size:12px;color:var(--ember);margin-top:4px;">Please enter a valid email address.</p>
+        </form>
+        <div class="workshop-form-success" id="workshop-success">
+          <div class="workshop-form-success-title">You're on the list.</div>
+          <div class="workshop-form-success-sub">I'll send dates directly to your inbox as soon as the first sessions are confirmed. See you on the mountain.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="workshops-host reveal reveal-delay-1">
+      <div class="workshops-host-eyebrow">Host a Workshop at Your Space</div>
+      <h3 class="workshops-host-title">Bring a workshop<br>to your community.</h3>
+      <p class="workshops-host-body">Local business owners — I'm looking for a few spaces to host small AI workshops. Host me, and your team attends free or heavily discounted, plus a room full of neighbors gets to know your space. Back room, café after hours, or co-working spot — let's talk.</p>
+      <a href="mailto:hello@noros.life?subject=Workshop%20space%20inquiry" class="workshops-host-link">Offer your space →</a>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="courses-inner">
     <div class="track-row">
       <div class="track-row-header">
         <div class="track-row-label">Builder's Ridge</div>
@@ -358,7 +462,6 @@
 
       </div>
     </div>
-
   </div>
 </section>
 
@@ -486,6 +589,32 @@
   </div>
 </section>
 
+<!-- SPONSORSHIP -->
+<section id="sponsorship" class="reveal">
+  <div class="sponsorship-inner">
+    <div class="sponsorship-header">
+      <div class="section-eyebrow">Sponsorship Interest?</div>
+      <h2 class="section-title" style="font-size:clamp(24px,3vw,36px);">Founding supporters<br><em>who believe in the mission.</em></h2>
+      <p class="sponsorship-intro">Noros is just getting started, and I'm looking for a few founding supporters who want to help bring practical AI education to our community.</p>
+    </div>
+    <div class="sponsor-tiers">
+      <div class="sponsor-tier">
+        <div class="sponsor-tier-name">Founding Partner</div>
+        <p class="sponsor-tier-desc">Recognized at every workshop and across our programs. Featured on the site, first look at new programs, and complimentary team seats.</p>
+      </div>
+      <div class="sponsor-tier">
+        <div class="sponsor-tier-name">Venue Partner</div>
+        <p class="sponsor-tier-desc">Provide a space — your team attends the workshop free or discounted, and a room full of neighbors gets to know your space. A trade, not a favor.</p>
+      </div>
+      <div class="sponsor-tier">
+        <div class="sponsor-tier-name">Friend of Noros</div>
+        <p class="sponsor-tier-desc">For supporters who believe in the mission. Your name on our Friends of Noros wall — because people who show up early deserve to be remembered.</p>
+      </div>
+    </div>
+    <a href="mailto:hello@noros.life?subject=Sponsorship%20inquiry" class="sponsorship-cta">Become a sponsor →</a>
+  </div>
+</section>
+
 <div class="mountain-footer">
   <div class="mountain-footer-text">The mountain doesn't wait. Neither should you. <span class="mountain-icon">⛰</span></div>
 </div>
@@ -558,6 +687,48 @@
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeNav);
   });
+
+  // Workshop email signup — async Formspree submit
+  const wsForm = document.getElementById('workshop-signup-form');
+  if (wsForm) {
+    wsForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const emailEl = document.getElementById('ws-email');
+      const errorEl = document.getElementById('ws-error');
+      const submitBtn = document.getElementById('ws-submit');
+
+      if (!emailEl.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+        errorEl.style.display = 'block';
+        emailEl.focus();
+        return;
+      }
+      errorEl.style.display = 'none';
+      submitBtn.textContent = 'Sending…';
+      submitBtn.disabled = true;
+
+      try {
+        const res = await fetch('https://formspree.io/f/xpqnlwja', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(wsForm)
+        });
+        if (res.ok) {
+          wsForm.style.display = 'none';
+          document.getElementById('workshop-success').classList.add('visible');
+        } else {
+          submitBtn.textContent = 'Get workshop dates →';
+          submitBtn.disabled = false;
+          errorEl.textContent = 'Something went wrong — please try again or email hello@noros.life.';
+          errorEl.style.display = 'block';
+        }
+      } catch {
+        submitBtn.textContent = 'Get workshop dates →';
+        submitBtn.disabled = false;
+        errorEl.textContent = 'Something went wrong — please try again or email hello@noros.life.';
+        errorEl.style.display = 'block';
+      }
+    });
+  }
 </script>
 </body>
 </html>
