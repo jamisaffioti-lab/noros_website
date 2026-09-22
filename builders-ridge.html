@@ -12,7 +12,12 @@
     --stone: #1a1814; --ash: #2e2b26; --bark: #8a8278;
     --mist: #d4cec8; --snow: #f4f1ec; --cream: #faf8f4;
     --rule: 1px solid rgba(184,178,168,0.2);
-    --ridge-1: #2f5d80; --ridge-2: #5b8db8; --ridge-3: #9fc1da;
+    --ridge-1:#23347F; --ridge-2:#3A56D4; --ridge-3:#8B9CF2;
+  
+  /* sector pops */
+  --ascent-fill:#C7DB33; --ascent-text:#C7DB33; --ascent-ink:#1A1814;
+  --ridge-fill:#3A56D4;  --ridge-text:#8B9CF2;  --ridge-ink:#F4F1EC;
+  --summit-fill:#E5561F; --summit-text:#F2825F; --summit-ink:#1A1814;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -24,7 +29,7 @@
   .nav-back:hover { color: var(--snow); }
   .nav-logo { grid-column: 2; display: flex; justify-content: center; }
   .nav-logo img { height: 40px; width: auto; display: block; }
-  .nav-cta { grid-column: 3; justify-self: end; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone) !important; background: var(--ridge-2); padding: 10px 20px; text-decoration: none; transition: opacity 0.2s; }
+  .nav-cta { grid-column: 3; justify-self: end; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ridge-ink) !important; background: var(--ridge-fill); padding: 10px 20px; text-decoration: none; transition: opacity 0.2s; }
   .nav-cta:hover { opacity: 0.85; }
   @media (max-width: 640px) {
     nav { grid-template-columns: 1fr; justify-items: center; gap: 10px; }
@@ -32,20 +37,20 @@
   }
 
   .hero { padding: 80px 48px 60px; max-width: 1000px; margin: 0 auto; }
-  .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ridge-2); margin-bottom: 20px; }
+  .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ridge-text); margin-bottom: 20px; }
   .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 60px); font-weight: 600; line-height: 1.05; color: var(--snow); margin-bottom: 20px; }
-  .hero-headline em { font-style: italic; color: var(--ridge-2); }
+  .hero-headline em { font-style: italic; color: var(--ridge-text); }
   .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2vw, 19px); font-style: italic; color: var(--mist); max-width: 600px; line-height: 1.6; }
 
   .mission-strip { background: var(--ash); padding: 48px; border-top: var(--rule); border-bottom: var(--rule); }
   .mission-strip-inner { max-width: 1000px; margin: 0 auto; }
   .mission-strip p { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.2vw, 22px); line-height: 1.6; color: var(--snow); }
-  .mission-strip strong { font-style: italic; color: var(--ridge-2); font-weight: 400; }
+  .mission-strip strong { font-style: italic; color: var(--ridge-text); font-weight: 400; }
 
   .offerings { max-width: 1000px; margin: 0 auto; padding: 80px 48px; }
-  .section-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ridge-2); margin-bottom: 16px; }
+  .section-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ridge-text); margin-bottom: 16px; }
   .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 600; line-height: 1.1; color: var(--snow); margin-bottom: 48px; }
-  .section-title em { font-style: italic; color: var(--ridge-2); }
+  .section-title em { font-style: italic; color: var(--ridge-text); }
 
   .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(184,178,168,0.1); }
   .ridge-card { background: var(--ash); padding: 36px 32px; text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: background 0.3s; border-top: 3px solid transparent; }
@@ -53,12 +58,12 @@
   .ridge-card.c1 { border-top-color: var(--ridge-1); }
   .ridge-card.c2 { border-top-color: var(--ridge-2); }
   .ridge-card.c3 { border-top-color: var(--ridge-3); }
-  .ridge-badge { position: absolute; top: 0; right: 24px; font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; background: var(--ridge-2); color: var(--stone); }
+  .ridge-badge { position: absolute; top: 0; right: 24px; font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; background: var(--ridge-fill); color: var(--ridge-ink); }
   .ridge-badge.soon { background: var(--bark); }
   .ridge-eyebrow { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-  .ridge-eyebrow.c1 { color: var(--ridge-1); }
-  .ridge-eyebrow.c2 { color: var(--ridge-2); }
-  .ridge-eyebrow.c3 { color: var(--ridge-3); }
+  .ridge-eyebrow.c1 { color: var(--ridge-text); }
+  .ridge-eyebrow.c2 { color: var(--ridge-text); }
+  .ridge-eyebrow.c3 { color: var(--ridge-text); }
   .ridge-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
   .ridge-dot.c1 { background: var(--ridge-1); }
   .ridge-dot.c2 { background: var(--ridge-2); }
@@ -67,14 +72,14 @@
   .ridge-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--mist); margin-bottom: 20px; line-height: 1.5; flex: 1; }
   .ridge-audience { font-size: 11px; color: var(--bark); line-height: 1.6; margin-bottom: 24px; }
   .ridge-price { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin-bottom: 4px; }
-  .ridge-price.c1 { color: var(--ridge-1); }
-  .ridge-price.c2 { color: var(--ridge-2); }
-  .ridge-price.c3 { color: var(--ridge-3); }
+  .ridge-price.c1 { color: var(--ridge-text); }
+  .ridge-price.c2 { color: var(--ridge-text); }
+  .ridge-price.c3 { color: var(--ridge-text); }
   .ridge-price-note { font-size: 11px; color: var(--bark); margin-bottom: 20px; }
   .ridge-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s; }
-  .ridge-cta.c1 { color: var(--ridge-1); }
-  .ridge-cta.c2 { color: var(--ridge-2); }
-  .ridge-cta.c3 { color: var(--ridge-3); }
+  .ridge-cta.c1 { color: var(--ridge-text); }
+  .ridge-cta.c2 { color: var(--ridge-text); }
+  .ridge-cta.c3 { color: var(--ridge-text); }
   .ridge-card:hover .ridge-cta { gap: 14px; }
 
   footer { background: var(--ash); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; border-top: var(--rule); flex-wrap: wrap; gap: 20px; }
@@ -134,7 +139,7 @@
       <div class="ridge-tagline">From idea to open for business — in four weeks.</div>
       <div class="ridge-audience">For first-time founders who haven't started yet — idea validation, legal setup, brand, and your first paying customer.</div>
       <div class="ridge-price c3">$197</div>
-      <div class="ridge-price-note">Founders price · Increases after Cohort 1</div>
+      <div class="ridge-price-note">Founders price · Increases to $297 after Cohort 1</div>
       <span class="ridge-cta c3">Explore First Tracks →</span>
     </a>
 
@@ -147,8 +152,8 @@
       <div class="ridge-name">Base Camp</div>
       <div class="ridge-tagline">A 4-week AI-powered launchpad for everyday humans ready to build something real.</div>
       <div class="ridge-audience">For solopreneurs, career-changers, and creators who want to use AI to build tools, automations, and income — without a CS degree.</div>
-      <div class="ridge-price c1">$497</div>
-      <div class="ridge-price-note">Founders price · Increases after Cohort 1</div>
+      <div class="ridge-price c1">$997</div>
+      <div class="ridge-price-note">Founders price · Increases to $1,497 after Cohort 1</div>
       <span class="ridge-cta c1">Apply to Base Camp →</span>
     </a>
 

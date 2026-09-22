@@ -19,6 +19,11 @@
     --sky: #7ba3c0;
     --ember: #c4603a;
     --rule: 1px solid rgba(184,178,168,0.2);
+  
+  /* sector pops */
+  --ascent-fill:#C7DB33; --ascent-text:#C7DB33; --ascent-ink:#1A1814;
+  --ridge-fill:#3A56D4;  --ridge-text:#8B9CF2;  --ridge-ink:#F4F1EC;
+  --summit-fill:#E5561F; --summit-text:#F2825F; --summit-ink:#1A1814;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -56,8 +61,8 @@
     font-family: 'Syne', sans-serif;
     font-size: 10px; font-weight: 700;
     letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--stone);
-    background: var(--summit);
+    color: var(--ridge-ink);
+    background: var(--ridge-fill);
     padding: 8px 18px;
     text-decoration: none;
     transition: opacity 0.2s;
@@ -85,7 +90,7 @@
     font-family: 'Syne', sans-serif;
     font-size: 10px; font-weight: 700;
     letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--summit); margin-bottom: 20px;
+    color: var(--ridge-text); margin-bottom: 20px;
     animation: fadeUp 1s 0.1s ease both;
   }
   @keyframes fadeUp {
@@ -99,7 +104,7 @@
     color: var(--snow); margin-bottom: 24px;
     animation: fadeUp 1s 0.2s ease both;
   }
-  .hero-headline em { font-style: italic; color: var(--summit); }
+  .hero-headline em { font-style: italic; color: var(--ridge-text); }
   .hero-sub {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(16px, 2.2vw, 20px);
@@ -116,7 +121,7 @@
     font-family: 'Syne', sans-serif;
     font-size: 11px; font-weight: 700;
     letter-spacing: 0.16em; text-transform: uppercase;
-    background: var(--summit); color: var(--stone);
+    background: var(--ridge-fill); color: var(--ridge-ink);
     padding: 14px 32px; text-decoration: none;
     transition: opacity 0.2s; display: inline-block;
   }
@@ -147,7 +152,7 @@
   .stat-num {
     font-family: 'Cormorant Garamond', serif;
     font-size: 40px; font-weight: 600;
-    color: var(--summit); line-height: 1;
+    color: var(--ridge-text); line-height: 1;
     margin-bottom: 6px;
   }
   .stat-label { font-size: 11px; color: var(--mist); line-height: 1.4; }
@@ -159,7 +164,7 @@
     font-family: 'Syne', sans-serif;
     font-size: 10px; font-weight: 700;
     letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--summit); margin-bottom: 16px;
+    color: var(--ridge-text); margin-bottom: 16px;
   }
   .section-title {
     font-family: 'Cormorant Garamond', serif;
@@ -167,7 +172,7 @@
     font-weight: 600; line-height: 1.05;
     color: var(--snow); margin-bottom: 20px;
   }
-  .section-title em { font-style: italic; color: var(--summit); }
+  .section-title em { font-style: italic; color: var(--ridge-text); }
   .section-sub {
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px; font-style: italic;
@@ -183,10 +188,10 @@
   }
   .story-text p { margin-bottom: 20px; }
   .story-text p:last-child { margin-bottom: 0; }
-  .story-text em { font-style: italic; color: var(--summit); }
+  .story-text em { font-style: italic; color: var(--ridge-text); }
   .story-aside { }
   .story-quote-block {
-    border-left: 3px solid var(--summit);
+    border-left: 3px solid var(--ridge-fill);
     padding: 24px 28px;
     background: rgba(182,136,119,0.05);
     margin-bottom: 32px;
@@ -204,7 +209,7 @@
     font-family: 'Syne', sans-serif;
     font-size: 9px; font-weight: 700;
     letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--summit);
+    color: var(--ridge-text);
   }
   .story-build-item {
     display: flex; gap: 12px; padding: 14px 20px;
@@ -241,7 +246,7 @@
     display: flex; align-items: center; justify-content: center;
     padding: 0 24px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 32px; color: var(--summit);
+    font-size: 32px; color: var(--ridge-text);
   }
 
   /* ── CURRICULUM ── */
@@ -281,10 +286,10 @@
     display: flex; gap: 10px; margin-bottom: 8px;
     font-size: 11px; color: var(--bark); align-items: flex-start;
   }
-  .week-lesson-num { color: var(--summit); min-width: 20px; flex-shrink: 0; font-size: 10px; margin-top: 1px; }
+  .week-lesson-num { color: var(--ridge-text); min-width: 20px; flex-shrink: 0; font-size: 10px; margin-top: 1px; }
   .week-deliverable {
     background: rgba(182,136,119,0.07);
-    border-left: 2px solid var(--summit);
+    border-left: 2px solid var(--ridge-fill);
     padding: 10px 14px;
     font-size: 11px; color: var(--mist); line-height: 1.5;
   }
@@ -292,7 +297,7 @@
   .w1 .week-badge { color: #5DCAA5; }
   .w2 .week-badge { color: var(--sky); }
   .w3 .week-badge { color: var(--ember); }
-  .w4 .week-badge { color: var(--summit); }
+  .w4 .week-badge { color: var(--ridge-text); }
 
   /* ── FORMAT ── */
   #format { background: var(--stone); }
@@ -341,7 +346,7 @@
   .price-main {
     font-family: 'Cormorant Garamond', serif;
     font-size: 80px; font-weight: 600;
-    color: var(--summit); line-height: 1;
+    color: var(--ridge-text); line-height: 1;
     margin-bottom: 6px;
   }
   .price-note { font-size: 11px; color: var(--mist); margin-bottom: 28px; }
@@ -360,7 +365,7 @@
     font-family: 'Syne', sans-serif;
     font-size: 9px; font-weight: 700;
     letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--summit); margin-bottom: 8px;
+    color: var(--ridge-text); margin-bottom: 8px;
   }
   .price-split-value {
     font-family: 'Cormorant Garamond', serif;
@@ -370,20 +375,20 @@
   .price-split-note { font-size: 11px; color: var(--mist); margin-top: 4px; }
   .roi-block {
     background: var(--stone); padding: 24px 28px;
-    border-left: 3px solid var(--summit);
+    border-left: 3px solid var(--ridge-fill);
   }
   .roi-label {
     font-family: 'Syne', sans-serif;
     font-size: 9px; font-weight: 700;
     letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--summit); margin-bottom: 10px;
+    color: var(--ridge-text); margin-bottom: 10px;
   }
   .roi-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 17px; color: var(--snow);
     line-height: 1.6; font-style: italic;
   }
-  .roi-text strong { color: var(--summit); font-style: normal; }
+  .roi-text strong { color: var(--ridge-text); font-style: normal; }
 
   /* ── OBJECTIONS ── */
   #objections { background: var(--ash); }
@@ -399,7 +404,7 @@
     gap: 16px;
   }
   .objection-toggle {
-    font-size: 18px; color: var(--summit);
+    font-size: 18px; color: var(--ridge-text);
     flex-shrink: 0; transition: transform 0.3s; margin-top: 2px;
     font-style: normal;
   }
@@ -442,7 +447,7 @@
     width: 100%;
   }
   .form-input:focus, .form-textarea:focus, .form-select:focus {
-    border-color: var(--summit);
+    border-color: var(--ridge-fill);
   }
   .form-input::placeholder, .form-textarea::placeholder { color: var(--bark); }
   .form-textarea { resize: vertical; min-height: 120px; }
@@ -457,7 +462,7 @@
     font-family: 'Syne', sans-serif;
     font-size: 11px; font-weight: 700;
     letter-spacing: 0.16em; text-transform: uppercase;
-    background: var(--summit); color: var(--stone);
+    background: var(--ridge-fill); color: var(--ridge-ink);
     border: none; padding: 14px 32px;
     cursor: pointer; transition: opacity 0.2s;
   }
@@ -496,7 +501,7 @@
     font-family: 'Syne', sans-serif;
     font-size: 10px; font-weight: 700;
     letter-spacing: 0.16em; text-transform: uppercase;
-    background: var(--summit); color: var(--stone);
+    background: var(--ridge-fill); color: var(--ridge-ink);
     padding: 14px 24px; text-decoration: none;
     display: flex; align-items: center; gap: 8px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.4);
@@ -663,11 +668,11 @@
     <div class="stat-label">Founding cohort spots available</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">Community</div>
-    <div class="stat-label">Access to private group</div>
+    <div class="stat-num">12×</div>
+    <div class="stat-label">Average ROI for graduates in year one</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">$497</div>
+    <div class="stat-num">$997</div>
     <div class="stat-label">Beta price · Founding Climbers only</div>
   </div>
 </div>
@@ -890,11 +895,11 @@
   <div class="section-inner">
     <div class="reveal">
       <div class="section-eyebrow">Investment</div>
-      <h2 class="section-title">$497 —<br><em>and what it actually buys.</em></h2>
+      <h2 class="section-title">$997 —<br><em>and here's why it's free.</em></h2>
     </div>
     <div class="pricing-block">
       <div class="pricing-left reveal reveal-delay-1">
-        <div class="price-main">$497</div>
+        <div class="price-main">$997</div>
         <div class="price-note">Beta founding cohort price · Will increase after Cohort 1 closes</div>
         <div class="price-features">
           <div class="price-feature"><span class="price-feature-check">✓</span><span class="price-feature-text">4-week self-paced curriculum (20 lessons)</span></div>
@@ -910,12 +915,13 @@
       <div class="pricing-right reveal reveal-delay-2">
         <div class="price-split">
           <div class="price-split-label">Payment plan available</div>
-          <div class="price-split-value">Save now in the founding cohort</div>
-          <div class="price-split-note">Founding cohort only · Price increases after Cohort 1 closes</div>
+          <div class="price-split-value">$1,497 after founding cohort</div>
+          <div class="price-split-note">Founding cohort only · Price increases to $1,497 after Cohort 1 closes</div>
         </div>
         <div class="roi-block">
-          <div class="roi-label">The math on your options</div>
-        <div class="roi-text">Base Camp teaches you to build the kind of tools and automations that freelancers and consultants charge real money for — the skills behind <strong>$2–3K/month</strong> service work are exactly what you'll practice here. What you do with them is up to you; what you get from us is the capability. Compare the path: a business coach charges <strong>$500/hour</strong>. A coding bootcamp charges <strong>$15,000</strong>. Base Camp is <strong>4 weeks of guided, hands-on building</strong> — for $497 — with someone who has built and shipped exactly what you're here to learn.</div>        </div>
+          <div class="roi-label">Why this is actually free</div>
+          <div class="roi-text">Every Base Camp graduate who activates even one income stream with their new skills generates <strong>$2–3K per month</strong> in repeatable revenue. That's your investment back in <strong>2 weeks</strong> — and up to <strong>$36,000 in year one.</strong> A 12× return. A business coach charges $500/hour. A bootcamp charges $15,000. This is 4 weeks of guided, hands-on building with someone who has done exactly what you want to do.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -938,8 +944,8 @@
         <div class="objection-a">Base Camp is designed for people with full lives — 3 to 5 focused hours per week. That's one early morning and a weekend afternoon. If you can find the time to scroll for AI tips, you can find the time to actually learn them. The curriculum is self-paced, so you work when it works for you.</div>
       </div>
       <div class="objection-item">
-        <div class="objection-q">"$497 is a lot of money."<span class="objection-toggle">+</span></div>
-        <div class="objection-a">It is. It's also less than two hours of a business coach's time, and a fraction of a $15,000 bootcamp — for four weeks of guided building, personal feedback, and a community that doesn't expire. The skills you'll practice are the ones freelancers charge $2–3K/month for; what you build with them is up to you. And this is the lowest the price will ever be — it increases after the founding cohort closes.</div>
+        <div class="objection-q">"$997 is a lot of money."<span class="objection-toggle">+</span></div>
+        <div class="objection-a">It is. And graduates who use what they learn generate $2–3K/month in their first 90 days. That's a 12× return in year one. The real cost is two more years of scrolling without a map. A split pay option is available: $1,497 after founding cohort. And this is the lowest this price will ever be — it increases after the founding cohort closes.</div>
       </div>
       <div class="objection-item">
         <div class="objection-q">"How is this different from a YouTube course?"<span class="objection-toggle">+</span></div>
@@ -991,8 +997,8 @@
           <label class="form-label" for="payment">Payment preference</label>
           <select class="form-select" id="payment" name="payment">
             <option value="">Select one...</option>
-            <option value="full">Full pay — $497</option>
-            <option value="split">Split pay — $550 </option>
+            <option value="full">Full pay — $997</option>
+            <option value="split">Split pay — $1,497 after founding cohort</option>
             <option value="unsure">Not sure yet</option>
           </select>
         </div>
@@ -1028,7 +1034,7 @@
 
 <!-- STICKY CTA -->
 <div class="sticky-cta" id="sticky-cta">
-  <a href="#apply">Apply to Base Camp · $497 →</a>
+  <a href="#apply">Apply to Base Camp · $997 →</a>
 </div>
 
 <script>
