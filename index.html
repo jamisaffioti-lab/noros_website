@@ -32,7 +32,7 @@
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(26,24,20,0.95); backdrop-filter: blur(12px); border-bottom: var(--rule); transition: padding 0.3s ease; overflow: visible; }
   nav.scrolled { padding: 14px 48px; }
-  .nav-logo img { height: 52px; width: auto; display: block; }
+  .nav-logo img { height: 60px; width: auto; display: block; }
   .nav-links { display: flex; gap: 36px; align-items: center; list-style: none; }
   .nav-links a { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mist); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--snow); }
@@ -59,7 +59,7 @@
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 3.4vw, 42px); font-weight: 600; line-height: 1.05; color: var(--snow); margin-bottom: 16px; animation: fadeUp 1s 0.2s ease both; }
   .hero-headline em { font-style: italic; color: var(--brand-text); }
-  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2vw, 20px); font-style: italic; color: var(--mist); max-width: 560px; line-height: 1.6; margin-bottom: 56px; animation: fadeUp 1s 0.3s ease both; }
+  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2.8vw, 28px); font-style: italic; color: var(--mist); max-width: 560px; line-height: 1.6; margin-bottom: 56px; animation: fadeUp 1s 0.3s ease both; }
 
   /* PATH CARDS */
   .path-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(184,178,168,0.1); animation: fadeUp 1s 0.4s ease both; }
@@ -410,8 +410,8 @@
           <div class="path-tagline">From idea to open for business — in four weeks. The on-ramp before Base Camp.</div>
           <div class="path-audience">For first-time founders who haven't started yet — idea validation, legal setup, brand, and your first paying customer.</div>
           <div class="path-price firsttracks">$197</div>
-          <div class="path-price-note">Founders price · Increases to $297 after Cohort 1</div>
-          <span class="path-cta firsttracks">Enroll in First Tracks →</span>
+          <div class="path-price-note">Founders price · Increases after Cohort 1</div>
+          <span class="path-cta firsttracks">Explore First Tracks →</span>
         </a>
 
         <a href="basecamp.html" class="path-card basecamp">
@@ -423,9 +423,9 @@
           <div class="path-name">Base Camp</div>
           <div class="path-tagline">A 4-week AI-powered launchpad for everyday humans ready to build something real.</div>
           <div class="path-audience">For solopreneurs, career-changers, and creators who want to use AI to build tools, automations, and income — without a CS degree.</div>
-          <div class="path-price basecamp">$997</div>
-          <div class="path-price-note">Founders price · Increases to $1,497 after Cohort 1</div>
-          <span class="path-cta basecamp">Apply to Base Camp →</span>
+          <div class="path-price basecamp">$497</div>
+          <div class="path-price-note">Founders price · Increases after Cohort 1</div>
+          <span class="path-cta basecamp">Explore Base Camp →</span>
         </a>
 
         <a href="summit-advisory.html" class="path-card advisory">
@@ -552,8 +552,8 @@
     <div class="contact-options">
       <a href="basecamp.html" class="contact-option">
         <div class="contact-option-label">Most popular</div>
-        <div class="contact-option-title">Apply to Base Camp</div>
-        <div class="contact-option-desc">Founding cohort spots. $997. Start in 4 weeks.</div>
+        <div class="contact-option-title">Explore Base Camp</div>
+        <div class="contact-option-desc">AI-powered launchpad for everyday humans. Founding cohort.</div>
       </a>
       <a href="firsttracks.html" class="contact-option">
         <div class="contact-option-label">New</div>
