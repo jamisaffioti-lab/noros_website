@@ -19,7 +19,7 @@
     --sky: #7ba3c0;
     --ember: #c4603a;
     --rule: 1px solid rgba(184,178,168,0.2);
-  
+
   /* sector pops */
   --ascent-fill:#C7DB33; --ascent-text:#C7DB33; --ascent-ink:#1A1814;
   --ridge-fill:#3A56D4;  --ridge-text:#8B9CF2;  --ridge-ink:#F4F1EC;
@@ -267,6 +267,12 @@
     padding: 14px 32px; cursor: pointer; transition: opacity 0.2s;
   }
   .form-submit:hover { opacity: 0.85; }
+  .form-thanks { grid-column: 1 / -1; text-align: center; padding: 20px 0; }
+  .form-thanks h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600;
+    color: var(--snow); margin-bottom: 10px;
+  }
+  .form-thanks p { font-size: 12px; color: var(--mist); line-height: 1.7; max-width: 440px; margin: 0 auto; }
 
   /* ── FOOTER ── */
   footer {
@@ -619,7 +625,9 @@
       <h2 class="section-title" style="text-align:center">Tell Jami<br><em>about your business.</em></h2>
       <p class="consult-note">Every application is read personally. If it looks like a fit, you'll hear back within 24 hours to schedule a discovery call. No sales pitch — just a real conversation.</p>
     </div>
-    <form class="consult-form reveal reveal-delay-1" action="https://formspree.io/f/xqeyaogb" method="POST">
+    <form id="consultForm" class="consult-form reveal reveal-delay-1" action="https://summit-intake-271700678332.us-east4.run.app/api/lead" method="POST">
+      <!-- anti-spam honeypot: real people never fill this -->
+      <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div class="form-group">
         <label class="form-label" for="name">Your name</label>
         <input class="form-input" type="text" id="name" name="name" placeholder="Full name" required>
@@ -662,7 +670,7 @@
         </select>
       </div>
       <div class="form-submit-row">
-        <div class="form-submit-note">Jami reads every application.<br>Response within 24 hours.</div>
+        <div class="form-submit-note" id="consultNote">Jami reads every application.<br>Response within 24 hours.</div>
         <button type="submit" class="form-submit">Submit request →</button>
       </div>
     </form>
@@ -709,21 +717,79 @@
   // Mobile menu
   const menuBtn = document.getElementById('menu-btn');
   const navLinks = document.getElementById('nav-links');
-  menuBtn.addEventListener('click', () => {
-    if (navLinks.classList.contains('open')) {
-      navLinks.classList.remove('open');
-      document.body.style.overflow = '';
-    } else {
-      navLinks.classList.add('open');
-      document.body.style.overflow = 'hidden';
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => {
+      if (navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      } else {
+        navLinks.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>
+
+<!-- Consultation form → Noros backend (replaces Formspree) -->
+<script>
+(function () {
+  var form = document.getElementById('consultForm');
+  if (!form) return;
+  var ENDPOINT = 'https://summit-intake-271700678332.us-east4.run.app/api/lead';
+  var note = document.getElementById('consultNote');
+  var noteHTML = note ? note.innerHTML : '';
+
+  function val(id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; }
+  function selText(id) {
+    var e = document.getElementById(id);
+    if (!e || !e.selectedOptions || !e.selectedOptions[0]) return '';
+    var t = e.selectedOptions[0].text;
+    return t.indexOf('Select') === 0 ? '' : t;
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    var btn = form.querySelector('.form-submit');
+    var orig = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending…';
+    if (note) { note.style.color = ''; note.innerHTML = noteHTML; }
+
+    var payload = {
+      name: val('name'), email: val('email'), business: val('business'),
+      problem: val('problem'), tried: val('tried'),
+      budget: selText('budget'), timeline: selText('timeline'),
+      website: val('website')
+    };
+
+    try {
+      var res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      var j = await res.json().catch(function () { return {}; });
+      if (res.ok && j.ok) {
+        form.innerHTML =
+          '<div class="form-thanks">' +
+          '<h3>Thank you — application received.</h3>' +
+          '<p>Jami reads every application personally and will be in touch within 24 hours. Check your inbox for a confirmation.</p></div>';
+      } else {
+        btn.disabled = false; btn.textContent = orig;
+        if (note) { note.style.color = '#c4603a'; note.textContent = (j && j.error) ? j.error : 'Something went wrong — please try again.'; }
+      }
+    } catch (err) {
+      btn.disabled = false; btn.textContent = orig;
+      if (note) { note.style.color = '#c4603a'; note.textContent = 'Network error — please try again.'; }
     }
   });
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
+})();
 </script>
 
 </body>
