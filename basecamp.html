@@ -357,22 +357,6 @@
   }
   .price-feature-check { color: #5DCAA5; flex-shrink: 0; margin-top: 1px; }
   .price-feature-text { color: var(--snow); }
-  .price-split {
-    border: var(--rule); padding: 20px 24px;
-    margin-bottom: 28px;
-  }
-  .price-split-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 9px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--ridge-text); margin-bottom: 8px;
-  }
-  .price-split-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px; font-weight: 600;
-    color: var(--snow);
-  }
-  .price-split-note { font-size: 11px; color: var(--mist); margin-top: 4px; }
   .roi-block {
     background: var(--stone); padding: 24px 28px;
     border-left: 3px solid var(--ridge-fill);
@@ -389,6 +373,8 @@
     line-height: 1.6; font-style: italic;
   }
   .roi-text strong { color: var(--ridge-text); font-style: normal; }
+  .roi-text + .roi-text { margin-top: 14px; }
+  .roi-disclaimer { font-size: 13px; color: var(--mist); line-height: 1.6; margin-top: 18px; }
 
   /* ── OBJECTIONS ── */
   #objections { background: var(--ash); }
@@ -439,19 +425,18 @@
     letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--mist);
   }
-  .form-input, .form-textarea, .form-select {
+  .form-input, .form-textarea {
     background: var(--stone); border: var(--rule);
     color: var(--snow); font-family: 'DM Mono', monospace;
     font-size: 12px; padding: 12px 16px;
     outline: none; transition: border-color 0.2s;
     width: 100%;
   }
-  .form-input:focus, .form-textarea:focus, .form-select:focus {
+  .form-input:focus, .form-textarea:focus {
     border-color: var(--ridge-fill);
   }
   .form-input::placeholder, .form-textarea::placeholder { color: var(--bark); }
   .form-textarea { resize: vertical; min-height: 120px; }
-  .form-select option { background: var(--stone); }
   .form-submit-row {
     margin-top: 24px; display: flex;
     justify-content: space-between; align-items: center;
@@ -668,8 +653,8 @@
     <div class="stat-label">Founding cohort spots available</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">12×</div>
-    <div class="stat-label">Average ROI for graduates in year one</div>
+    <div class="stat-num">20</div>
+    <div class="stat-label">Lessons, each building toward your tool</div>
   </div>
   <div class="stat-item">
     <div class="stat-num">$497</div>
@@ -850,7 +835,7 @@
       <div class="format-card reveal reveal-delay-2">
         <div class="format-icon">✦</div>
         <div class="format-title">Founding Climbers cohort</div>
-        <div class="format-desc">You're not just a student — you're Cohort 1. The Founding Climbers. Your feedback shapes the program. That status is yours forever, and this price will never be available again.</div>
+        <div class="format-desc">You're not just a student — you're Cohort 1. The Founding Climbers. Your feedback shapes the program. That status is yours forever. The founding price closes when Cohort 1 fills.</div>
       </div>
       <div class="format-card reveal reveal-delay-3">
         <div class="format-icon">◎</div>
@@ -895,11 +880,11 @@
   <div class="section-inner">
     <div class="reveal">
       <div class="section-eyebrow">Investment</div>
-      <h2 class="section-title">$997 —<br><em>and here's why it's free.</em></h2>
+      <h2 class="section-title">$497 —<br><em>and here's what it buys.</em></h2>
     </div>
     <div class="pricing-block">
       <div class="pricing-left reveal reveal-delay-1">
-        <div class="price-main">$997</div>
+        <div class="price-main">$497</div>
         <div class="price-note">Beta founding cohort price · Will increase after Cohort 1 closes</div>
         <div class="price-features">
           <div class="price-feature"><span class="price-feature-check">✓</span><span class="price-feature-text">4-week self-paced curriculum (20 lessons)</span></div>
@@ -913,14 +898,12 @@
         <a href="#apply" class="btn-primary" style="display:inline-block;">Apply for the founding cohort →</a>
       </div>
       <div class="pricing-right reveal reveal-delay-2">
-        <div class="price-split">
-          <div class="price-split-label">Payment plan available</div>
-          <div class="price-split-value">$1,497 after founding cohort</div>
-          <div class="price-split-note">Founding cohort only · Price increases to $1,497 after Cohort 1 closes</div>
-        </div>
         <div class="roi-block">
-          <div class="roi-label">Why this is actually free</div>
-          <div class="roi-text">Every Base Camp graduate who activates even one income stream with their new skills generates <strong>$2–3K per month</strong> in repeatable revenue. That's your investment back in <strong>2 weeks</strong> — and up to <strong>$36,000 in year one.</strong> A 12× return. A business coach charges $500/hour. A bootcamp charges $15,000. This is 4 weeks of guided, hands-on building with someone who has done exactly what you want to do.</div>
+          <div class="roi-label">What $497 actually buys</div>
+          <div class="roi-text"><strong>20 lessons · 4 weekly deliverables · one deployed tool with a URL you can share</strong></div>
+          <div class="roi-text">Freelancers and small agencies charge $2–3K a month for the kind of automation work you'll practice here. What you do with that skill is up to you — what Base Camp gives you is the capability.</div>
+          <div class="roi-text">A business coach charges $500/hour. A bootcamp charges $15,000. This is 4 weeks of guided, hands-on building with someone who has done exactly what you want to do.</div>
+          <div class="roi-disclaimer">Base Camp teaches skills. It doesn't guarantee income, and results vary.</div>
         </div>
       </div>
     </div>
@@ -944,8 +927,8 @@
         <div class="objection-a">Base Camp is designed for people with full lives — 3 to 5 focused hours per week. That's one early morning and a weekend afternoon. If you can find the time to scroll for AI tips, you can find the time to actually learn them. The curriculum is self-paced, so you work when it works for you.</div>
       </div>
       <div class="objection-item">
-        <div class="objection-q">"$997 is a lot of money."<span class="objection-toggle">+</span></div>
-        <div class="objection-a">It is. And graduates who use what they learn generate $2–3K/month in their first 90 days. That's a 12× return in year one. The real cost is two more years of scrolling without a map. A split pay option is available: $1,497 after founding cohort. And this is the lowest this price will ever be — it increases after the founding cohort closes.</div>
+        <div class="objection-q">"$497 is a lot of money."<span class="objection-toggle">+</span></div>
+        <div class="objection-a">It is. For context: a coding bootcamp runs $15,000, and a business coach charges $500 an hour — Base Camp costs less than one hour of coaching, and you finish with a deployed tool, not a certificate. The real cost is two more years of scrolling without a map. The founding price closes when Cohort 1 fills.</div>
       </div>
       <div class="objection-item">
         <div class="objection-q">"How is this different from a YouTube course?"<span class="objection-toggle">+</span></div>
@@ -993,15 +976,6 @@
           <label class="form-label" for="why">Why now?</label>
           <textarea class="form-textarea" id="why" name="why" placeholder="What's making this the right moment to invest in learning this?" style="min-height:90px;" required></textarea>
         </div>
-        <div class="form-group full">
-          <label class="form-label" for="payment">Payment preference</label>
-          <select class="form-select" id="payment" name="payment">
-            <option value="">Select one...</option>
-            <option value="full">Full pay — $997</option>
-            <option value="split">Split pay — $1,497 after founding cohort</option>
-            <option value="unsure">Not sure yet</option>
-          </select>
-        </div>
         <div class="form-submit-row full">
           <div class="form-submit-note">Jami reads every application.<br>You'll hear back within 24 hours.</div>
           <button type="submit" class="form-submit">Submit application →</button>
@@ -1034,7 +1008,7 @@
 
 <!-- STICKY CTA -->
 <div class="sticky-cta" id="sticky-cta">
-  <a href="#apply">Apply to Base Camp · $997 →</a>
+  <a href="#apply">Apply to Base Camp · $497 →</a>
 </div>
 
 <script>
