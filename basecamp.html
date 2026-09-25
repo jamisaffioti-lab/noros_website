@@ -45,6 +45,7 @@
     transition: color 0.2s;
   }
   .nav-back:hover { color: var(--text-primary); }
+  @media (max-width: 480px) { .nav-back-rest { display: none; } .nav-back { white-space: nowrap; } }
   .nav-cta {
     font-family: 'Syne', sans-serif;
     font-size: 10px; font-weight: 700;
@@ -606,7 +607,7 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="index.html" class="nav-back">← Noros Solutions</a>
+  <a href="index.html" class="nav-back"><span>← Noros<span class="nav-back-rest"> Solutions</span></span></a>
   <a href="index.html" class="nav-logo">
     <img src="/images/noros-logo-white.png" alt="Noros Solutions">
   </a>
