@@ -62,6 +62,11 @@
   --on-accent:   var(--brand-ink);
 }
 
+/* ── Sizing: theme-independent ── */
+:root {
+  --logo-nav-height: 52px;  /* centred header logo on the programme pages */
+}
+
 /* ── Light theme seam: a second block redefining layer 2 only ──
 :root[data-theme="light"] {
   --bg: var(--cream);
