@@ -1,0 +1,70 @@
+/* Noros design tokens — shared by the six main pages (beta.html is separate).
+
+   TODO(theme): the pages still contain ~70 hard-coded hex and ~130 rgba()
+   colour values that bypass these tokens, so redefining layer 2 does NOT yet
+   re-theme the site. Migrate those to semantic tokens before shipping a
+   light theme.
+
+   Rules:
+   - Page styles reference layer 2 (semantic) only, never layer 1 (palette).
+   - Page-local tokens (e.g. --oatmeal, --ridge-1/2/3, the --accent aliases)
+     live in each page's own :root block, after this file is linked.
+*/
+
+/* ── Layer 1 · palette: raw colours, named once ── */
+:root {
+  --stone: #1a1814;
+  --ash:   #2e2b26;
+  --bark:  #8a8278;
+  --mist:  #b8b2a8;
+  --snow:  #f4f1ec;
+  --cream: #faf8f4;
+
+  --ember: #c4603a;
+  --pine:  #3d5a3e;
+  --sky:   #7ba3c0;
+  --clay:  #b68877;
+
+  --lime:       #C7DB33;
+  --indigo:     #3A56D4;
+  --periwinkle: #8B9CF2;
+  --navy:       #2A3A8C;
+  --lavender:   #8189E8;
+  --coral:      #F2825F;
+
+  --line: rgba(184,178,168,0.2);
+}
+
+/* ── Layer 2 · semantic: dark theme (default) ── */
+:root {
+  --bg:             var(--stone);  /* page and section backgrounds */
+  --surface:        var(--ash);    /* cards, bands, form containers */
+  --text-primary:   var(--snow);   /* headings, body copy */
+  --text-secondary: var(--mist);   /* descriptions, lesson lists, labels */
+  --text-muted:     var(--bark);   /* notes, placeholders, indicator dots */
+  --border:         var(--line);
+  --rule:           1px solid var(--border);
+  --positive:       var(--pine);   /* "after" / yes states */
+  --negative:       var(--ember);  /* "before" / no states */
+
+  /* Track roles: -fill = backgrounds and borders, -text = text on --bg,
+     -ink = text on -fill */
+  --ridge-fill:  var(--indigo); --ridge-text:  var(--periwinkle); --ridge-ink:  var(--snow);
+  --ascent-fill: var(--lime);   --ascent-text: var(--lime);       --ascent-ink: var(--stone);
+  --summit-fill: var(--navy);   --summit-text: var(--lavender);   --summit-ink: var(--snow);
+  --brand-fill:  var(--coral);  --brand-text:  var(--coral);      --brand-ink:  var(--stone);
+
+  /* Page accent. Defaults to the brand; single-track pages re-point these
+     at their track in their own :root. Themes should redefine the track
+     roles above, not these aliases. */
+  --accent:      var(--brand-text);
+  --accent-fill: var(--brand-fill);
+  --on-accent:   var(--brand-ink);
+}
+
+/* ── Light theme seam: a second block redefining layer 2 only ──
+:root[data-theme="light"] {
+  --bg: var(--cream);
+  ...
+}
+*/
