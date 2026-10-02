@@ -624,6 +624,12 @@
     .nav-links.open a { display: block; padding: 18px 0; font-size: 15px !important; letter-spacing: 0.1em; color: var(--text-primary) !important; }
     .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block; padding: 16px !important; }
   }
+  .form-thanks { grid-column: 1 / -1; text-align: center; padding: 20px 0; }
+  .form-thanks h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600;
+    color: var(--text-primary); margin-bottom: 10px;
+  }
+  .form-thanks p { font-size: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 440px; margin: 0 auto; }
 </style>
 </head>
 <body>
@@ -979,7 +985,8 @@
       <p class="section-sub">5–10 spots. Jami reviews every application personally. If it's a fit, she'll send you a payment link within 24 hours.</p>
     </div>
     <div class="apply-form reveal reveal-delay-1">
-      <form class="form-grid" action="https://formspree.io/f/xykvpzvb" method="POST">
+      <form id="applyForm" class="form-grid" action="https://summit-intake-271700678332.us-east4.run.app/api/apply" method="POST">
+        <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <div class="form-group">
           <label class="form-label" for="fname">First name</label>
           <input class="form-input" type="text" id="fname" name="first_name" placeholder="Jami" required>
@@ -1005,7 +1012,7 @@
           <textarea class="form-textarea" id="why" name="why" placeholder="What's making this the right moment to invest in learning this?" style="min-height:90px;" required></textarea>
         </div>
         <div class="form-submit-row full">
-          <div class="form-submit-note">Jami reads every application.<br>You'll hear back within 24 hours.</div>
+          <div class="form-submit-note" id="applyNote">Jami reads every application.<br>You'll hear back within 24 hours.</div>
           <button type="submit" class="form-submit">Submit application <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
         </div>
       </form>
@@ -1093,6 +1100,55 @@
       document.body.style.overflow = '';
     });
   });
+</script>
+
+
+<!-- Base Camp application → Noros intake backend (replaces Formspree) -->
+<script>
+(function () {
+  var form = document.getElementById('applyForm');
+  if (!form) return;
+  var ENDPOINT = 'https://summit-intake-271700678332.us-east4.run.app/api/apply';
+  var note = document.getElementById('applyNote');
+  var noteHTML = note ? note.innerHTML : '';
+  function val(id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    var btn = form.querySelector('.form-submit');
+    var orig = btn.innerHTML;
+    btn.disabled = true; btn.textContent = 'Sending…';
+    if (note) { note.style.color = ''; note.innerHTML = noteHTML; }
+
+    var payload = {
+      first_name: val('fname'), last_name: val('lname'), email: val('email'),
+      background: val('background'), build: val('build'), why: val('why'),
+      website: val('website')
+    };
+
+    try {
+      var res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      var j = await res.json().catch(function () { return {}; });
+      if (res.ok && j.ok) {
+        form.innerHTML =
+          '<div class="form-thanks">' +
+          '<h3>Thank you — application received.</h3>' +
+          '<p>Jami reads every application personally and will be in touch within 24 hours. Check your inbox for a confirmation.</p></div>';
+      } else {
+        btn.disabled = false; btn.innerHTML = orig;
+        if (note) { note.style.color = 'var(--negative)'; note.textContent = (j && j.error) ? j.error : 'Something went wrong — please try again.'; }
+      }
+    } catch (err) {
+      btn.disabled = false; btn.innerHTML = orig;
+      if (note) { note.style.color = 'var(--negative)'; note.textContent = 'Network error — please try again, or email hello@noros.life.'; }
+    }
+  });
+})();
 </script>
 
 </body>
