@@ -1,9 +1,10 @@
 /* Noros design tokens — shared by the six main pages (beta.html is separate).
 
-   TODO(theme): the pages still contain ~70 hard-coded hex and ~130 rgba()
-   colour values that bypass these tokens, so redefining layer 2 does NOT yet
-   re-theme the site. Migrate those to semantic tokens before shipping a
-   light theme.
+   Themes: dark is the default. A page opts into the oatmeal light theme
+   (Periwinkle + Chartreuse, Oct 2026) with <html data-theme="light">.
+   Migrated to light so far: summit-advisory.html.
+   TODO(theme): the other pages still contain hard-coded hex / rgba() colours
+   that bypass these tokens — migrate each page before flipping its attribute.
 
    Rules:
    - Page styles reference layer 2 (semantic) only, never layer 1 (palette).
@@ -33,6 +34,20 @@
   --coral:      #F2825F;
 
   --line: rgba(184,178,168,0.2);
+
+  /* Light theme (oatmeal ground). -text variants are darkened so small
+     text clears WCAG AA 4.5:1 on both --oat and --oat-light. */
+  --oat:        #ECE7DD;
+  --oat-light:  #F6F2EA;
+  --umber:      #4A453D;   /* secondary text, 7.7:1 on oat */
+  --taupe:      #6B6559;   /* muted text, 4.7:1 on oat */
+  --peri:       #5A63E0;   /* periwinkle fill */
+  --peri-ink:   #4750D0;   /* periwinkle as text, 5.1:1 */
+  --peri-deep:  #3E46B8;   /* Summit: deeper periwinkle, 6.2:1 */
+  --chartreuse: #AEBE1E;   /* fill only — 1.7:1 as text, never use for text */
+  --olive:      #55620A;   /* chartreuse as text, 5.4:1 */
+  --moss:       #2F6B4F;
+  --rust:       #A8441F;
 }
 
 /* ── Layer 2 · semantic: dark theme (default) ── */
@@ -46,6 +61,20 @@
   --rule:           1px solid var(--border);
   --positive:       var(--pine);   /* "after" / yes states */
   --negative:       var(--ember);  /* "before" / no states */
+  color-scheme: dark;
+
+  /* Washes and hairlines that used to be hard-coded rgba() */
+  --nav-bg:        rgba(26,24,20,0.92);   /* fixed nav, translucent */
+  --overlay-bg:    var(--stone);          /* full-screen mobile menu */
+  --grid-gap:      rgba(184,178,168,0.08);/* 2px gutters between cards */
+  --texture-line:  rgba(184,178,168,0.03);/* hero graph-paper texture */
+  --border-strong: rgba(184,178,168,0.3); /* ghost buttons */
+  --border-soft:   rgba(184,178,168,0.15);/* pills, menu rows */
+  --watermark:     rgba(182,136,119,0.07);/* big background numerals */
+
+  /* Secondary "pop" colour: tags, step numbers, yes-marks */
+  --pop-fill: var(--lime); --pop-text: var(--lime); --pop-ink: var(--stone);
+  --pop-wash: rgba(199,219,51,0.12);
 
   /* Track roles: -fill = backgrounds and borders, -text = text on --bg,
      -ink = text on -fill */
@@ -67,9 +96,37 @@
   --logo-nav-height: 52px;  /* centred header logo on the programme pages */
 }
 
-/* ── Light theme seam: a second block redefining layer 2 only ──
+/* ── Layer 2 · semantic: light theme — Periwinkle + Chartreuse on oatmeal ──
+   Opt in per page with <html data-theme="light">.
+   Track mapping: periwinkle = Noros brand + Builder's Ridge, deeper
+   periwinkle = Summit Advisory, chartreuse = Ascent Scholars and the
+   site-wide pop colour.
+   To go to ONE palette site-wide later, point every track role at the same
+   pair (e.g. set --summit-* and --ascent-* to the --brand-* values). */
 :root[data-theme="light"] {
-  --bg: var(--cream);
-  ...
+  --bg:             var(--oat);
+  --surface:        var(--oat-light);
+  --text-primary:   var(--stone);
+  --text-secondary: var(--umber);
+  --text-muted:     var(--taupe);
+  --border:         rgba(26,24,20,0.12);
+  --positive:       var(--olive);
+  --negative:       var(--rust);
+  color-scheme: light;
+
+  --nav-bg:        rgba(236,231,221,0.92);
+  --overlay-bg:    var(--oat);
+  --grid-gap:      rgba(26,24,20,0.08);
+  --texture-line:  rgba(26,24,20,0.035);
+  --border-strong: rgba(26,24,20,0.28);
+  --border-soft:   rgba(26,24,20,0.14);
+  --watermark:     rgba(90,99,224,0.08);
+
+  --ridge-fill:  var(--peri);       --ridge-text:  var(--peri-ink);  --ridge-ink:  var(--cream);
+  --ascent-fill: var(--chartreuse); --ascent-text: var(--olive);     --ascent-ink: var(--stone);
+  --summit-fill: var(--peri-deep);  --summit-text: var(--peri-deep); --summit-ink: var(--cream);
+  --brand-fill:  var(--peri);       --brand-text:  var(--peri-ink);  --brand-ink:  var(--cream);
+
+  --pop-fill: var(--chartreuse); --pop-text: var(--olive); --pop-ink: var(--stone);
+  --pop-wash: rgba(174,190,30,0.22);
 }
-*/

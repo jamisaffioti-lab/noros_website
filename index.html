@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,27 +9,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
 <style>
-  :root {
-    --oatmeal: #E8E1CD;
-  }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  .i { width: 1.15em; height: 1.15em; vertical-align: -0.2em; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text-primary); font-family: 'DM Mono', monospace; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
 
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(26,24,20,0.95); backdrop-filter: blur(12px); border-bottom: var(--rule); transition: padding 0.3s ease; overflow: visible; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: var(--nav-bg); backdrop-filter: blur(12px); border-bottom: var(--rule); transition: padding 0.3s ease; overflow: visible; }
   nav.scrolled { padding: 14px 48px; }
   .nav-logo img { height: 60px; width: auto; display: block; }
   .nav-links { display: flex; gap: 36px; align-items: center; list-style: none; }
   .nav-links a { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--text-primary); }
-  .nav-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-accent) !important; background: var(--accent-fill); padding: 8px 18px; text-decoration: none; transition: opacity 0.2s; }
+  .nav-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-accent) !important; background: var(--accent-fill); padding: 8px 18px; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; }
   .nav-cta:hover { opacity: 0.85; }
 
   .nav-close-btn {
     display: none;
     background: none; border: none;
-    color: #f4f1ec; font-size: 26px;
+    color: var(--text-primary); font-size: 26px;
     cursor: pointer; padding: 4px 8px; line-height: 1;
   }
   .nav-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 4px; flex-direction: column; gap: 5px; }
@@ -39,7 +37,7 @@
   #home { display: flex; flex-direction: column; justify-content: center; padding: 140px 48px 48px; position: relative; overflow: hidden; }
   .hero-top { margin-bottom: 48px; }
   .hero-top-left { max-width: 50ch; }
-  .hero-texture { position: absolute; inset: 0; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px); }
+  .hero-texture { position: absolute; inset: 0; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, var(--texture-line) 60px, var(--texture-line) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, var(--texture-line) 60px, var(--texture-line) 61px); }
   .hero-content { position: relative; z-index: 3; max-width: 1100px; margin: 0 auto; width: 100%; }
   .hero-top { margin-bottom: 48px; }
   .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; animation: fadeUp 1s 0.1s ease both; }
@@ -49,9 +47,9 @@
   .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2.8vw, 28px); font-style: italic; color: var(--text-secondary); max-width: 560px; line-height: 1.6; margin-bottom: 56px; animation: fadeUp 1s 0.3s ease both; }
 
   /* PATH CARDS */
-  .path-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(184,178,168,0.1); animation: fadeUp 1s 0.4s ease both; }
+  .path-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--grid-gap); animation: fadeUp 1s 0.4s ease both; }
   .path-card { background: var(--surface); padding: 36px 32px; text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: background 0.3s; border-top: 3px solid transparent; }
-  .path-card:hover { background: #363228; }
+  .path-card:hover { background: var(--bg); }
   .path-card.scholars { border-top-color: var(--ascent-fill); }
   .path-card.scholars2 { border-top-color: var(--ascent-fill); }
   .path-card.basecamp { border-top-color: var(--ridge-fill); }
@@ -81,17 +79,17 @@
   .path-price-note { font-size: 11px; color: var(--text-muted); margin-bottom: 20px; }
   .path-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s; }
   .path-card:hover .path-cta { gap: 14px; }
-  .path-badge { position: absolute; top: 0; right: 24px; font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; background: var(--text-muted); color: var(--text-primary); }
+  .path-badge { position: absolute; top: 0; right: 24px; font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; border-radius: 0 0 6px 6px; background: var(--pop-fill); color: var(--pop-ink); }
 
   /* MISSION */
   #mission { background: var(--surface); padding: 100px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .mission-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 3vw, 32px); font-weight: 400; line-height: 1.5; color: var(--text-primary); }
   .mission-quote strong { font-style: italic; color: var(--text-muted); font-weight: 400; }
-  .mission-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: var(--rule); }
+  .mission-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: var(--rule); border-radius: 10px; }
   .stat-cell { padding: 28px 24px; border-right: var(--rule); border-bottom: var(--rule); }
   .stat-cell:nth-child(2n) { border-right: none; }
   .stat-cell:nth-last-child(-n+2) { border-bottom: none; }
-  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 600; color: var(--text-muted); line-height: 1; margin-bottom: 6px; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 600; color: var(--accent); line-height: 1; margin-bottom: 6px; }
   .stat-label { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
 
   /* ABOUT */
@@ -103,7 +101,7 @@
   .about-story p { margin-bottom: 20px; }
   .about-story p:last-child { margin-bottom: 0; }
   .about-story em { font-style: italic; color: var(--text-muted); }
-  .about-credentials { border: var(--rule); margin-bottom: 32px; }
+  .about-credentials { border: var(--rule); border-radius: 10px; margin-bottom: 32px; }
   .credential-row { display: flex; gap: 16px; padding: 16px 20px; border-bottom: var(--rule); align-items: flex-start; }
   .credential-row:last-child { border-bottom: none; }
   .credential-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); flex-shrink: 0; margin-top: 6px; }
@@ -113,12 +111,12 @@
   .about-links { display: flex; flex-direction: column; gap: 10px; }
   .about-link { font-size: 13px; color: var(--text-secondary); text-decoration: none; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
   .about-link:hover { color: var(--text-primary); }
-  .about-link-arrow { color: var(--text-muted); font-size: 14px; }
+  .about-link-arrow { color: var(--accent); display: inline-flex; }
 
   /* CONTACT */
   #contact { background: var(--surface); padding: 100px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; border-top: var(--rule); }
   .contact-options { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
-  .contact-option { border: var(--rule); padding: 24px 28px; text-decoration: none; color: inherit; display: block; transition: border-color 0.2s, background 0.2s; }
+  .contact-option { border: var(--rule); border-radius: 10px; padding: 24px 28px; text-decoration: none; color: inherit; display: block; transition: border-color 0.2s, background 0.2s; }
   .contact-option:hover { border-color: var(--accent-fill); background: var(--bg); }
   .contact-option-label { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
   .contact-option-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--text-primary); margin-bottom: 4px; }
@@ -126,17 +124,19 @@
   .contact-form { display: flex; flex-direction: column; gap: 16px; }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-label { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-secondary); }
-  .form-input, .form-textarea, .form-select { background: var(--bg); border: var(--rule); color: var(--text-primary); font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-input, .form-textarea, .form-select { background: var(--bg); border: var(--rule); color: var(--text-primary); font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; border-radius: 6px; outline: none; transition: border-color 0.2s; width: 100%; }
   .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--accent-fill); }
-  .form-input::placeholder, .form-textarea::placeholder { color: #8a8278; }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
   .form-textarea { resize: vertical; min-height: 100px; }
   .form-select option { background: var(--surface); }
-  .form-submit { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; background: var(--accent-fill); color: var(--on-accent); border: none; padding: 14px 28px; cursor: pointer; transition: opacity 0.2s; align-self: flex-start; }
+  .form-submit { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; background: var(--accent-fill); color: var(--on-accent); border: none; padding: 14px 28px; border-radius: 2px; cursor: pointer; transition: opacity 0.2s; align-self: flex-start; }
   .form-submit:hover { opacity: 0.85; }
 
   /* MOUNTAIN FOOTER */
   .mountain-footer { position: relative; height: 120px; display: flex; align-items: center; background: var(--bg); border-top: var(--rule); padding: 0 48px; }
-  .mountain-footer-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.5vw, 26px); font-style: italic; color: rgba(244,241,236,0.4); }
+  .mountain-footer-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.5vw, 26px); font-style: italic; color: var(--text-muted); display: flex; align-items: center; gap: 12px; }
+  .mountain-icon { display: inline-flex; color: var(--accent); }
+  .mountain-icon .i { width: 26px; height: 26px; stroke-width: 1.4; }
 
   /* FOOTER */
   footer { background: var(--surface); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; border-top: var(--rule); flex-wrap: wrap; gap: 20px; }
@@ -160,7 +160,7 @@
       display: none;
       position: fixed; top: 16px; right: 20px;
       z-index: 1000; background: none; border: none;
-      color: #f4f1ec; font-size: 28px;
+      color: var(--text-primary); font-size: 28px;
       cursor: pointer; padding: 4px 10px; line-height: 1;
     }
     .nav-links.open {
@@ -168,14 +168,14 @@
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
-      background: #1a1814;
+      background: var(--overlay-bg);
       padding: 80px 32px 40px;
       z-index: 999;
       overflow-y: auto;
       box-sizing: border-box;
     }
-    .nav-links.open li { display: block !important; border-bottom: 1px solid rgba(184,178,168,0.15); list-style: none; }
-    .nav-links.open a { display: block !important; padding: 16px 0; font-size: 18px !important; color: #f4f1ec !important; letter-spacing: 0.06em; text-decoration: none; }
+    .nav-links.open li { display: block !important; border-bottom: 1px solid var(--border-soft); list-style: none; }
+    .nav-links.open a { display: block !important; padding: 16px 0; font-size: 18px !important; color: var(--text-primary) !important; letter-spacing: 0.06em; text-decoration: none; }
     .nav-close-btn.visible { display: block !important; }
 
     /* ── MOBILE LAYOUT ── */
@@ -197,8 +197,9 @@
 
   .noros-origin {
     margin-top: 28px;
-    border-left: 3px solid var(--text-muted);
-    background: rgba(182,136,119,0.06);
+    border-left: 3px solid var(--accent-fill);
+    background: var(--surface);
+    border-radius: 0 10px 10px 0;
     padding: 20px 24px;
   }
   .noros-origin-label {
@@ -215,8 +216,8 @@
   .noros-origin-text em { font-style: italic; color: var(--text-secondary); }
 
   /* TRACK ROWS */
-  .path-badge { position: absolute; top: 0; right: 24px; font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; background: var(--text-muted); color: var(--text-primary); }
-  .path-badge.soon { background: var(--text-muted); color: var(--text-primary); }
+  .path-badge { position: absolute; top: 0; right: 24px; font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; border-radius: 0 0 6px 6px; background: var(--pop-fill); color: var(--pop-ink); }
+  .path-badge.soon { background: var(--border-soft); color: var(--text-secondary); }
   .track-row { margin-bottom: 28px; }
   .track-row-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
   .track-row-label { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ridge-text); }
@@ -241,8 +242,7 @@
 
   /* WORKSHOPS */
   #workshops {
-    --bg: var(--oatmeal); --surface: var(--snow); --text-primary: var(--stone);
-    background: var(--bg); color: var(--text-primary); padding: 100px 48px; border-top: var(--rule);
+    background: var(--surface); color: var(--text-primary); padding: 100px 48px; border-top: var(--rule);
   }
   .workshops-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 3fr 2fr; gap: 80px; align-items: start; }
   .workshops-body { font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.8; color: var(--text-primary); margin-bottom: 32px; }
@@ -251,12 +251,12 @@
 
   .workshop-form { display: flex; flex-direction: column; gap: 12px; max-width: 420px; }
   .workshop-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .workshop-form-success { display: none; border-left: 3px solid var(--accent-fill); background: rgba(229,86,31,0.08); padding: 20px 24px; }
+  .workshop-form-success { display: none; border-left: 3px solid var(--accent-fill); background: var(--pop-wash); padding: 20px 24px; border-radius: 0 10px 10px 0; }
   .workshop-form-success.visible { display: block; }
   .workshop-form-success-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--text-primary); margin-bottom: 6px; }
   .workshop-form-success-sub { font-size: 12px; color: var(--text-primary); line-height: 1.6; }
 
-  .workshops-host { border-left: 3px solid rgba(166,53,15,0.25); padding-left: 28px; }
+  .workshops-host { border-left: 3px solid var(--pop-fill); padding-left: 28px; }
   .workshops-host-eyebrow { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-primary); margin-bottom: 14px; }
   .workshops-host-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2vw, 26px); font-weight: 600; color: var(--text-primary); line-height: 1.15; margin-bottom: 16px; }
   .workshops-host-body { font-family: 'Cormorant Garamond', serif; font-size: 16px; line-height: 1.75; color: var(--text-primary); margin-bottom: 24px; }
@@ -270,15 +270,11 @@
   }
 
     /* WORKSHOPS — oatmeal light-band overrides */
-  #workshops .section-eyebrow { color: var(--text-primary); }
-  #workshops .section-title { color: var(--text-primary); }
-  #workshops .section-title em { color: var(--text-primary); }
-  #workshops .form-label { color: var(--text-primary); }
   #workshops .form-input,
   #workshops .form-textarea,
-  #workshops .form-select { background: var(--surface); border: 1px solid rgba(184,178,168,0.6); color: var(--text-primary); }
+  #workshops .form-select { background: var(--bg); border: 1px solid var(--border-strong); color: var(--text-primary); }
   #workshops .form-input::placeholder,
-  #workshops .form-textarea::placeholder { color: #8A8278; }
+  #workshops .form-textarea::placeholder { color: var(--text-muted); }
   #workshops .form-select option { background: var(--surface); }
 
   /* SPONSORSHIP */
@@ -286,11 +282,11 @@
   .sponsorship-inner { max-width: 1100px; margin: 0 auto; }
   .sponsorship-header { max-width: 600px; margin-bottom: 48px; }
   .sponsorship-intro { font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.8; color: var(--text-secondary); margin-top: 16px; }
-  .sponsor-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(184,178,168,0.15); margin-bottom: 36px; }
+  .sponsor-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--grid-gap); margin-bottom: 36px; }
   .sponsor-tier { background: var(--bg); padding: 32px 28px; display: flex; flex-direction: column; }
-  .sponsor-tier-name { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .sponsor-tier-name { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
   .sponsor-tier-desc { font-family: 'Cormorant Garamond', serif; font-size: 16px; line-height: 1.7; color: var(--text-secondary); flex: 1; }
-  .sponsorship-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-accent); background: var(--accent-fill); padding: 12px 24px; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
+  .sponsorship-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-accent); background: var(--accent-fill); padding: 12px 24px; border-radius: 2px; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
   .sponsorship-cta:hover { opacity: 0.8; }
 
   @media (max-width: 768px) {
@@ -300,10 +296,26 @@
 </style>
 </head>
 <body>
+<!-- Line icons: drawn, because Syne / DM Mono / Cormorant have no arrow, check or symbol glyphs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-flow" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M7.2 6h9.6M6.2 7.9l4.7 8.2M17.8 7.9l-4.7 8.2"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v10H10l-4 4v-4H4z"/><path d="M8 9h8M8 12h5"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+    <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7 4.5 3 5v13c4-.5 7 0 9 1.5 2-1.5 5-2 9-1.5V5c-4-.5-7 0-9 1.5zM12 6.5v13"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l4.5 4.5L19.5 6.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
+    <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M20 12H5M11 6l-6 6 6 6"/></symbol>
+    <symbol id="i-mountain" viewBox="0 0 24 24"><path d="M3 19l6.5-10 3.5 5 2.5-3.5L21 19z"/><path d="M8 11.3l1.5 1.2 1.5-1.4"/></symbol>
+  </defs>
+</svg>
 
 <nav id="navbar">
   <a href="#home" class="nav-logo">
-    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
+    <img src="/images/noros-logo.png" alt="Noros Solutions">
   </a>
   <ul class="nav-links" id="nav-links">
     <li><a href="#workshops">Workshops</a></li>
@@ -316,7 +328,7 @@
   <button class="nav-menu-btn" id="menu-btn" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
-  <button class="nav-close-btn" id="nav-close-btn" aria-label="Close menu">✕</button>
+  <button class="nav-close-btn" id="nav-close-btn" aria-label="Close menu"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></button>
 </nav>
 
 <section id="home">
@@ -360,9 +372,9 @@
             </div>
           </div>
           <div>
-            <button type="submit" class="form-submit" id="ws-submit">Get workshop dates →</button>
+            <button type="submit" class="form-submit" id="ws-submit">Get workshop dates <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
           </div>
-          <p id="ws-error" style="display:none;font-size:12px;color:var(--text-primary);margin-top:4px;">Please enter a valid email address.</p>
+          <p id="ws-error" style="display:none;font-size:12px;color:var(--negative);margin-top:4px;">Please enter a valid email address.</p>
         </form>
         <div class="workshop-form-success" id="workshop-success">
           <div class="workshop-form-success-title">You're on the list.</div>
@@ -375,7 +387,7 @@
       <div class="workshops-host-eyebrow">Host a Workshop at Your Space</div>
       <h3 class="workshops-host-title">Bring a workshop<br>to your community.</h3>
       <p class="workshops-host-body">Local business owners — I'm looking for a few spaces to host small AI workshops. Host me, and your team attends free or heavily discounted, plus a room full of neighbors gets to know your space. Back room, café after hours, or co-working spot — let's talk.</p>
-      <a href="mailto:hello@noros.life?subject=Workshop%20space%20inquiry" class="workshops-host-link">Offer your space →</a>
+      <a href="mailto:hello@noros.life?subject=Workshop%20space%20inquiry" class="workshops-host-link">Offer your space <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
     </div>
   </div>
 </section>
@@ -401,7 +413,7 @@
           <div class="path-audience">For first-time founders who haven't started yet — idea validation, legal setup, brand, and your first paying customer.</div>
           <div class="path-price firsttracks">$197</div>
           <div class="path-price-note">Founders price · The founding price closes when Cohort 1 fills.</div>
-          <span class="path-cta firsttracks">Explore First Tracks →</span>
+          <span class="path-cta firsttracks">Explore First Tracks <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></span>
         </a>
 
         <a href="basecamp.html" class="path-card basecamp">
@@ -415,7 +427,7 @@
           <div class="path-audience">For solopreneurs, career-changers, and creators who want to use AI to build tools, automations, and income — without a CS degree.</div>
           <div class="path-price basecamp">$497</div>
           <div class="path-price-note">Founders price · The founding price closes when Cohort 1 fills.</div>
-          <span class="path-cta basecamp">Explore Base Camp →</span>
+          <span class="path-cta basecamp">Explore Base Camp <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></span>
         </a>
 
         <a href="summit-advisory.html" class="path-card advisory">
@@ -428,7 +440,7 @@
           <div class="path-audience">For small business owners who want done-with-you AI implementation. Selective engagements, by application only.</div>
           <div class="path-price advisory">By scope</div>
           <div class="path-price-note">Custom engagements · Application required</div>
-          <span class="path-cta advisory">Request a consultation →</span>
+          <span class="path-cta advisory">Request a consultation <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></span>
         </a>
 
       </div>
@@ -452,7 +464,7 @@
           <div class="path-audience">For students ages 14–18 ready to go past "using AI" into actually understanding how it works.</div>
           <div class="path-price scholars">From $249</div>
           <div class="path-price-note">Beta pricing · Founding cohort</div>
-          <span class="path-cta scholars">Join the waitlist →</span>
+          <span class="path-cta scholars">Join the waitlist <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></span>
         </a>
 
         <a href="ascent-scholars.html" class="path-card scholars2">
@@ -466,7 +478,7 @@
           <div class="path-audience">For students who want a smarter, friendlier way to study for AP coursework.</div>
           <div class="path-price scholars2">TBA</div>
           <div class="path-price-note">Early access pricing planned</div>
-          <span class="path-cta scholars2">Join the waitlist →</span>
+          <span class="path-cta scholars2">Join the waitlist <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></span>
         </a>
 
       </div>
@@ -529,8 +541,8 @@
     </div>
     <div class="about-connect">Connect</div>
     <div class="about-links">
-      <a href="mailto:hello@noros.life" class="about-link"><span class="about-link-arrow">→</span>hello@noros.life</a>
-      <a href="https://instagram.com/noros.life" target="_blank" rel="noopener" class="about-link"><span class="about-link-arrow">→</span>@noros.life on Instagram</a>
+      <a href="mailto:hello@noros.life" class="about-link"><span class="about-link-arrow"><svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></span>hello@noros.life</a>
+      <a href="https://instagram.com/noros.life" target="_blank" rel="noopener" class="about-link"><span class="about-link-arrow"><svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></span>@noros.life on Instagram</a>
     </div>
   </div>
 </section>
@@ -593,7 +605,7 @@
         <label class="form-label" for="message">Message</label>
         <textarea class="form-textarea" id="message" name="message" placeholder="Tell me a bit about where you are and what you're hoping to build..."></textarea>
       </div>
-      <button type="submit" class="form-submit">Send message →</button>
+      <button type="submit" class="form-submit">Send message <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
     </form>
   </div>
 </section>
@@ -620,17 +632,17 @@
         <p class="sponsor-tier-desc">For supporters who believe in the mission. Your name on our Friends of Noros wall — because people who show up early deserve to be remembered.</p>
       </div>
     </div>
-    <a href="mailto:hello@noros.life?subject=Sponsorship%20inquiry" class="sponsorship-cta">Become a sponsor →</a>
+    <a href="mailto:hello@noros.life?subject=Sponsorship%20inquiry" class="sponsorship-cta">Become a sponsor <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
   </div>
 </section>
 
 <div class="mountain-footer">
-  <div class="mountain-footer-text">The mountain doesn't wait. Neither should you. <span class="mountain-icon">⛰</span></div>
+  <div class="mountain-footer-text">The mountain doesn't wait. Neither should you. <span class="mountain-icon"><svg class="i" aria-hidden="true"><use href="#i-mountain"/></svg></span></div>
 </div>
 
 <footer>
   <a href="#home" class="footer-logo">
-    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
+    <img src="/images/noros-logo.png" alt="Noros Solutions">
   </a>
   <ul class="footer-links">
     <li><a href="#about">About</a></li>
@@ -725,13 +737,13 @@
           wsForm.style.display = 'none';
           document.getElementById('workshop-success').classList.add('visible');
         } else {
-          submitBtn.textContent = 'Get workshop dates →';
+          submitBtn.innerHTML = 'Get workshop dates <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg>';
           submitBtn.disabled = false;
           errorEl.textContent = 'Something went wrong — please try again or email hello@noros.life.';
           errorEl.style.display = 'block';
         }
       } catch {
-        submitBtn.textContent = 'Get workshop dates →';
+        submitBtn.innerHTML = 'Get workshop dates <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg>';
         submitBtn.disabled = false;
         errorEl.textContent = 'Something went wrong — please try again or email hello@noros.life.';
         errorEl.style.display = 'block';

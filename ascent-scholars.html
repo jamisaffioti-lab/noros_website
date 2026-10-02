@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,13 @@
 <style>
   :root {
     --accent: var(--ascent-text); --accent-fill: var(--ascent-fill); --on-accent: var(--ascent-ink);
+    /* Guide archetype colours (page-local categorical palette). Darkened from the
+       dark-theme originals (same hues, lower lightness) so they clear 4.5:1
+       as small text on both --bg (oat) and --surface (oat-light). */
+    --cat-luna:   #436981;
+    --cat-zephyr: #23706C;
+    --cat-ember:  #A54A2B;
+    --cat-raven:  #7D48C1;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -19,7 +26,7 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 48px; background: rgba(26,24,20,0.92);
+    padding: 20px 48px; background: var(--nav-bg);
     backdrop-filter: blur(12px); border-bottom: var(--rule);
     transition: padding 0.3s;
   }
@@ -28,7 +35,7 @@
   .nav-back { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-secondary); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
   .nav-back:hover { color: var(--text-primary); }
   @media (max-width: 480px) { .nav-back-rest { display: none; } .nav-back { white-space: nowrap; } }
-  .nav-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-accent); background: var(--accent-fill); padding: 8px 18px; text-decoration: none; transition: opacity 0.2s; }
+  .nav-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-accent); background: var(--accent-fill); padding: 8px 18px; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; }
   .nav-cta:hover { opacity: 0.85; }
 
   /* ── HERO ── */
@@ -40,8 +47,8 @@
   .hero-texture {
     position: absolute; inset: 0; z-index: 1;
     background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px),
-      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(184,178,168,0.03) 60px, rgba(184,178,168,0.03) 61px);
+      repeating-linear-gradient(0deg, transparent, transparent 60px, var(--texture-line) 60px, var(--texture-line) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, var(--texture-line) 60px, var(--texture-line) 61px);
   }
   .hero-content { position: relative; z-index: 3; max-width: 820px; animation: fadeUp 1s ease both; }
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
@@ -59,32 +66,34 @@
 
   /* ── TAGLINE BAR ── */
   .tagline-bar { background: var(--surface); border-top: var(--rule); border-bottom: var(--rule); padding: 16px 48px; display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
-  .tagline-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+  .tagline-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brand-text); white-space: nowrap; display: flex; align-items: center; gap: 10px; }
+  .tagline-label::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--brand-fill); }
   .tagline-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: var(--text-secondary); line-height: 1.5; }
   .tagline-text strong { color: var(--text-primary); font-style: normal; font-weight: 400; }
 
   /* ── PRODUCTS ── */
   #products { background: var(--bg); padding-top: 48px; }
-  .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(184,178,168,0.1); margin-top: 48px; }
+  .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border-soft); margin-top: 48px; }
   .product-card { background: var(--bg); padding: 48px 44px; position: relative; overflow: hidden; text-decoration: none; color: inherit; display: block; transition: background 0.3s; }
   .product-card:hover { background: var(--surface); }
   .product-card.featured { background: var(--surface); }
-  .product-card.featured:hover { background: #363228; }
+  .product-card.featured:hover { background: color-mix(in srgb, var(--surface) 94%, var(--text-primary)); }
   .product-badge { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
   .badge-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-  .badge-dot.active { background: #5DCAA5; }
+  .badge-dot.active { background: var(--positive); }
   .badge-dot.soon { background: var(--text-secondary); }
-  .badge-active { color: #5DCAA5; }
+  .badge-active { color: var(--positive); }
   .badge-soon { color: var(--text-secondary); }
   .product-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 3.5vw, 48px); font-weight: 600; line-height: 1.0; color: var(--text-primary); margin-bottom: 8px; }
   .product-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.5; }
   .product-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.8; max-width: 440px; margin-bottom: 32px; }
   .product-features { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
-  .product-feature { font-size: 10px; color: var(--text-secondary); border: 1px solid rgba(184,178,168,0.2); padding: 4px 12px; letter-spacing: 0.04em; }
+  .product-feature { font-size: 10px; color: var(--text-secondary); border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; letter-spacing: 0.04em; }
   .product-link { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s; }
   .product-card:hover .product-link { gap: 14px; }
-  .product-corner-num { position: absolute; bottom: 32px; right: 36px; font-family: 'Cormorant Garamond', serif; font-size: 100px; font-weight: 600; color: rgba(184,178,168,0.04); line-height: 1; pointer-events: none; }
-  .featured-flag { position: absolute; top: 0; right: 24px; background: var(--accent-fill); color: var(--on-accent); font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 14px; }
+  .product-corner-num { position: absolute; bottom: 32px; right: 36px; font-family: 'Cormorant Garamond', serif; font-size: 100px; font-weight: 600; color: var(--watermark); line-height: 1; pointer-events: none; }
+  .product-corner-num .i { width: 84px; height: 84px; stroke-width: 1.4; vertical-align: 0; }
+  .featured-flag { position: absolute; top: 0; right: 24px; background: var(--accent-fill); color: var(--on-accent); font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 14px; border-radius: 0 0 6px 6px; }
 
   /* ── BETA SECTION ── */
   #beta { background: var(--surface); }
@@ -93,47 +102,59 @@
   .beta-story p { margin-bottom: 20px; }
   .beta-story em { font-style: italic; color: var(--accent); }
   .guides-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .guide-card { border: var(--rule); padding: 18px 20px; }
-  .guide-icon { font-size: 20px; margin-bottom: 8px; }
+  .guide-card { border: var(--rule); border-radius: 10px; padding: 18px 20px; }
+  .i {
+    width: 1.15em; height: 1.15em; vertical-align: -0.2em;
+    fill: none; stroke: currentColor; stroke-width: 1.6;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .guide-icon {
+    width: 40px; height: 40px; border-radius: 50%; margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg); border: var(--rule);
+  }
+  .guide-icon .i { width: 20px; height: 20px; stroke-width: 1.5; }
   .guide-name { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
   .guide-element { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
   .guide-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.6; }
-  .guide-card.g-luna .guide-name { color: #8aacc2; }
-  .guide-card.g-luna .guide-element { color: #8aacc2; }
-  .guide-card.g-apex .guide-name { color: var(--accent); }
+  .guide-card.g-luna .guide-name, .guide-card.g-luna .guide-icon { color: var(--cat-luna); }
+  .guide-card.g-luna .guide-element { color: var(--cat-luna); }
+  .guide-card.g-apex .guide-name, .guide-card.g-apex .guide-icon { color: var(--accent); }
   .guide-card.g-apex .guide-element { color: var(--accent); }
-  .guide-card.g-zephyr .guide-name { color: #38b2ac; }
-  .guide-card.g-zephyr .guide-element { color: #38b2ac; }
-  .guide-card.g-ember .guide-name { color: #d4795a; }
-  .guide-card.g-ember .guide-element { color: #d4795a; }
-  .guide-card.g-raven .guide-name { color: #9b72cf; }
-  .guide-card.g-raven .guide-element { color: #9b72cf; }
+  .guide-card.g-zephyr .guide-name, .guide-card.g-zephyr .guide-icon { color: var(--cat-zephyr); }
+  .guide-card.g-zephyr .guide-element { color: var(--cat-zephyr); }
+  .guide-card.g-ember .guide-name, .guide-card.g-ember .guide-icon { color: var(--cat-ember); }
+  .guide-card.g-ember .guide-element { color: var(--cat-ember); }
+  .guide-card.g-raven .guide-name, .guide-card.g-raven .guide-icon { color: var(--cat-raven); }
+  .guide-card.g-raven .guide-element { color: var(--cat-raven); }
   .guide-card.g-full { grid-column: 1 / -1; }
 
   /* ── ALWAYS BETA ── */
-  .always-beta-block { background: var(--bg); border: var(--rule); border-left: 3px solid var(--accent-fill); padding: 28px 32px; margin-top: 40px; }
+  .always-beta-block { background: var(--bg); border: var(--rule); border-left: 3px solid var(--accent-fill); border-radius: 10px; padding: 28px 32px; margin-top: 40px; }
   .always-beta-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
   .always-beta-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: var(--text-primary); line-height: 1.5; }
 
   /* ── AI ARCHITECT ── */
   #architect { background: var(--bg); }
   .architect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 48px; }
-  .curriculum-list { border: var(--rule); }
+  .curriculum-list { border: var(--rule); border-radius: 10px; overflow: hidden; }
   .curriculum-row { display: grid; grid-template-columns: 48px 1fr; border-bottom: var(--rule); }
   .curriculum-row:last-child { border-bottom: none; }
-  .curriculum-num { border-right: var(--rule); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--accent); padding: 16px 0; }
+  .curriculum-num { border-right: var(--rule); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--brand-text); padding: 16px 0; }
+  .curriculum-num span { width: 32px; height: 32px; border-radius: 50%; background: color-mix(in srgb, var(--brand-fill) 14%, transparent); display: flex; align-items: center; justify-content: center; }
   .curriculum-content { padding: 16px 20px; }
   .curriculum-title { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-primary); margin-bottom: 4px; }
   .curriculum-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.6; }
-  .price-block { background: var(--surface); border: var(--rule); padding: 36px; margin-top: 0; }
+  .price-block { background: var(--surface); border: var(--rule); border-radius: 10px; padding: 36px; margin-top: 0; }
   .price-main { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 600; color: var(--accent); line-height: 1; margin-bottom: 6px; }
   .price-note { font-size: 11px; color: var(--text-secondary); margin-bottom: 24px; }
   .price-features { margin-bottom: 28px; }
   .price-feature { display: flex; gap: 10px; margin-bottom: 10px; font-size: 12px; color: var(--text-secondary); }
-  .price-check { color: #5DCAA5; flex-shrink: 0; }
-  .btn-primary { display: block; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; background: var(--accent-fill); color: var(--on-accent); padding: 14px 28px; text-decoration: none; text-align: center; transition: opacity 0.2s; border: none; cursor: pointer; width: 100%; }
+  .price-check { color: var(--positive); flex-shrink: 0; display: flex; margin-top: 3px; }
+  .price-check .i { width: 15px; height: 15px; stroke-width: 2; }
+  .btn-primary { display: block; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; background: var(--accent-fill); color: var(--on-accent); padding: 14px 28px; border-radius: 2px; text-decoration: none; text-align: center; transition: opacity 0.2s; border: none; cursor: pointer; width: 100%; }
   .btn-primary:hover { opacity: 0.85; }
-  .coming-soon-badge { display: inline-block; font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-secondary); border: var(--rule); padding: 6px 14px; margin-bottom: 24px; }
+  .coming-soon-badge { display: inline-block; font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-secondary); border: var(--rule); border-radius: 999px; padding: 6px 14px; margin-bottom: 24px; }
 
   /* ── REVEAL ── */
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -156,14 +177,14 @@
       flex-direction: column;
       position: fixed;
       inset: 0;
-      background: #1a1814;
+      background: var(--overlay-bg);
       padding: 80px 24px 40px;
       gap: 0;
       z-index: 98;
       overflow-y: auto;
     }
-    .nav-links.open li { display: block; border-bottom: 1px solid rgba(184,178,168,0.15); }
-    .nav-links.open a { display: block !important; padding: 18px 0; font-size: 15px !important; color: #f4f1ec !important; letter-spacing: 0.08em; }
+    .nav-links.open li { display: block; border-bottom: 1px solid var(--border-soft); }
+    .nav-links.open a { display: block !important; padding: 18px 0; font-size: 15px !important; color: var(--text-primary) !important; letter-spacing: 0.08em; }
     .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block !important; padding: 16px !important; }
     .nav-menu-btn { display: flex; }
     nav { padding: 16px 24px; }
@@ -175,24 +196,38 @@
     footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
   }
   @media (min-width: 769px) { .nav-close { display: none !important; } }
-  .nav-close { display: none; position: fixed; top: 20px; right: 24px; z-index: 99; background: none; border: none; color: #f4f1ec; font-size: 28px; cursor: pointer; line-height: 1; padding: 4px 8px; }
+  .nav-close { display: none; position: fixed; top: 20px; right: 24px; z-index: 99; background: none; border: none; color: var(--text-primary); font-size: 28px; cursor: pointer; line-height: 1; padding: 4px 8px; }
   .nav-close.visible { display: block; }
-  @media (max-width: 768px) { .nav-links.open li { display: block; border-bottom: 1px solid rgba(184,178,168,0.15); } .nav-links.open a { display: block; padding: 18px 0; font-size: 15px !important; color: #f4f1ec !important; } }
+  @media (max-width: 768px) { .nav-links.open li { display: block; border-bottom: 1px solid var(--border-soft); } .nav-links.open a { display: block; padding: 18px 0; font-size: 15px !important; color: var(--text-primary) !important; } }
   @media (max-width: 768px) {
-    .nav-links.open li { border-bottom: 1px solid rgba(184,178,168,0.15); }
-    .nav-links.open a { display: block; padding: 18px 0; font-size: 15px !important; letter-spacing: 0.1em; color: #f4f1ec !important; }
+    .nav-links.open li { border-bottom: 1px solid var(--border-soft); }
+    .nav-links.open a { display: block; padding: 18px 0; font-size: 15px !important; letter-spacing: 0.1em; color: var(--text-primary) !important; }
     .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block; padding: 16px !important; }
   }
 </style>
 </head>
 <body>
+<!-- Line icons: drawn, because Syne / DM Mono / Cormorant have no arrow, check or symbol glyphs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l4.5 4.5L19.5 6.5"/></symbol>
+    <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M20 12H5M11 6l-6 6 6 6"/></symbol>
+    <symbol id="i-sigma" viewBox="0 0 24 24"><path d="M18 5H6l6.5 7L6 19h12"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></symbol>
+    <symbol id="i-peak" viewBox="0 0 24 24"><path d="M12 4.5l8.5 15h-17z"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 10c3-3 6-3 9 0s6 3 9 0M3 15.5c3-3 6-3 9 0s6 3 9 0"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c.5 4 5.5 6 5.5 11a5.5 5.5 0 0 1-11 0c0-2.5 1.5-4 2.5-5 .3 2 1.3 3 2.5 3.5C11 10 10.5 6.5 12 3z"/></symbol>
+    <symbol id="i-feather" viewBox="0 0 24 24"><path d="M19.5 4.5C12 4.5 7 9.5 7 17l-2.5 2.5M7 17c7.5 0 12.5-5 12.5-12.5M7 17l7.5-7.5M10.5 13.5h4.5"/></symbol>
+  </defs>
+</svg>
 
 <nav id="navbar">
-  <a href="index.html" class="nav-back"><span>← Noros<span class="nav-back-rest"> Solutions</span></span></a>
+  <a href="index.html" class="nav-back"><span><svg class="i" aria-hidden="true"><use href="#i-arrow-l"/></svg> Noros<span class="nav-back-rest"> Solutions</span></span></a>
   <a href="index.html" class="nav-logo">
-    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
+    <img src="/images/noros-logo.png" alt="Noros Solutions">
   </a>
-  <a href="beta.html" class="nav-cta">Try Beta →</a>
+  <a href="beta.html" class="nav-cta">Try Beta <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
 </nav>
 
 <!-- HERO -->
@@ -238,7 +273,7 @@
         <span class="product-feature">Installable PWA</span>
         <span class="product-feature">Always in beta</span>
       </div>
-      <span class="product-link">Build your companion →</span>
+      <span class="product-link">Build your companion <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></span>
       <div class="product-corner-num">β</div>
     </a>
 
@@ -258,8 +293,8 @@
         <span class="product-feature">Real neural networks</span>
         <span class="product-feature">Beta pricing</span>
       </div>
-      <span class="product-link" style="color:var(--text-secondary);">Join the waitlist →</span>
-      <div class="product-corner-num">∑</div>
+      <span class="product-link" style="color:var(--text-secondary);">Join the waitlist <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></span>
+      <div class="product-corner-num"><svg class="i" aria-hidden="true"><use href="#i-sigma"/></svg></div>
     </div>
 
   </div>
@@ -289,31 +324,31 @@
         <p style="font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-secondary); margin-bottom:20px;">Choose your guide</p>
         <div class="guides-grid">
           <div class="guide-card g-luna">
-            <div class="guide-icon">🌙</div>
+            <div class="guide-icon"><svg class="i" aria-hidden="true"><use href="#i-moon"/></svg></div>
             <div class="guide-name">Luna</div>
             <div class="guide-element">Moon · Calm &amp; illuminating</div>
             <div class="guide-desc">The teacher who creates safety before challenge.</div>
           </div>
           <div class="guide-card g-apex">
-            <div class="guide-icon">▲</div>
+            <div class="guide-icon"><svg class="i" aria-hidden="true"><use href="#i-peak"/></svg></div>
             <div class="guide-name">Apex</div>
             <div class="guide-element">Summit · Bold &amp; ambitious</div>
             <div class="guide-desc">The coach who believes the summit is always reachable.</div>
           </div>
           <div class="guide-card g-zephyr">
-            <div class="guide-icon">〜</div>
+            <div class="guide-icon"><svg class="i" aria-hidden="true"><use href="#i-wave"/></svg></div>
             <div class="guide-name">Zephyr</div>
             <div class="guide-element">Wind · Wise &amp; persistent</div>
             <div class="guide-desc">The mentor who finds connections between things.</div>
           </div>
           <div class="guide-card g-ember">
-            <div class="guide-icon">🔥</div>
+            <div class="guide-icon"><svg class="i" aria-hidden="true"><use href="#i-flame"/></svg></div>
             <div class="guide-name">Ember</div>
             <div class="guide-element">Fire · Steady &amp; nurturing</div>
             <div class="guide-desc">The guide who stays lit through every hard moment.</div>
           </div>
           <div class="guide-card g-raven g-full">
-            <div class="guide-icon">🪶</div>
+            <div class="guide-icon"><svg class="i" aria-hidden="true"><use href="#i-feather"/></svg></div>
             <div class="guide-name">Raven</div>
             <div class="guide-element">Sky · Clever &amp; transformative</div>
             <div class="guide-desc">The teacher who leads through story and sees patterns others miss.</div>
@@ -335,35 +370,35 @@
     <div class="reveal reveal-delay-1">
       <div class="curriculum-list">
         <div class="curriculum-row">
-          <div class="curriculum-num">1</div>
+          <div class="curriculum-num"><span>1</span></div>
           <div class="curriculum-content">
             <div class="curriculum-title">Language and probability</div>
             <div class="curriculum-desc">Bigram matrices, tokenization, and how language models predict the next word from mathematical patterns.</div>
           </div>
         </div>
         <div class="curriculum-row">
-          <div class="curriculum-num">2</div>
+          <div class="curriculum-num"><span>2</span></div>
           <div class="curriculum-content">
             <div class="curriculum-title">Neural networks from scratch</div>
             <div class="curriculum-desc">Perceptrons, activation functions, backpropagation — built line by line in Python, not imported from a library.</div>
           </div>
         </div>
         <div class="curriculum-row">
-          <div class="curriculum-num">3</div>
+          <div class="curriculum-num"><span>3</span></div>
           <div class="curriculum-content">
             <div class="curriculum-title">Training and learning</div>
             <div class="curriculum-desc">Gradient descent, loss functions, and why AI "learns" — explained through the math, not the metaphor.</div>
           </div>
         </div>
         <div class="curriculum-row">
-          <div class="curriculum-num">4</div>
+          <div class="curriculum-num"><span>4</span></div>
           <div class="curriculum-content">
             <div class="curriculum-title">Transformers and attention</div>
             <div class="curriculum-desc">The architecture behind GPT, Claude, and every modern language model — demystified for a high school mind.</div>
           </div>
         </div>
         <div class="curriculum-row">
-          <div class="curriculum-num">5</div>
+          <div class="curriculum-num"><span>5</span></div>
           <div class="curriculum-content">
             <div class="curriculum-title">Build your own model</div>
             <div class="curriculum-desc">The capstone: students build and train a small language model on a dataset of their choosing. Yours to keep.</div>
@@ -378,14 +413,14 @@
         <div class="price-main">$249</div>
         <div class="price-note">Beta price · ~10 founding students · Will increase after cohort closes</div>
         <div class="price-features">
-          <div class="price-feature"><span class="price-check">✓</span>Full cohort curriculum — 5 modules</div>
-          <div class="price-feature"><span class="price-check">✓</span>Live sessions with Dr. Jami Saffioti</div>
-          <div class="price-feature"><span class="price-check">✓</span>Python code from first principles</div>
-          <div class="price-feature"><span class="price-check">✓</span>Private student community</div>
-          <div class="price-feature"><span class="price-check">✓</span>Founding Architect status — forever</div>
-          <div class="price-feature"><span class="price-check">✓</span>Beta companion included</div>
+          <div class="price-feature"><span class="price-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>Full cohort curriculum — 5 modules</div>
+          <div class="price-feature"><span class="price-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>Live sessions with Dr. Jami Saffioti</div>
+          <div class="price-feature"><span class="price-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>Python code from first principles</div>
+          <div class="price-feature"><span class="price-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>Private student community</div>
+          <div class="price-feature"><span class="price-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>Founding Architect status — forever</div>
+          <div class="price-feature"><span class="price-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>Beta companion included</div>
         </div>
-        <a href="mailto:hello@noros.life?subject=AI Architect Waitlist" class="btn-primary">Join the waitlist →</a>
+        <a href="mailto:hello@noros.life?subject=AI Architect Waitlist" class="btn-primary">Join the waitlist <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
       </div>
     </div>
   </div>
@@ -394,7 +429,7 @@
 <!-- FOOTER -->
 <footer>
   <a href="index.html" class="footer-logo">
-    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
+    <img src="/images/noros-logo.png" alt="Noros Solutions">
   </a>
   <ul class="footer-links">
     <li><a href="index.html">Home</a></li>

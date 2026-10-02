@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,17 +12,22 @@
   :root {
     --accent: var(--ridge-text); --accent-fill: var(--ridge-fill); --on-accent: var(--ridge-ink);
   }
+  .i {
+    width: 1.15em; height: 1.15em; vertical-align: -0.2em;
+    fill: none; stroke: currentColor; stroke-width: 1.6;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text-primary); font-family: 'DM Mono', monospace; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
 
-  nav { position: sticky; top: 0; z-index: 100; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 20px 48px; background: rgba(26,24,20,0.95); backdrop-filter: blur(12px); border-bottom: var(--rule); gap: 16px; }
+  nav { position: sticky; top: 0; z-index: 100; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 20px 48px; background: var(--nav-bg); backdrop-filter: blur(12px); border-bottom: var(--rule); gap: 16px; }
   .nav-back { grid-column: 1; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-secondary); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
   .nav-back:hover { color: var(--text-primary); }
   @media (max-width: 480px) { .nav-back-rest { display: none; } .nav-back { white-space: nowrap; } }
   .nav-logo { grid-column: 2; display: flex; justify-content: center; }
   .nav-logo img { height: var(--logo-nav-height); width: auto; display: block; }
-  .nav-cta { grid-column: 3; justify-self: end; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-accent) !important; background: var(--accent-fill); padding: 10px 20px; text-decoration: none; transition: opacity 0.2s; }
+  .nav-cta { grid-column: 3; justify-self: end; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-accent) !important; background: var(--accent-fill); padding: 10px 20px; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; }
   .nav-cta:hover { opacity: 0.85; }
 
   .hero { padding: 64px 48px 56px; max-width: 1000px; margin: 0 auto; text-align: center; }
@@ -31,9 +36,9 @@
   .hero-headline em { font-style: italic; color: var(--accent); }
   .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2vw, 19px); font-style: italic; color: var(--text-secondary); max-width: 600px; margin: 0 auto 36px; line-height: 1.6; }
   .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn-primary { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; background: var(--accent-fill); color: var(--on-accent); padding: 14px 28px; text-decoration: none; transition: opacity 0.2s; }
+  .btn-primary { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; background: var(--accent-fill); color: var(--on-accent); padding: 14px 28px; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; }
   .btn-primary:hover { opacity: 0.85; }
-  .btn-secondary { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; border: var(--rule); color: var(--text-secondary); padding: 14px 28px; text-decoration: none; transition: all 0.2s; }
+  .btn-secondary { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; border: var(--rule); color: var(--text-secondary); padding: 14px 28px; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
   .btn-secondary:hover { color: var(--text-primary); border-color: var(--text-primary); }
 
   .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: var(--rule); border-bottom: var(--rule); background: var(--surface); }
@@ -49,45 +54,51 @@
   .section-intro { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--text-secondary); text-align: center; max-width: 600px; margin: 0 auto 56px; line-height: 1.7; }
 
   /* Curriculum */
-  .week-block { border: var(--rule); margin-bottom: 2px; padding: 36px 40px; background: var(--surface); }
-  .week-top { display: flex; align-items: baseline; gap: 20px; margin-bottom: 8px; flex-wrap: wrap; }
-  .week-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 600; color: var(--accent); line-height: 1; }
+  .week-block { border: var(--rule); border-radius: 10px; margin-bottom: 2px; padding: 36px 40px; background: var(--surface); }
+  .week-top { display: flex; align-items: center; gap: 20px; margin-bottom: 8px; flex-wrap: wrap; }
+  .week-num { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: var(--pop-text); line-height: 1; width: 56px; height: 56px; border-radius: 50%; background: var(--pop-wash); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .week-heading { }
   .week-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
   .week-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--text-primary); }
   .week-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--text-secondary); margin: 12px 0 20px; }
   .lesson-list { list-style: none; margin-bottom: 20px; }
-  .lesson-list li { font-size: 13px; color: var(--text-secondary); padding: 6px 0; border-bottom: 1px solid rgba(184,178,168,0.08); }
+  .lesson-list li { font-size: 13px; color: var(--text-secondary); padding: 6px 0; border-bottom: 1px solid var(--grid-gap); }
   .lesson-list li:last-child { border-bottom: none; }
   .lesson-list li strong { color: var(--accent); font-weight: 500; margin-right: 8px; }
   .week-deliverable { font-size: 12px; color: var(--text-muted); border-top: var(--rule); padding-top: 16px; }
   .week-deliverable strong { color: var(--accent); }
 
   /* Feature grid */
-  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(184,178,168,0.1); }
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border-soft); }
   .feature-card { background: var(--surface); padding: 32px 28px; }
-  .feature-icon { font-size: 24px; color: var(--accent); margin-bottom: 16px; }
+  .feature-icon {
+    width: 44px; height: 44px; border-radius: 50%; margin-bottom: 18px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent); background: var(--bg); border: var(--rule);
+  }
+  .feature-icon .i { width: 22px; height: 22px; stroke-width: 1.5; }
   .feature-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
   .feature-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
 
   /* For you / not for you */
-  .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(184,178,168,0.1); }
+  .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border-soft); }
   .fit-col { background: var(--surface); padding: 32px 36px; }
   .fit-col h3 { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 20px; }
   .fit-col.yes h3 { color: var(--accent); }
   .fit-col.no h3 { color: var(--text-muted); }
   .fit-col ul { list-style: none; }
   .fit-col li { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px; padding-left: 22px; position: relative; }
-  .fit-col.yes li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); }
-  .fit-col.no li::before { content: '✕'; position: absolute; left: 0; color: var(--text-muted); }
+  .fit-col li .i, .price-includes li .i { position: absolute; left: 0; top: 0.5em; width: 14px; height: 14px; stroke-width: 2; }
+  .fit-col.yes li .i { color: var(--pop-text); }
+  .fit-col.no li .i { color: var(--text-muted); }
 
   /* Pricing */
-  .price-box { border: var(--rule); background: var(--surface); padding: 48px; text-align: center; max-width: 560px; margin: 0 auto; }
+  .price-box { border: var(--rule); border-radius: 10px; background: var(--surface); padding: 48px; text-align: center; max-width: 560px; margin: 0 auto; }
   .price-num { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
   .price-note { font-size: 12px; color: var(--text-muted); margin-bottom: 28px; }
   .price-includes { list-style: none; text-align: left; max-width: 360px; margin: 0 auto 32px; }
   .price-includes li { font-size: 13px; color: var(--text-secondary); padding: 7px 0; padding-left: 24px; position: relative; }
-  .price-includes li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); }
+  .price-includes li .i { color: var(--pop-text); }
 
   /* FAQ */
   .faq-item { border-bottom: var(--rule); padding: 20px 0; }
@@ -102,11 +113,11 @@
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-label { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-secondary); }
-  .form-input, .form-textarea, .form-select { background: var(--bg); border: var(--rule); color: var(--text-primary); font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-input, .form-textarea, .form-select { background: var(--bg); border: var(--rule); color: var(--text-primary); font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; border-radius: 6px; outline: none; transition: border-color 0.2s; width: 100%; }
   .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--accent-fill); }
   .form-select option { background: var(--surface); }
   .form-textarea { resize: vertical; min-height: 90px; }
-  .form-submit { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; background: var(--accent-fill); color: var(--on-accent); border: none; padding: 16px 28px; cursor: pointer; transition: opacity 0.2s; }
+  .form-submit { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; background: var(--accent-fill); color: var(--on-accent); border: none; padding: 16px 28px; border-radius: 2px; cursor: pointer; transition: opacity 0.2s; }
   .form-submit:hover { opacity: 0.85; }
   .form-note { font-size: 11px; color: var(--text-muted); text-align: center; }
 
@@ -138,11 +149,27 @@
 </style>
 </head>
 <body>
+<!-- Line icons: drawn, because Syne / DM Mono / Cormorant have no arrow, check or symbol glyphs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-flow" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M7.2 6h9.6M6.2 7.9l4.7 8.2M17.8 7.9l-4.7 8.2"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v10H10l-4 4v-4H4z"/><path d="M8 9h8M8 12h5"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+    <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7 4.5 3 5v13c4-.5 7 0 9 1.5 2-1.5 5-2 9-1.5V5c-4-.5-7 0-9 1.5zM12 6.5v13"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l4.5 4.5L19.5 6.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
+    <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M20 12H5M11 6l-6 6 6 6"/></symbol>
+    <symbol id="i-mountain" viewBox="0 0 24 24"><path d="M3 19l6.5-10 3.5 5 2.5-3.5L21 19z"/><path d="M8 11.3l1.5 1.2 1.5-1.4"/></symbol>
+  </defs>
+</svg>
 
 <nav>
-  <a href="index.html" class="nav-back"><span>← Noros<span class="nav-back-rest"> Solutions</span></span></a>
+  <a href="index.html" class="nav-back"><span><svg class="i" aria-hidden="true"><use href="#i-arrow-l"/></svg> Noros<span class="nav-back-rest"> Solutions</span></span></a>
   <a href="index.html" class="nav-logo">
-    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
+    <img src="/images/noros-logo.png" alt="Noros Solutions">
   </a>
   <a href="https://buy.stripe.com/6oU8wP9r49nE1j43223F602" class="nav-cta">Enroll now</a>
 </nav>
@@ -152,7 +179,7 @@
   <h1 class="hero-headline">You don't need a business plan.<br>You need to <em>start.</em></h1>
   <p class="hero-sub">From idea to open for business — in four weeks. The on-ramp for first-time founders who haven't started yet.</p>
   <div class="hero-ctas">
-    <a href="https://buy.stripe.com/6oU8wP9r49nE1j43223F602" class="btn-primary">Join the founding cohort — $197 →</a>
+    <a href="https://buy.stripe.com/6oU8wP9r49nE1j43223F602" class="btn-primary">Join the founding cohort — $197 <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
     <a href="#curriculum" class="btn-secondary">See what you'll build</a>
   </div>
 </section>
@@ -269,32 +296,32 @@
   <h2 class="section-title">Built for people<br><em>who haven't started yet.</em></h2>
   <div class="feature-grid">
     <div class="feature-card">
-      <div class="feature-icon">▶</div>
+      <div class="feature-icon"><svg class="i" aria-hidden="true"><use href="#i-book"/></svg></div>
       <div class="feature-title">Self-paced curriculum</div>
       <div class="feature-desc">Short lessons you move through at your own pace — each with a key concept, a real-world example, and a question to sit with.</div>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">⬡</div>
+      <div class="feature-icon"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg></div>
       <div class="feature-title">Private community</div>
       <div class="feature-desc">A space to post your deliverables each week and get real feedback — from Jami and from others starting at the exact same place you are.</div>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">✦</div>
+      <div class="feature-icon"><svg class="i" aria-hidden="true"><use href="#i-compass"/></svg></div>
       <div class="feature-title">Founding cohort status</div>
       <div class="feature-desc">You're not just a student — you're shaping the program as it's built. That status, and this price, won't come around again.</div>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">◎</div>
+      <div class="feature-icon"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></div>
       <div class="feature-title">A real deliverable every week</div>
       <div class="feature-desc">No theory-only weeks. Each lesson block ends with something concrete: a doc, a filing, a live page, a sent offer.</div>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">⛰</div>
+      <div class="feature-icon"><svg class="i" aria-hidden="true"><use href="#i-mountain"/></svg></div>
       <div class="feature-title">A natural next step</div>
       <div class="feature-desc">First Tracks is built as the on-ramp to Base Camp — once you're open for business, Base Camp is where you build your first AI-powered tool.</div>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">◈</div>
+      <div class="feature-icon"><svg class="i" aria-hidden="true"><use href="#i-flow"/></svg></div>
       <div class="feature-title">Built by someone who's done it</div>
       <div class="feature-desc">Every lesson comes from Dr. Jami Saffioti's own experience founding Noros Solutions LLC — not theory borrowed from a textbook.</div>
     </div>
@@ -308,22 +335,22 @@
     <div class="fit-col yes">
       <h3>First Tracks is for you if...</h3>
       <ul>
-        <li>You have a business idea that's been living in your notes app, not in the world</li>
-        <li>You've helped people with the same thing more than once, informally</li>
-        <li>You haven't filed anything, built anything, or sent an offer yet</li>
-        <li>You want a clear, ordered path — not twelve tabs of conflicting advice</li>
-        <li>You're willing to do something every week, even when it's unglamorous paperwork</li>
-        <li>You want a real business — not just an idea you talk about at dinner</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>You have a business idea that's been living in your notes app, not in the world</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>You've helped people with the same thing more than once, informally</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>You haven't filed anything, built anything, or sent an offer yet</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>You want a clear, ordered path — not twelve tabs of conflicting advice</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>You're willing to do something every week, even when it's unglamorous paperwork</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>You want a real business — not just an idea you talk about at dinner</li>
       </ul>
     </div>
     <div class="fit-col no">
       <h3>First Tracks is not for you if...</h3>
       <ul>
-        <li>You already have an LLC, a website, and paying clients (that's Base Camp)</li>
-        <li>You want someone to build the business for you</li>
-        <li>You're looking for venture funding or a startup-scale plan</li>
-        <li>You can't commit a few hours a week for 4 weeks</li>
-        <li>You're looking for a get-rich-quick shortcut</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>You already have an LLC, a website, and paying clients (that's Base Camp)</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>You want someone to build the business for you</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>You're looking for venture funding or a startup-scale plan</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>You can't commit a few hours a week for 4 weeks</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>You're looking for a get-rich-quick shortcut</li>
       </ul>
     </div>
   </div>
@@ -336,13 +363,13 @@
     <div class="price-num">$197</div>
     <div class="price-note">Founding cohort price · The founding price closes when Cohort 1 fills.</div>
     <ul class="price-includes">
-      <li>4-week self-paced curriculum (20 lessons)</li>
-      <li>Private community — lifetime access</li>
-      <li>A real deliverable every week</li>
-      <li>Founding cohort status — forever</li>
-      <li>Direct path into Base Camp afterward</li>
+      <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>4-week self-paced curriculum (20 lessons)</li>
+      <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Private community — lifetime access</li>
+      <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>A real deliverable every week</li>
+      <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Founding cohort status — forever</li>
+      <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Direct path into Base Camp afterward</li>
     </ul>
-    <a href="https://buy.stripe.com/6oU8wP9r49nE1j43223F602" class="btn-primary" style="display:inline-block;">Enroll now — $197 →</a>
+    <a href="https://buy.stripe.com/6oU8wP9r49nE1j43223F602" class="btn-primary" style="display:inline-block;">Enroll now — $197 <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
   </div>
 </section>
 
@@ -376,13 +403,13 @@
   <div class="section-eyebrow">Ready when you are</div>
   <h2 class="section-title">Start your<br><em>First Tracks today.</em></h2>
   <p class="section-intro">Enroll now and get instant access — sign in with the same Google account you check out with, and you'll land straight in the course portal.</p>
-  <a href="https://buy.stripe.com/6oU8wP9r49nE1j43223F602" class="btn-primary" style="display:inline-block; font-size:13px; padding:18px 36px;">Enroll now — $197 →</a>
+  <a href="https://buy.stripe.com/6oU8wP9r49nE1j43223F602" class="btn-primary" style="display:inline-block; font-size:13px; padding:18px 36px;">Enroll now — $197 <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
   <div class="form-note" style="margin-top:20px;">Questions first? <a href="mailto:hello@noros.life" style="color:var(--accent); text-decoration:none;">Email Jami</a> — she reads every message.</div>
 </section>
 
 <footer>
   <a href="index.html" class="footer-logo">
-    <img src="/images/noros-logo-white.png" alt="Noros Solutions">
+    <img src="/images/noros-logo.png" alt="Noros Solutions">
   </a>
   <ul class="footer-links">
     <li><a href="index.html">Home</a></li>
@@ -400,7 +427,7 @@
   <div class="footer-copy">© 2026 Noros Solutions LLC · All rights reserved</div>
 </footer>
 
-<a href="https://buy.stripe.com/6oU8wP9r49nE1j43223F602" class="sticky-cta">Enroll in First Tracks — $197 →</a>
+<a href="https://buy.stripe.com/6oU8wP9r49nE1j43223F602" class="sticky-cta">Enroll in First Tracks — $197 <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
 
 </body>
 </html>
