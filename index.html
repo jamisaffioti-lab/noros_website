@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Noros Solutions — AI education and consulting for students, solopreneurs, and small businesses.">
-<link rel="icon" type="image/png" href="/images/noros-logo.png">
 <title>Noros Solutions</title>
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
 <style>
@@ -23,6 +24,10 @@
   .nav-links a:hover { color: var(--text-primary); }
   .nav-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-accent) !important; background: var(--accent-fill); padding: 8px 18px; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; }
   .nav-cta:hover { opacity: 0.85; }
+  .nav-links a.nav-ig { display: inline-flex; align-items: center; gap: 10px; }
+  .nav-ig .i { width: 17px; height: 17px; vertical-align: 0; }
+  .nav-ig-label { display: none; }
+  .nav-links.open .nav-ig-label { display: inline; }
 
   .nav-close-btn {
     display: none;
@@ -310,6 +315,7 @@
     <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
     <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M20 12H5M11 6l-6 6 6 6"/></symbol>
     <symbol id="i-mountain" viewBox="0 0 24 24"><path d="M3 19l6.5-10 3.5 5 2.5-3.5L21 19z"/><path d="M8 11.3l1.5 1.2 1.5-1.4"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></symbol>
   </defs>
 </svg>
 
@@ -323,7 +329,7 @@
     <li><a href="ascent-scholars.html">Ascent Scholars</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="https://instagram.com/noros.life" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://instagram.com/noros.life" target="_blank" rel="noopener" class="nav-ig" aria-label="Noros Solutions on Instagram"><svg class="i" aria-hidden="true"><use href="#i-instagram"/></svg><span class="nav-ig-label">Instagram</span></a></li>
   </ul>
   <button class="nav-menu-btn" id="menu-btn" aria-label="Open menu">
     <span></span><span></span><span></span>
