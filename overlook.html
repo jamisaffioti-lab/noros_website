@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Overlook — AI for professionals and small business owners. A hands-on workshop to set Claude up for your business, and a four-week course to build your own tools. By Noros Solutions.">
+<title>The Overlook · Noros Solutions</title>
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#ECE7DD">
+<meta name="apple-mobile-web-app-title" content="Noros">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  :root {
+    --accent: var(--ridge-text); --accent-fill: var(--ridge-fill); --on-accent: var(--ridge-ink);
+    --week-2: var(--moss);
+    --week-3: var(--rust);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: var(--rule);
+    transition: padding 0.3s ease;
+  }
+  nav.scrolled { padding: 14px 48px; }
+  .nav-logo img { height: var(--logo-nav-height); width: auto; display: block; }
+  .nav-back {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--text-secondary); text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--text-primary); }
+  @media (max-width: 480px) { .nav-back-rest { display: none; } .nav-back { white-space: nowrap; } }
+  .nav-cta {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--on-accent);
+    background: var(--accent-fill);
+    padding: 8px 18px; border-radius: 2px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 60vh; display: flex; flex-direction: column;
+    justify-content: flex-start; padding: 100px 48px 48px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; background: var(--bg); z-index: 0; }
+  .hero-texture {
+    position: absolute; inset: 0; z-index: 1;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, var(--texture-line) 60px, var(--texture-line) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, var(--texture-line) 60px, var(--texture-line) 61px);
+  }
+  .hero-content {
+    position: relative; z-index: 3;
+    max-width: 860px;
+  }
+  .hero-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
+    animation: fadeUp 1s 0.1s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 6.5vw, 76px);
+    font-weight: 600; line-height: 1.0;
+    color: var(--text-primary); margin-bottom: 24px;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-headline em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.2vw, 20px);
+    font-style: italic; color: var(--text-secondary);
+    max-width: 580px; line-height: 1.6;
+    margin-bottom: 40px;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+  .btn-primary {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--accent-fill); color: var(--on-accent);
+    padding: 14px 32px; border-radius: 2px; text-decoration: none;
+    transition: opacity 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    border: 1px solid var(--border-strong);
+    color: var(--text-secondary); padding: 14px 32px; border-radius: 2px;
+    text-decoration: none; transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--text-primary); color: var(--text-primary); }
+
+  /* ── QUICK STATS BAR ── */
+  .stats-bar {
+    background: var(--surface);
+    border-bottom: var(--rule); border-top: var(--rule);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 28px 32px;
+    border-right: var(--rule);
+    text-align: center;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; font-weight: 600;
+    color: var(--accent); line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+
+  /* ── SECTIONS ── */
+  .section { padding: 100px 48px; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 600; line-height: 1.05;
+    color: var(--text-primary); margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+  .section-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-style: italic;
+    color: var(--text-secondary); line-height: 1.6;
+  }
+
+  /* ── STORY SECTION ── */
+  #story { background: var(--surface); }
+  .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .story-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px; line-height: 1.8; color: var(--text-primary);
+  }
+  .story-text p { margin-bottom: 20px; }
+  .story-text p:last-child { margin-bottom: 0; }
+  .story-text em { font-style: italic; color: var(--accent); }
+  .story-aside { }
+  .story-quote-block {
+    border-left: 3px solid var(--accent-fill);
+    padding: 24px 28px;
+    background: var(--surface);
+    margin-bottom: 32px;
+  }
+  .story-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-style: italic;
+    color: var(--text-primary); line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .story-quote-attr { font-size: 10px; color: var(--text-secondary); letter-spacing: 0.08em; }
+  .story-builds { border: var(--rule); border-radius: 10px; overflow: hidden; }
+  .story-build-label {
+    padding: 12px 20px; border-bottom: var(--rule);
+    font-family: 'Syne', sans-serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--pop-text);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .story-build-label::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--pop-fill);
+  }
+  .story-build-item {
+    display: flex; gap: 12px; padding: 14px 20px;
+    border-bottom: var(--rule); align-items: flex-start;
+  }
+  .story-build-item:last-child { border-bottom: none; }
+  .build-dot { color: var(--positive); flex-shrink: 0; margin-top: 2px; display: flex; }
+  .build-dot .i { width: 16px; height: 16px; stroke-width: 2; }
+  .build-text { font-size: 11px; color: var(--text-secondary); line-height: 1.6; }
+  .build-text strong { color: var(--text-primary); font-weight: 500; }
+
+  /* ── PROMISE / TRANSFORMATION ── */
+  #promise { background: var(--bg); }
+  .transform-block {
+    background: var(--bg);
+    border: var(--rule); border-radius: 10px; overflow: hidden;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: 0; margin-bottom: 48px;
+  }
+  .transform-side { padding: 36px 40px; }
+  .transform-side:first-child { border-right: var(--rule); }
+  .transform-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .transform-label.before { color: var(--negative); }
+  .transform-label.after { color: var(--positive); }
+  .transform-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; line-height: 1.7; color: var(--text-primary);
+  }
+  .transform-arrow {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; color: var(--accent);
+  }
+  .transform-arrow .i { width: 28px; height: 28px; stroke-width: 1.5; }
+
+  /* ── CURRICULUM ── */
+  #curriculum { background: var(--surface); }
+  .weeks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--grid-gap); margin-top: 48px; }
+  .week-card {
+    background: var(--surface); padding: 36px 32px;
+    position: relative; overflow: hidden;
+    transition: background 0.2s;
+  }
+  .week-card:hover { background: var(--bg); }
+  .week-num-bg {
+    position: absolute; top: 16px; right: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 100px; font-weight: 600;
+    color: var(--watermark); line-height: 1;
+    pointer-events: none;
+  }
+  .week-badge {
+    font-family: 'Syne', sans-serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .week-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600;
+    color: var(--text-primary); margin-bottom: 6px; line-height: 1.1;
+  }
+  .week-theme {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 15px;
+    color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5;
+  }
+  .week-lessons { margin-bottom: 20px; }
+  .week-lesson {
+    display: flex; gap: 10px; margin-bottom: 8px;
+    font-size: 11px; color: var(--text-secondary); align-items: flex-start;
+  }
+  .week-lesson-num { color: var(--pop-text); min-width: 20px; flex-shrink: 0; font-size: 10px; margin-top: 1px; }
+  .week-deliverable {
+    background: var(--surface);
+    border-left: 2px solid var(--accent-fill);
+    padding: 10px 14px;
+    font-size: 11px; color: var(--text-secondary); line-height: 1.5;
+  }
+  .week-deliverable strong { color: var(--text-primary); font-weight: 500; }
+  .w1 .week-badge { color: var(--positive); }
+  .w2 .week-badge { color: var(--week-2); }
+  .w3 .week-badge { color: var(--week-3); }
+  .w4 .week-badge { color: var(--accent); }
+
+  /* ── FORMAT ── */
+  #format { background: var(--bg); }
+  .format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--grid-gap); margin-top: 48px; }
+  .format-card { background: var(--bg); padding: 32px 28px; }
+  .i {
+    width: 1.15em; height: 1.15em; vertical-align: -0.2em;
+    fill: none; stroke: currentColor; stroke-width: 1.6;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .format-icon {
+    width: 44px; height: 44px; border-radius: 50%; margin-bottom: 18px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent); background: var(--surface); border: var(--rule);
+  }
+  .format-icon .i { width: 22px; height: 22px; stroke-width: 1.5; }
+  .format-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-primary); margin-bottom: 10px;
+  }
+  .format-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
+
+  /* ── FIT ── */
+  #fit { background: var(--surface); }
+  .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--grid-gap); margin-top: 48px; }
+  .fit-col { background: var(--surface); padding: 36px 32px; }
+  .fit-col-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .fit-col-label.yes { color: var(--positive); }
+  .fit-col-label.no { color: var(--negative); }
+  .fit-item { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+  .fit-icon { margin-top: 4px; flex-shrink: 0; display: flex; }
+  .fit-icon .i { width: 16px; height: 16px; stroke-width: 2; }
+  .fit-icon.yes { color: var(--positive); }
+  .fit-icon.no { color: var(--negative); }
+  .fit-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; color: var(--text-primary); line-height: 1.5;
+  }
+
+  /* ── PRICING ── */
+  #pricing { background: var(--bg); }
+  .pricing-block {
+    background: var(--surface);
+    border: var(--rule); border-radius: 10px; overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; margin-top: 48px;
+  }
+  .pricing-left { padding: 48px 48px; border-right: var(--rule); }
+  .pricing-right { padding: 48px 48px; }
+  .price-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px; font-weight: 600;
+    color: var(--accent); line-height: 1;
+    margin-bottom: 6px;
+  }
+  .price-note { font-size: 11px; color: var(--text-secondary); margin-bottom: 28px; }
+  .price-features { margin-bottom: 36px; }
+  .price-feature {
+    display: flex; gap: 12px; margin-bottom: 12px;
+    font-size: 12px; color: var(--text-secondary); align-items: flex-start;
+  }
+  .price-feature-check { color: var(--positive); flex-shrink: 0; margin-top: 2px; display: flex; }
+  .price-feature-check .i { width: 16px; height: 16px; stroke-width: 2; }
+  .price-feature-text { color: var(--text-primary); }
+  .roi-block {
+    background: var(--bg); padding: 24px 28px;
+    border-left: 3px solid var(--accent-fill);
+  }
+  .roi-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 10px;
+  }
+  .roi-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; color: var(--text-primary);
+    line-height: 1.6; font-style: italic;
+  }
+  .roi-text strong { color: var(--accent); font-style: normal; }
+  .roi-text + .roi-text { margin-top: 14px; }
+  .roi-disclaimer { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-top: 18px; }
+
+  /* ── OBJECTIONS ── */
+  #objections { background: var(--surface); }
+  .objections-list { margin-top: 48px; border: var(--rule); border-radius: 10px; overflow: hidden; }
+  .objection-item { border-bottom: var(--rule); }
+  .objection-item:last-child { border-bottom: none; }
+  .objection-q {
+    padding: 22px 28px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-style: italic;
+    color: var(--text-primary); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 16px;
+  }
+  .objection-toggle {
+    font-size: 18px; color: var(--accent);
+    flex-shrink: 0; transition: transform 0.3s; margin-top: 2px;
+    font-style: normal;
+  }
+  .objection-item.open .objection-toggle { transform: rotate(45deg); }
+  .objection-a {
+    padding: 0 28px 22px;
+    font-size: 12px; color: var(--text-secondary);
+    line-height: 1.8; display: none;
+    margin-top: 12px;
+  }
+  .objection-item.open .objection-a { display: block; }
+
+  /* ── APPLICATION ── */
+  #apply { background: var(--bg); }
+  .apply-inner {
+    max-width: 680px; margin: 0 auto;
+    text-align: center;
+  }
+  .apply-inner .section-title { text-align: center; }
+  .apply-inner .section-sub { text-align: center; margin: 0 auto 48px; }
+  .apply-form {
+    text-align: left;
+    background: var(--surface); border: var(--rule); border-radius: 10px;
+    padding: 48px;
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+  .form-input, .form-textarea {
+    background: var(--bg); border: var(--rule);
+    color: var(--text-primary); font-family: 'DM Mono', monospace;
+    font-size: 12px; padding: 12px 16px; border-radius: 6px;
+    outline: none; transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-input:focus, .form-textarea:focus {
+    border-color: var(--accent-fill);
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-submit-row {
+    margin-top: 24px; display: flex;
+    justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .form-submit-note { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+  .form-submit {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--accent-fill); color: var(--on-accent);
+    border: none; padding: 14px 32px; border-radius: 2px;
+    cursor: pointer; transition: opacity 0.2s;
+  }
+  .form-submit:hover { opacity: 0.85; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface);
+    padding: 40px 48px;
+    display: flex; justify-content: space-between;
+    align-items: center; border-top: var(--rule);
+    flex-wrap: wrap; gap: 20px;
+  }
+  .footer-logo img { height: 42px; width: auto; }
+  .footer-links { display: flex; gap: 28px; list-style: none; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; letter-spacing: 0.1em; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text-secondary); }
+  .footer-copy { font-size: 13px; color: var(--text-secondary); letter-spacing: 0.06em; }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── STICKY CTA ── */
+  .sticky-cta {
+    position: fixed; bottom: 32px; right: 32px; z-index: 99;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.4s, transform 0.4s;
+    pointer-events: none;
+  }
+  .sticky-cta.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .sticky-cta a {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--accent-fill); color: var(--on-accent);
+    padding: 14px 24px; border-radius: 2px; text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 24px color-mix(in srgb, var(--text-primary) 18%, transparent);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex !important;
+      flex-direction: column;
+      position: fixed;
+      inset: 0;
+      background: var(--overlay-bg);
+      padding: 80px 24px 40px;
+      gap: 0;
+      z-index: 98;
+      overflow-y: auto;
+    }
+    .nav-links.open li { display: block; border-bottom: 1px solid var(--border-soft); }
+    .nav-links.open a { display: block !important; padding: 18px 0; font-size: 15px !important; color: var(--text-primary) !important; letter-spacing: 0.08em; }
+    .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block !important; padding: 16px !important; }
+    .nav-menu-btn { display: flex; }
+    nav { padding: 16px 24px; }
+    #hero { padding: 120px 24px 32px !important; min-height: auto !important; justify-content: flex-start; }
+    .hero-actions { flex-direction: column !important; gap: 10px !important; }
+    .hero-actions .btn-primary, .hero-actions .btn-ghost { text-align: center !important; width: 100% !important; display: block !important; }
+    #home { padding: 140px 48px 80px; justify-content: flex-start !important; }
+    .section { padding: 72px 24px; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .stat-item:nth-child(2) { border-right: none; }
+    .stat-item:nth-child(3) { border-top: var(--rule); }
+    .stat-item:nth-child(4) { border-top: var(--rule); border-right: none; }
+    .story-grid, .weeks-grid, .fit-grid, .pricing-block { grid-template-columns: 1fr; }
+    .pricing-left { border-right: none; border-bottom: var(--rule); }
+    .format-grid { grid-template-columns: 1fr; }
+    .transform-block { grid-template-columns: 1fr; }
+    .transform-arrow { padding: 16px 0; transform: rotate(90deg); }
+    .form-grid { grid-template-columns: 1fr; }
+    .apply-form { padding: 28px 24px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+    .sticky-cta { bottom: 20px; right: 16px; left: 16px; }
+    .sticky-cta a { justify-content: center; }
+  }
+
+  /* ── MOBILE FIXES ── */
+  @media (max-width: 768px) {
+
+    /* Mobile nav — solid background so menu is readable */
+    .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; background: var(--overlay-bg); padding: 80px 24px 40px; gap: 0; z-index: 98; overflow-y: auto; }
+    .nav-links.open a {
+      color: var(--text-primary) !important;
+      font-size: 16px !important;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-soft);
+      display: block;
+      width: 100%;
+    }
+    .nav-links.open .nav-cta {
+      margin-top: 16px;
+      text-align: center;
+      display: block;
+      padding: 14px !important;
+    }
+
+    /* Mobile mountain — reposition so peak is visible */
+
+    /* Mobile hero content — better spacing */
+    #hero, #hero-section {
+      padding: 120px 24px 32px !important;
+      min-height: auto !important;
+    }
+    .hero-headline {
+      font-size: clamp(32px, 10vw, 52px) !important;
+    }
+    .hero-sub {
+      font-size: 16px !important;
+    }
+    .hero-actions {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-ghost {
+      text-align: center !important;
+      width: 100% !important;
+    }
+
+    /* Mobile stats bar */
+    .stats-bar {
+      grid-template-columns: 1fr 1fr !important;
+    }
+
+    /* Mobile products grid */
+    .products-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Mobile sections padding */
+    .section, section {
+      padding: 56px 24px !important;
+    }
+
+    /* Mobile footer */
+    footer {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 24px !important;
+      padding: 32px 24px !important;
+    }
+    .footer-links {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+  }
+
+  @media (min-width: 769px) { .nav-close { display: none !important; } }
+  .nav-close { display: none; position: fixed; top: 20px; right: 24px; z-index: 99; background: none; border: none; color: var(--text-primary); font-size: 28px; cursor: pointer; line-height: 1; padding: 4px 8px; }
+  .nav-close.visible { display: block; }
+  @media (max-width: 768px) { .nav-links.open li { display: block; border-bottom: 1px solid var(--border-soft); } .nav-links.open a { display: block; padding: 18px 0; font-size: 15px !important; color: var(--text-primary) !important; } }
+  @media (max-width: 768px) {
+    .nav-links.open li { border-bottom: 1px solid var(--border-soft); }
+    .nav-links.open a { display: block; padding: 18px 0; font-size: 15px !important; letter-spacing: 0.1em; color: var(--text-primary) !important; }
+    .nav-links.open .nav-cta { margin-top: 20px; text-align: center; display: block; padding: 16px !important; }
+  }
+  .form-thanks { grid-column: 1 / -1; text-align: center; padding: 20px 0; }
+  .form-thanks h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600;
+    color: var(--text-primary); margin-bottom: 10px;
+  }
+  .form-thanks p { font-size: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 440px; margin: 0 auto; }
+</style>
+</head>
+<body>
+<!-- Line icons: drawn, because Syne / DM Mono / Cormorant have no arrow, check or symbol glyphs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-flow" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M7.2 6h9.6M6.2 7.9l4.7 8.2M17.8 7.9l-4.7 8.2"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v10H10l-4 4v-4H4z"/><path d="M8 9h8M8 12h5"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+    <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7 4.5 3 5v13c4-.5 7 0 9 1.5 2-1.5 5-2 9-1.5V5c-4-.5-7 0-9 1.5zM12 6.5v13"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l4.5 4.5L19.5 6.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
+    <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M20 12H5M11 6l-6 6 6 6"/></symbol>
+    <symbol id="i-mountain" viewBox="0 0 24 24"><path d="M3 19l6.5-10 3.5 5 2.5-3.5L21 19z"/><path d="M8 11.3l1.5 1.2 1.5-1.4"/></symbol>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-back"><span><svg class="i" aria-hidden="true"><use href="#i-arrow-l"/></svg> Noros<span class="nav-back-rest"> Solutions</span></span></a>
+  <a href="index.html" class="nav-logo">
+    <img src="/images/noros-logo.png" alt="Noros Solutions">
+  </a>
+  <a href="#apply" class="nav-cta">Apply now</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">The Overlook · For professionals &amp; small business owners</div>
+    <h1 class="hero-headline">
+      You don't need<br>a CS degree.<br><em>You need a guide.</em>
+    </h1>
+    <p class="hero-sub">Start with one hands-on workshop that sets AI up for your business. Go further with a four-week course where you build your own tools, agents and automations.</p>
+    <div class="hero-actions">
+      <a href="#workshop" class="btn-primary">The workshop · $197 <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
+      <a href="#course" class="btn-ghost">The course · $497</a>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSHOP -->
+<section id="workshop" class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Start here · The Overlook Workshop</div>
+      <h2 class="section-title">One session.<br><em>AI set up for your business.</em></h2>
+      <p class="section-sub" style="margin-top:12px;">Most people use AI like a search box and get generic answers. In three hands-on hours you'll set it up so it knows your work, and you'll leave with it running.</p>
+    </div>
+    <div class="pricing-block">
+      <div class="pricing-left reveal reveal-delay-1">
+        <div class="price-main">$197</div>
+        <div class="price-note">Small rooms · In person in Monmouth/Ocean County, virtual sessions to follow · Dates to be announced</div>
+        <div class="price-features">
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">A Claude Project that knows your business, your customers and your tone</span></div>
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">Finished things, not advice: flyers, checklists, calculators, answers from your own files</span></div>
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">Your email, calendar and Drive connected, with drafts you approve before anything is sent</span></div>
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">One of your processes saved as a skill, so it's one sentence next time</span></div>
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">One weekly chore on a schedule, running without you</span></div>
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">Going further? Your $197 comes off the course</span></div>
+        </div>
+        <a href="index.html#workshop-form-wrap" class="btn-primary" style="display:inline-block;">Get workshop dates <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
+      </div>
+      <div class="pricing-right reveal reveal-delay-2">
+        <div class="roi-block">
+          <div class="roi-label">What to bring</div>
+          <div class="roi-text"><strong>A laptop (any kind, Chromebooks are fine) and a free Claude account.</strong> Nothing to install.</div>
+          <div class="roi-text">Before the session you'll get a short setup email to connect your Gmail, Calendar and Drive, so the time goes to real work instead of sign-in screens.</div>
+          <div class="roi-text">Everything hands-on works on Claude's free plan. Putting a task on a schedule needs a paid plan; you'll see it done, and you can turn it on whenever you're ready.</div>
+          <div class="roi-disclaimer">No coding experience needed. Built for small business owners, solo professionals and anyone whose week runs on email, calendars and documents.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar" id="course">
+  <div class="stat-item">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Weeks to a deployed, working AI tool</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5–10</div>
+    <div class="stat-label">Founding cohort spots available</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">25</div>
+    <div class="stat-label">Lessons, each building toward your tool</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">$497</div>
+    <div class="stat-label">Founding Climbers only</div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section id="story" class="section">
+  <div class="section-inner">
+    <div class="story-grid">
+      <div class="reveal">
+        <div class="section-eyebrow">The origin story</div>
+        <div class="story-text">
+          <p>It's 5am. Coffee in a favorite mug. A candle lit. Still in my pajamas on the couch, Sunny curled up at my feet.</p>
+          <p>And on my lap — a laptop I wiped clean, installed a fresh operating system on, and <em>set out to teach myself something entirely new.</em></p>
+          <p>I'm a PhD mechanical engineer. I've taught at universities and high schools for over a decade. I'm a mom of two. And I had this quiet, growing feeling that I was stifling something.</p>
+          <p>I knew AI was changing everything. I could feel it. But every time I thought of where to start, I hit a wall.</p>
+          <p>So I just started. Every morning before my family woke up. One file at a time.</p>
+          <p><em>And now I want to hand you the map.</em></p>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="story-quote-block">
+          <div class="story-quote">"I didn't have a CS degree. I didn't have startup funding. I had a used laptop, a Claude subscription, and a lot of early mornings."</div>
+          <div class="story-quote-attr">— Dr. Jami Saffioti, Founder of Noros Solutions</div>
+        </div>
+        <div class="story-builds">
+          <div class="story-build-label">Things Jami built from scratch</div>
+          <div class="story-build-item">
+            <span class="build-dot"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>
+            <span class="build-text"><strong>Metal bending calculator</strong> — a custom shop tool for her dad's construction business, built and deployed</span>
+          </div>
+          <div class="story-build-item">
+            <span class="build-dot"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>
+            <span class="build-text"><strong>LogicLab circuit simulator</strong> — a browser-based digital logic tool that replaced discontinued classroom software</span>
+          </div>
+          <div class="story-build-item">
+            <span class="build-dot"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>
+            <span class="build-text"><strong>AI-powered AP tutoring app</strong> — Socratic method, real AP questions, zero answers given</span>
+          </div>
+          <div class="story-build-item">
+            <span class="build-dot"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>
+            <span class="build-text"><strong>Sales quote automation system</strong> — reads leads, drafts documents, and sends the emails on its own</span>
+          </div>
+          <div class="story-build-item">
+            <span class="build-dot"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>
+            <span class="build-text"><strong>AI agent mission control</strong> — research, content, and monitoring running on a schedule, autonomously</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE -->
+<section id="promise" class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">The transformation</div>
+      <h2 class="section-title">Where you start.<br><em>Where you land.</em></h2>
+    </div>
+    <div class="transform-block reveal reveal-delay-1">
+      <div class="transform-side">
+        <div class="transform-label before">Day 1</div>
+        <div class="transform-text">
+          "I want to use AI but I don't know where to start. I'm not a programmer. I've been meaning to figure this out for months. There's not enough time in the day and I can't find anything built for someone like me."
+        </div>
+      </div>
+      <div class="transform-arrow"><svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></div>
+      <div class="transform-side">
+        <div class="transform-label after">Day 28</div>
+        <div class="transform-text">
+          "I just deployed my own AI-powered tool. It has a URL I can share with anyone. I know how to keep building. I'm not waiting for permission anymore — and I finally have the morning I've been designing in my head."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section id="curriculum" class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">The curriculum</div>
+      <h2 class="section-title">Four weeks.<br><em>One deployed tool.</em></h2>
+      <p class="section-sub" style="margin-top:12px;">Every week ends with a deliverable — something you made. Not something you watched someone else make.</p>
+    </div>
+    <div class="weeks-grid">
+      <div class="week-card w1 reveal reveal-delay-1">
+        <div class="week-num-bg">1</div>
+        <div class="week-badge">Week 1 · Base Camp orientation</div>
+        <div class="week-name">Mindset, literacy & your first prompt chain</div>
+        <div class="week-theme">Debunking the tech-degree myth — and setting up your environment</div>
+        <div class="week-lessons">
+          <div class="week-lesson"><span class="week-lesson-num">1.1</span>What AI actually is (and isn't)</div>
+          <div class="week-lesson"><span class="week-lesson-num">1.2</span>The mindset of a builder</div>
+          <div class="week-lesson"><span class="week-lesson-num">1.3</span>Prompt engineering fundamentals</div>
+          <div class="week-lesson"><span class="week-lesson-num">1.3+</span>Projects: give AI your context once</div>
+          <div class="week-lesson"><span class="week-lesson-num">1.4</span>Setting up your environment</div>
+          <div class="week-lesson"><span class="week-lesson-num">1.5</span>Your first prompt chain: ask <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg> refine <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg> apply</div>
+        </div>
+        <div class="week-deliverable"><strong>Deliverable:</strong> Your AI environment live and your first working prompt chain</div>
+      </div>
+      <div class="week-card w2 reveal reveal-delay-2">
+        <div class="week-num-bg">2</div>
+        <div class="week-badge">Week 2 · First ascent</div>
+        <div class="week-name">Build your first real AI-powered tool</div>
+        <div class="week-theme">No template. No shortcuts. A real thing that solves a real problem.</div>
+        <div class="week-lessons">
+          <div class="week-lesson"><span class="week-lesson-num">2.1</span>The build-worthy problem audit</div>
+          <div class="week-lesson"><span class="week-lesson-num">2.2</span>Reading and writing code with AI as co-pilot</div>
+          <div class="week-lesson"><span class="week-lesson-num">2.3</span>Building a calculator, form, or data tool</div>
+          <div class="week-lesson"><span class="week-lesson-num">2.3+</span>Artifacts: a working tool in five minutes</div>
+          <div class="week-lesson"><span class="week-lesson-num">2.4</span>Connecting your tool to a real input</div>
+          <div class="week-lesson"><span class="week-lesson-num">2.5</span>Testing, breaking, and fixing — the builder's loop</div>
+        </div>
+        <div class="week-deliverable"><strong>Deliverable:</strong> A working tool that solves a real problem in your life or work</div>
+      </div>
+      <div class="week-card w3 reveal reveal-delay-1">
+        <div class="week-num-bg">3</div>
+        <div class="week-badge">Week 3 · The ridge line</div>
+        <div class="week-name">Automate it so it works while you sleep</div>
+        <div class="week-theme">Connect, schedule, and delegate to your AI — reclaim your time</div>
+        <div class="week-lessons">
+          <div class="week-lesson"><span class="week-lesson-num">3.1</span>What automation actually means</div>
+          <div class="week-lesson"><span class="week-lesson-num">3.2</span>No-code automation with Zapier or Make</div>
+          <div class="week-lesson"><span class="week-lesson-num">3.3</span>AI agents: give your assistant a job description</div>
+          <div class="week-lesson"><span class="week-lesson-num">3.3+</span>Answering from your own documents (RAG)</div>
+          <div class="week-lesson"><span class="week-lesson-num">3.4</span>Automating email, leads, and client comms</div>
+          <div class="week-lesson"><span class="week-lesson-num">3.4+</span>Skills and connectors: teach it once, plug it in</div>
+          <div class="week-lesson"><span class="week-lesson-num">3.5</span>Advanced track: OpenClaw-style orchestration</div>
+        </div>
+        <div class="week-deliverable"><strong>Deliverable:</strong> One automated workflow running without your daily input</div>
+      </div>
+      <div class="week-card w4 reveal reveal-delay-2">
+        <div class="week-num-bg">4</div>
+        <div class="week-badge">Week 4 · Summit day</div>
+        <div class="week-name">Deploy publicly and build your independence plan</div>
+        <div class="week-theme">A live URL. A real project. A path forward that belongs to you.</div>
+        <div class="week-lessons">
+          <div class="week-lesson"><span class="week-lesson-num">4.1</span>Deploying to GitHub Pages with a real domain</div>
+          <div class="week-lesson"><span class="week-lesson-num">4.2</span>Telling the story of what you built</div>
+          <div class="week-lesson"><span class="week-lesson-num">4.2+</span>Checking the AI's work</div>
+          <div class="week-lesson"><span class="week-lesson-num">4.3</span>How to keep learning after the course</div>
+          <div class="week-lesson"><span class="week-lesson-num">4.4</span>Monetizing what you've built</div>
+          <div class="week-lesson"><span class="week-lesson-num">4.5</span>Summit ceremony — share your build, receive your community key</div>
+        </div>
+        <div class="week-deliverable"><strong>Deliverable:</strong> A live, deployed AI tool with a URL you can share with anyone</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAT -->
+<section id="format" class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">How it works</div>
+      <h2 class="section-title">Built for people<br><em>with full lives.</em></h2>
+    </div>
+    <div class="format-grid">
+      <div class="format-card reveal reveal-delay-1">
+        <div class="format-icon"><svg class="i" aria-hidden="true"><use href="#i-book"/></svg></div>
+        <div class="format-title">Self-paced curriculum</div>
+        <div class="format-desc">Step-by-step written guides you move through at your own pace, with video walkthroughs added as they're recorded. No live attendance required. Designed for 3–5 focused hours per week — one early morning and a weekend afternoon.</div>
+      </div>
+      <div class="format-card reveal reveal-delay-2">
+        <div class="format-icon"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg></div>
+        <div class="format-title">Private community</div>
+        <div class="format-desc">Access to The Summit — a private community for Overlook Course students and graduates. Post your builds, ask questions, and get Jami's personal feedback throughout the 4 weeks.</div>
+      </div>
+      <div class="format-card reveal reveal-delay-3">
+        <div class="format-icon"><svg class="i" aria-hidden="true"><use href="#i-funnel"/></svg></div>
+        <div class="format-title">Lessons that keep up</div>
+        <div class="format-desc">AI tools change every few months. When they do, the lessons get updated — and you get every update, so what you learn stays current.</div>
+      </div>
+      <div class="format-card reveal reveal-delay-1">
+        <div class="format-icon"><svg class="i" aria-hidden="true"><use href="#i-mountain"/></svg></div>
+        <div class="format-title">Monthly summit calls</div>
+        <div class="format-desc">Live community calls where students share builds, Jami teaches one new technique, and the group problem-solves together. Optional, and open to every student.</div>
+      </div>
+      <div class="format-card reveal reveal-delay-2">
+        <div class="format-icon"><svg class="i" aria-hidden="true"><use href="#i-compass"/></svg></div>
+        <div class="format-title">Founding Climbers cohort</div>
+        <div class="format-desc">You're not just a student — you're Cohort 1. The Founding Climbers. Your feedback shapes the program. That status is yours forever. The founding price closes when Cohort 1 fills.</div>
+      </div>
+      <div class="format-card reveal reveal-delay-3">
+        <div class="format-icon"><svg class="i" aria-hidden="true"><use href="#i-flow"/></svg></div>
+        <div class="format-title">Lifetime access</div>
+        <div class="format-desc">Community and curriculum updates — yours for life. AI moves fast. The course keeps up, and so will you.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT -->
+<section id="fit" class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Is this for you?</div>
+      <h2 class="section-title">This IS for you.<br><em>Unless it isn't.</em></h2>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-col reveal reveal-delay-1">
+        <div class="fit-col-label yes">The course is for you if...</div>
+        <div class="fit-item"><span class="fit-icon yes"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="fit-text">You're tech-comfortable but have never written code</span></div>
+        <div class="fit-item"><span class="fit-icon yes"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="fit-text">You're a mom, solopreneur, or building between the cracks of a full life</span></div>
+        <div class="fit-item"><span class="fit-icon yes"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="fit-text">You've been meaning to figure out AI for months</span></div>
+        <div class="fit-item"><span class="fit-icon yes"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="fit-text">You want a real tool — not just to prompt ChatGPT better</span></div>
+        <div class="fit-item"><span class="fit-icon yes"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="fit-text">You're willing to show up and do the work for 4 weeks</span></div>
+        <div class="fit-item"><span class="fit-icon yes"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="fit-text">You want to be part of something — not just consume content alone</span></div>
+      </div>
+      <div class="fit-col reveal reveal-delay-2">
+        <div class="fit-col-label no">The course is not for you if...</div>
+        <div class="fit-item"><span class="fit-icon no"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></span><span class="fit-text">You're an experienced developer looking for advanced training</span></div>
+        <div class="fit-item"><span class="fit-icon no"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></span><span class="fit-text">You want someone to build things for you (that's Summit Advisory)</span></div>
+        <div class="fit-item"><span class="fit-icon no"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></span><span class="fit-text">You can't commit 3–5 hours per week for 4 weeks</span></div>
+        <div class="fit-item"><span class="fit-icon no"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></span><span class="fit-text">You're looking for a get-rich-quick shortcut</span></div>
+        <div class="fit-item"><span class="fit-icon no"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></span><span class="fit-text">You need hand-holding on every single step</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Investment</div>
+      <h2 class="section-title">$497 —<br><em>and here's what it buys.</em></h2>
+    </div>
+    <div class="pricing-block">
+      <div class="pricing-left reveal reveal-delay-1">
+        <div class="price-main">$497</div>
+        <div class="price-note">Founding cohort price · Will increase after Cohort 1 closes</div>
+        <div class="price-features">
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">4-week self-paced curriculum (25 lessons)</span></div>
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">Private Summit community — lifetime access</span></div>
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">Monthly live summit calls</span></div>
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">Personal feedback from Jami during program</span></div>
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">Founding Climbers cohort status — forever</span></div>
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">90-day independence roadmap at graduation</span></div>
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">First Tracks included: idea to open for business, if you haven't launched yet</span></div>
+          <div class="price-feature"><span class="price-feature-check"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="price-feature-text">Took the Overlook Workshop? Your $197 workshop fee comes off</span></div>
+        </div>
+        <a href="#apply" class="btn-primary" style="display:inline-block;">Apply for the founding cohort <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
+      </div>
+      <div class="pricing-right reveal reveal-delay-2">
+        <div class="roi-block">
+          <div class="roi-label">What $497 actually buys</div>
+          <div class="roi-text"><strong>25 lessons · 4 weekly deliverables · one deployed tool with a URL you can share</strong></div>
+          <div class="roi-text">The automation skills you'll practice here are the same ones small businesses hire outside help for. What you do with them is up to you — what the course gives you is the capability.</div>
+          <div class="roi-text">A business coach charges $500/hour. A bootcamp charges $15,000. This is 4 weeks of guided, hands-on building with someone who has done exactly what you want to do.</div>
+          <div class="roi-disclaimer">The course teaches skills. It doesn't guarantee income, and results vary.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIONS -->
+<section id="objections" class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Common questions</div>
+      <h2 class="section-title">You're probably<br><em>thinking this.</em></h2>
+    </div>
+    <div class="objections-list reveal reveal-delay-1">
+      <div class="objection-item">
+        <div class="objection-q">"I'm not technical enough."<span class="objection-toggle">+</span></div>
+        <div class="objection-a">This is literally the point of the course. You don't need to be technical — you need to be willing. Jami started with a wiped laptop and a YouTube rabbit hole. The curriculum is designed for exactly where you are right now. If you can navigate a browser and download an app, you have everything you need to start.</div>
+      </div>
+      <div class="objection-item">
+        <div class="objection-q">"I don't have time."<span class="objection-toggle">+</span></div>
+        <div class="objection-a">The course is designed for people with full lives — 3 to 5 focused hours per week. That's one early morning and a weekend afternoon. If you can find the time to scroll for AI tips, you can find the time to actually learn them. The curriculum is self-paced, so you work when it works for you.</div>
+      </div>
+      <div class="objection-item">
+        <div class="objection-q">"$497 is a lot of money."<span class="objection-toggle">+</span></div>
+        <div class="objection-a">It is. For context: a coding bootcamp runs $15,000, and a business coach charges $500 an hour — the course costs less than one hour of coaching, and you finish with a deployed tool, not a certificate. The real cost is two more years of scrolling without a map. The founding price closes when Cohort 1 fills.</div>
+      </div>
+      <div class="objection-item">
+        <div class="objection-q">"How is this different from a YouTube course?"<span class="objection-toggle">+</span></div>
+        <div class="objection-a">YouTube gives you information. The course gives you a guide, a community, a deadline, and a deliverable every single week. You'll build something real with people doing the same thing — and Jami responds personally to every question during the program. You can't get that from an algorithm.</div>
+      </div>
+      <div class="objection-item">
+        <div class="objection-q">"What if I fall behind?"<span class="objection-toggle">+</span></div>
+        <div class="objection-a">There's no "behind" in the course — the curriculum is self-paced. But the community and weekly deliverables create natural momentum. And if you get genuinely stuck, the help channel and Jami are right there. You're not doing this alone. That's the whole point.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION -->
+<section id="apply" class="section" style="background: var(--surface);">
+  <div class="apply-inner">
+    <div class="reveal">
+      <div class="section-eyebrow" style="text-align:center">Apply now</div>
+      <h2 class="section-title">Join the<br><em>Founding Climbers.</em></h2>
+      <p class="section-sub">5–10 spots. Jami reviews every application personally. If it's a fit, she'll send you a payment link within 24 hours.</p>
+    </div>
+    <div class="apply-form reveal reveal-delay-1">
+      <form id="applyForm" class="form-grid" action="https://summit-intake-271700678332.us-east4.run.app/api/apply" method="POST">
+        <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <div class="form-group">
+          <label class="form-label" for="fname">First name</label>
+          <input class="form-input" type="text" id="fname" name="first_name" placeholder="Jami" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="lname">Last name</label>
+          <input class="form-input" type="text" id="lname" name="last_name" placeholder="Saffioti" required>
+        </div>
+        <div class="form-group full">
+          <label class="form-label" for="email">Email address</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="you@email.com" required>
+        </div>
+        <div class="form-group full">
+          <label class="form-label" for="background">Tell me about yourself</label>
+          <textarea class="form-textarea" id="background" name="background" placeholder="What's your current situation? What do you do, and what are you hoping to build or change?" required></textarea>
+        </div>
+        <div class="form-group full">
+          <label class="form-label" for="build">What do you want to build?</label>
+          <textarea class="form-textarea" id="build" name="build" placeholder="Even a rough idea is fine — a tool for your business, an automation for your workflow, something for your family, anything." required></textarea>
+        </div>
+        <div class="form-group full">
+          <label class="form-label" for="why">Why now?</label>
+          <textarea class="form-textarea" id="why" name="why" placeholder="What's making this the right moment to invest in learning this?" style="min-height:90px;" required></textarea>
+        </div>
+        <div class="form-submit-row full">
+          <div class="form-submit-note" id="applyNote">Jami reads every application.<br>You'll hear back within 24 hours.</div>
+          <button type="submit" class="form-submit">Submit application <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">
+    <img src="/images/noros-logo.png" alt="Noros Solutions">
+  </a>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mailto:hello@noros.life">Contact</a></li>
+    <li>
+      <a href="https://instagram.com/noros.life" target="_blank" rel="noopener" aria-label="Noros Solutions on Instagram" style="display:flex; align-items:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/>
+        </svg>
+      </a>
+    </li>
+  </ul>
+  <div class="footer-copy">© 2026 Noros Solutions LLC · All rights reserved</div>
+</footer>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta" id="sticky-cta">
+  <a href="#apply">Apply to The Overlook Course · $497 <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
+</div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const stickyCta = document.getElementById('sticky-cta');
+  const heroSection = document.getElementById('hero');
+  const applySection = document.getElementById('apply');
+  window.addEventListener('scroll', () => {
+    const heroBottom = heroSection.getBoundingClientRect().bottom;
+    const applyTop = applySection.getBoundingClientRect().top;
+    const show = heroBottom < 0 && applyTop > window.innerHeight;
+    stickyCta.classList.toggle('visible', show);
+  });
+
+  document.querySelectorAll('.objection-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.objection-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.objection-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const navLinks = document.getElementById('nav-links');
+  if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', () => {
+    if (navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    } else {
+      navLinks.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+  }
+</script>
+
+
+<!-- Overlook Course application → Noros intake backend (replaces Formspree) -->
+<script>
+(function () {
+  var form = document.getElementById('applyForm');
+  if (!form) return;
+  var ENDPOINT = 'https://summit-intake-271700678332.us-east4.run.app/api/apply';
+  var note = document.getElementById('applyNote');
+  var noteHTML = note ? note.innerHTML : '';
+  function val(id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    var btn = form.querySelector('.form-submit');
+    var orig = btn.innerHTML;
+    btn.disabled = true; btn.textContent = 'Sending…';
+    if (note) { note.style.color = ''; note.innerHTML = noteHTML; }
+
+    var payload = {
+      first_name: val('fname'), last_name: val('lname'), email: val('email'),
+      background: val('background'), build: val('build'), why: val('why'),
+      website: val('website')
+    };
+
+    try {
+      var res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      var j = await res.json().catch(function () { return {}; });
+      if (res.ok && j.ok) {
+        form.innerHTML =
+          '<div class="form-thanks">' +
+          '<h3>Thank you — application received.</h3>' +
+          '<p>Jami reads every application personally and will be in touch within 24 hours. Check your inbox for a confirmation.</p></div>';
+      } else {
+        btn.disabled = false; btn.innerHTML = orig;
+        if (note) { note.style.color = 'var(--negative)'; note.textContent = (j && j.error) ? j.error : 'Something went wrong — please try again.'; }
+      }
+    } catch (err) {
+      btn.disabled = false; btn.innerHTML = orig;
+      if (note) { note.style.color = 'var(--negative)'; note.textContent = 'Network error — please try again, or email hello@noros.life.'; }
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
