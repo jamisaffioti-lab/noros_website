@@ -6,11 +6,12 @@ Static site for Noros Solutions LLC. Served by GitHub Pages from `main` (custom 
 
 | File | What it is |
 | --- | --- |
-| `index.html` | Homepage: The Overlook Workshop, The Overlook (workshop + course) and Ascent Scholars cards, Summit Advisory, contact |
+| `index.html` | Homepage: workshop section, Builder's Ridge row (Overlook Workshop, Overlook Course, Summit Advisory), Ascent Scholars row (Base Camp placeholder), contact |
 | `overlook.html` | The Overlook: workshop section (`#workshop`, $197) and course sales page (`#course`, $497 founding, application-gated) |
 | `firsttracks.html` | First Tracks sales page ($197, direct Stripe Payment Link; also included with the course) |
-| `basecamp.html`, `builders-ridge.html` | Redirects to `overlook.html` (kept so old links work). Don't add content |
-| `ascent-scholars.html` | Teen track: The AI Architect (waitlist, no price shown) and Beta |
+| `builders-ridge.html` | Professional pathway hub: Overlook Workshop, Overlook Course, Summit Advisory, plus a First Tracks line. Room for future offerings |
+| `basecamp.html` | Redirect to `overlook.html#course` (the adult course's old page). Don't add content; the student Base Camp lives on `ascent-scholars.html` |
+| `ascent-scholars.html` | Student pathway: Base Camp placeholder (workshop + career-prep course, waitlist by email). Beta and The AI Architect sections are `hidden`, not deleted |
 | `summit-advisory.html` | Consulting page |
 | `beta.html` | Beta study companion. Separate, self-contained, doesn't use `tokens.css` |
 | `tokens.css` | All colors and theme tokens, shared by the six main pages and the course portal |
@@ -34,11 +35,11 @@ The intake app lives in a separate folder (`~/summit-intake-app`, deployed with 
 
 ## Content rules
 
-- Naming (Oct 2026): one workshop and one course, together **The Overlook**. The Overlook Workshop $197 (credited toward the course), The Overlook Course $497 founding (formerly Base Camp; includes First Tracks), First Tracks $197 on its own, The AI Architect waitlist only (no price on the site).
-- "Base Camp" is reserved for a future student pathway under Ascent Scholars. Don't use it for the adult course, and don't bring back "Builder's Ridge".
-- "Beta" means only the study companion. The AI Architect is a "founding cohort".
+- Two pathways (Oct 2026). **Builder's Ridge** (professionals): The Overlook Workshop $197 (credited toward the course), The Overlook Course $497 founding (formerly Base Camp; includes First Tracks), First Tracks $197 on its own, Summit Advisory by scope. **Ascent Scholars** (students): Base Camp, a workshop and career-prep course, coming soon, waitlist only, no price.
+- "Base Camp" now means only the student offering. Never use it for the adult course.
+- "Beta" means only the study companion. The AI Architect is a "founding cohort". Both are hidden for now; don't link them.
 - No income or earnings figures, and don't promise things that don't exist yet (videos, newsletters).
-- The Overlook (adult) and Ascent Scholars (teen) never share a pricing page.
+- Builder's Ridge (adult) and Ascent Scholars (students) never share a pricing page.
 
 ## How to work here
 
