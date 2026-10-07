@@ -8,8 +8,8 @@ Static site for Noros Solutions LLC. Served by GitHub Pages from `main` (custom 
 | --- | --- |
 | `index.html` | Homepage: workshop section, Builder's Ridge row (Overlook Workshop, Overlook Course, Summit Advisory), Ascent Scholars row (Base Camp placeholder), contact |
 | `overlook.html` | The Overlook: workshop section (`#workshop`, $197) and course sales page (`#course`, $497 founding, application-gated) |
-| `firsttracks.html` | First Tracks sales page ($197, direct Stripe Payment Link; also included with the course) |
-| `builders-ridge.html` | Professional pathway hub: Overlook Workshop, Overlook Course, Summit Advisory, plus a First Tracks line. Room for future offerings |
+| `firsttracks.html` | First Tracks page. No longer sold on its own (Stripe product archived Oct 2026): it's included with The Overlook Course, and its buttons go to the course application |
+| `builders-ridge.html` | Professional pathway hub: Overlook Workshop, Overlook Course, Summit Advisory, plus a First Tracks line (included with the course). Room for future offerings |
 | `basecamp.html` | Redirect to `overlook.html#course` (the adult course's old page). Don't add content; the student Base Camp lives on `ascent-scholars.html` |
 | `ascent-scholars.html` | Student pathway: Base Camp placeholder (workshop + career-prep course, waitlist by email). Beta and The AI Architect sections are `hidden`, not deleted |
 | `summit-advisory.html` | Consulting page |
@@ -35,7 +35,7 @@ The intake app lives in a separate folder (`~/summit-intake-app`, deployed with 
 
 ## Content rules
 
-- Two pathways (Oct 2026). **Builder's Ridge** (professionals): The Overlook Workshop $197 (credited toward the course), The Overlook Course $497 founding (formerly Base Camp; includes First Tracks), First Tracks $197 on its own, Summit Advisory by scope. **Ascent Scholars** (students): Base Camp, a workshop and career-prep course, coming soon, waitlist only, no price.
+- Two pathways (Oct 2026). **Builder's Ridge** (professionals): The Overlook Workshop $197 (credited toward the course), The Overlook Course $497 founding (formerly Base Camp; includes First Tracks), First Tracks included with the course (not sold on its own), Summit Advisory by scope. **Ascent Scholars** (students): Base Camp, a workshop and career-prep course, coming soon, waitlist only, no price.
 - "Base Camp" now means only the student offering. Never use it for the adult course.
 - "Beta" means only the study companion. The AI Architect is a "founding cohort". Both are hidden for now; don't link them.
 - No income or earnings figures, and don't promise things that don't exist yet (videos, newsletters).
