@@ -6,13 +6,14 @@ Static site for Noros Solutions LLC. Served by GitHub Pages from `main` (custom 
 
 | File | What it is |
 | --- | --- |
-| `index.html` | Homepage: workshop section, Builder's Ridge row (Overlook Workshop, Overlook Course, Summit Advisory), Ascent Scholars row (Base Camp placeholder), contact |
+| `index.html` | Homepage: workshop section, Builder's Ridge row (Overlook Workshop, Overlook Course, Summit Advisory), Ascent Scholars row (Base Camp placeholder), contact. Sponsorship lives on `sponsor.html` |
 | `overlook.html` | The Overlook: workshop section (`#workshop`, $197) and course sales page (`#course`, $497 founding, application-gated) |
 | `firsttracks.html` | First Tracks page. No longer sold on its own (Stripe product archived Oct 2026): it's included with The Overlook Course, and its buttons go to the course application |
 | `builders-ridge.html` | Professional pathway hub: Overlook Workshop, Overlook Course, Summit Advisory, plus a First Tracks line (included with the course). Room for future offerings |
 | `basecamp.html` | Redirect to `overlook.html#course` (the adult course's old page). Don't add content; the student Base Camp lives on `ascent-scholars.html` |
 | `ascent-scholars.html` | Student pathway: Base Camp placeholder (workshop + career-prep course, waitlist by email). Beta and The AI Architect sections are `hidden`, not deleted |
 | `summit-advisory.html` | Consulting page |
+| `sponsor.html` | Sponsorship tiers (Founding Partner, Venue Partner, Friend of Noros), mailto CTA. Linked from the homepage footer, moved off the homepage Oct 2026 |
 | `beta.html` | Beta study companion. Separate, self-contained, doesn't use `tokens.css` |
 | `tokens.css` | All colors and theme tokens, shared by the six main pages and the course portal |
 
