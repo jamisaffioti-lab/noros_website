@@ -285,22 +285,6 @@
   #workshops .form-textarea::placeholder { color: var(--text-muted); }
   #workshops .form-select option { background: var(--surface); }
 
-  /* SPONSORSHIP */
-  #sponsorship { background: var(--bg); padding: 80px 48px; border-top: var(--rule); }
-  .sponsorship-inner { max-width: 1100px; margin: 0 auto; }
-  .sponsorship-header { max-width: 600px; margin-bottom: 48px; }
-  .sponsorship-intro { font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.8; color: var(--text-secondary); margin-top: 16px; }
-  .sponsor-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--grid-gap); margin-bottom: 36px; }
-  .sponsor-tier { background: var(--bg); padding: 32px 28px; display: flex; flex-direction: column; }
-  .sponsor-tier-name { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-  .sponsor-tier-desc { font-family: 'Cormorant Garamond', serif; font-size: 16px; line-height: 1.7; color: var(--text-secondary); flex: 1; }
-  .sponsorship-cta { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-accent); background: var(--accent-fill); padding: 12px 24px; border-radius: 2px; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
-  .sponsorship-cta:hover { opacity: 0.8; }
-
-  @media (max-width: 768px) {
-    #sponsorship { padding: 64px 24px; }
-    .sponsor-tiers { grid-template-columns: 1fr; }
-  }
 </style>
 </head>
 <body>
@@ -607,31 +591,6 @@
   </div>
 </section>
 
-<!-- SPONSORSHIP -->
-<section id="sponsorship" class="reveal">
-  <div class="sponsorship-inner">
-    <div class="sponsorship-header">
-      <div class="section-eyebrow">Sponsorship Interest?</div>
-      <h2 class="section-title" style="font-size:clamp(24px,3vw,36px);">Founding supporters<br><em>who believe in the mission.</em></h2>
-      <p class="sponsorship-intro">Noros is just getting started, and I'm looking for a few founding supporters who want to help bring practical AI education to our community.</p>
-    </div>
-    <div class="sponsor-tiers">
-      <div class="sponsor-tier">
-        <div class="sponsor-tier-name">Founding Partner</div>
-        <p class="sponsor-tier-desc">Recognized at every workshop and across our programs. Featured on the site, first look at new programs, and complimentary team seats.</p>
-      </div>
-      <div class="sponsor-tier">
-        <div class="sponsor-tier-name">Venue Partner</div>
-        <p class="sponsor-tier-desc">Provide a space — your team attends the workshop free or discounted, and a room full of neighbors gets to know your space. A trade, not a favor.</p>
-      </div>
-      <div class="sponsor-tier">
-        <div class="sponsor-tier-name">Friend of Noros</div>
-        <p class="sponsor-tier-desc">For supporters who believe in the mission. Your name on our Friends of Noros wall — because people who show up early deserve to be remembered.</p>
-      </div>
-    </div>
-    <a href="mailto:hello@noros.life?subject=Sponsorship%20inquiry" class="sponsorship-cta">Become a sponsor <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
-  </div>
-</section>
 
 <div class="mountain-footer">
   <div class="mountain-footer-text">The mountain doesn't wait. Neither should you. <span class="mountain-icon"><svg class="i" aria-hidden="true"><use href="#i-mountain"/></svg></span></div>
@@ -645,6 +604,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="builders-ridge.html">Builder's Ridge</a></li>
     <li><a href="ascent-scholars.html">Ascent Scholars</a></li>
+    <li><a href="sponsor.html">Sponsor</a></li>
     <li><a href="mailto:hello@noros.life">Contact</a></li>
     <li>
       <a href="https://instagram.com/noros.life" target="_blank" rel="noopener" aria-label="Noros Solutions on Instagram" style="display:flex; align-items:center;">
