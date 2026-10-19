@@ -131,6 +131,16 @@
   }
   .btn-ghost:hover { border-color: var(--text-primary); color: var(--text-primary); }
 
+  /* ── PART TWO DIVIDER (workshop → course) ── */
+  .program-switch { background: var(--accent-fill); color: var(--on-accent); padding: 72px 48px; }
+  .program-switch .program-switch-label {
+    font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 16px; color: var(--on-accent);
+  }
+  .program-switch .section-title, .program-switch .section-title em, .program-switch .section-sub { color: var(--on-accent); }
+  .program-switch .section-sub { max-width: 640px; opacity: 0.9; }
+  @media (max-width: 768px) { .program-switch { padding: 56px 24px; } }
+
   /* ── QUICK STATS BAR ── */
   .stats-bar {
     background: var(--surface);
@@ -680,7 +690,7 @@
 <section id="workshop" class="section">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-eyebrow">Start here · The Overlook Workshop</div>
+      <div class="section-eyebrow">Part one · The Overlook Workshop</div>
       <h2 class="section-title">One session.<br><em>AI set up for your business.</em></h2>
       <p class="section-sub" style="margin-top:12px;">Most people use AI like a search box and get generic answers. In three hands-on hours you'll set it up so it knows your work, and you'll leave with it running.</p>
     </div>
@@ -711,8 +721,17 @@
   </div>
 </section>
 
+<!-- PART TWO: THE COURSE -->
+<section id="course" class="program-switch">
+  <div class="section-inner">
+    <div class="program-switch-label">Part two · The Overlook Course</div>
+    <h2 class="section-title">Ready to build your own?<br><em>Four weeks, $497 founding price.</em></h2>
+    <p class="section-sub">The workshop sets AI up for the work you already do. The course teaches you to build your own tools, agents and automations, and put them online. Everything from here down is about the course.</p>
+  </div>
+</section>
+
 <!-- STATS BAR -->
-<div class="stats-bar" id="course">
+<div class="stats-bar">
   <div class="stat-item">
     <div class="stat-num">4</div>
     <div class="stat-label">Weeks to a deployed, working AI tool</div>
@@ -1094,12 +1113,13 @@
   });
 
   const stickyCta = document.getElementById('sticky-cta');
-  const heroSection = document.getElementById('hero');
+  const courseSection = document.getElementById('course');
   const applySection = document.getElementById('apply');
   window.addEventListener('scroll', () => {
-    const heroBottom = heroSection.getBoundingClientRect().bottom;
+    // Only in the course part: never over the $197 workshop section.
+    const courseTop = courseSection.getBoundingClientRect().top;
     const applyTop = applySection.getBoundingClientRect().top;
-    const show = heroBottom < 0 && applyTop > window.innerHeight;
+    const show = courseTop < window.innerHeight * 0.5 && applyTop > window.innerHeight;
     stickyCta.classList.toggle('visible', show);
   });
 
