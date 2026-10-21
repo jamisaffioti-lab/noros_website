@@ -7,7 +7,7 @@ Static site for Noros Solutions LLC. Served by GitHub Pages from `main` (custom 
 | File | What it is |
 | --- | --- |
 | `index.html` | Homepage: workshop section, Builder's Ridge row (Overlook Workshop, Overlook Course, Summit Advisory), Ascent Scholars row (Base Camp placeholder), contact. Sponsorship lives on `sponsor.html` |
-| `overlook.html` | The Overlook: workshop section (`#workshop`, $197) and course sales page (`#course`, $497 founding, application-gated) |
+| `overlook.html` | The Overlook: workshop section (`#workshop`, one hour, $97) and course sales page (`#course`, $497 founding, application-gated) |
 | `firsttracks.html` | First Tracks page. No longer sold on its own (Stripe product archived Oct 2026): it's included with The Overlook Course, and its buttons go to the course application |
 | `builders-ridge.html` | Professional pathway hub: Overlook Workshop, Overlook Course, Summit Advisory, plus a First Tracks line (included with the course). Room for future offerings |
 | `basecamp.html` | Redirect to `overlook.html#course` (the adult course's old page). Don't add content; the student Base Camp lives on `ascent-scholars.html` |
@@ -36,7 +36,7 @@ The intake app lives in a separate folder (`~/summit-intake-app`, deployed with 
 
 ## Content rules
 
-- Two pathways (Oct 2026). **Builder's Ridge** (professionals): The Overlook Workshop $197 (credited toward the course), The Overlook Course $497 founding (formerly Base Camp; includes First Tracks), First Tracks included with the course (not sold on its own), Summit Advisory by scope. **Ascent Scholars** (students): Base Camp, a workshop and career-prep course, coming soon, waitlist only, no price.
+- Two pathways (Oct 2026). **Builder's Ridge** (professionals): The Overlook Workshop, one hour, $97 (credited toward the course; was 3 hours/$197 until Oct 20, 2026), The Overlook Course $497 founding (formerly Base Camp; includes First Tracks), First Tracks included with the course (not sold on its own), Summit Advisory by scope. **Ascent Scholars** (students): Base Camp, a workshop and career-prep course, coming soon, waitlist only, no price.
 - "Base Camp" now means only the student offering. Never use it for the adult course.
 - "Beta" means only the study companion. The AI Architect is a "founding cohort". Both are hidden for now; don't link them.
 - No income or earnings figures, and don't promise things that don't exist yet (videos, newsletters).
