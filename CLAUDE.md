@@ -14,6 +14,7 @@ Static site for Noros Solutions LLC. Served by GitHub Pages from `main` (custom 
 | `ascent-scholars.html` | Student pathway: Base Camp placeholder (workshop + career-prep course, waitlist by email). Beta and The AI Architect sections are `hidden`, not deleted |
 | `summit-advisory.html` | Consulting page |
 | `sponsor.html` | Sponsorship tiers (Founding Partner, Venue Partner, Friend of Noros), mailto CTA. Linked from the homepage footer, moved off the homepage Oct 2026 |
+| `workshop-prep.html` | Pre-workshop form for registered attendees (AI tools used, familiarity with Projects/skills/connectors/scheduled tasks/agents, biggest time sink). Not linked from the nav; `noindex` |
 | `beta.html` | Beta study companion. Separate, self-contained, doesn't use `tokens.css` |
 | `tokens.css` | All colors and theme tokens, shared by the six main pages and the course portal |
 
@@ -30,6 +31,7 @@ Static site for Noros Solutions LLC. Served by GitHub Pages from `main` (custom 
 | --- | --- | --- |
 | Overlook Course application | `overlook.html` | Noros intake app on Cloud Run, `POST /api/apply` (Sheet "Applications" tab + emails) |
 | Summit Advisory lead | `summit-advisory.html` | Same intake app, `POST /api/lead` |
+| Workshop pre-work (attendees, linked from the before-you-come email; not in the nav, `noindex`) | `workshop-prep.html` | Same intake app, `POST /api/prework` (Sheet "Workshop Prep" tab + email to hello@). `?session=…` in the link fills a hidden Session field |
 | Contact, workshop interest | `index.html` | Formspree `xpqnlwja` |
 
 The intake app lives in a separate folder (`~/summit-intake-app`, deployed with `gcloud run deploy`). A new form there needs a backend route deployed before the page change is merged.
