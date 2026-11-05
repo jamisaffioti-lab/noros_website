@@ -260,6 +260,16 @@
 
       <div class="section-break"><div class="form-label">Getting ready</div></div>
 
+      <div class="form-group full">
+        <label class="form-label" for="timing">How soon would you like to do the workshop?</label>
+        <select class="form-input form-select" id="timing" name="timing" required>
+          <option value="" selected disabled>Choose one</option>
+              <option>As soon as possible</option>
+              <option>Within the next month</option>
+              <option>In one to three months</option>
+              <option>Just exploring for now</option>
+        </select>
+      </div>
       <div class="form-group">
         <label class="form-label" for="plan">Which Claude plan do you have?</label>
         <select class="form-input form-select" id="plan" name="plan" required>
@@ -342,7 +352,7 @@
     var payload = { tools: [] };
     ['website','session','name','email','business','tools_other','frequency','fam_projects','fam_tools','fam_skills',
      'fam_connect','fam_scheduled','fam_agents','used_for','time_sink','time_sink_other','lives','lives_other',
-     'plan','setting','worth'].forEach(function (k) { payload[k] = val(k); });
+     'plan','setting','worth','timing'].forEach(function (k) { payload[k] = val(k); });
     boxes.forEach(function (b) { if (b.checked) payload.tools.push(b.value); });
 
     try {
