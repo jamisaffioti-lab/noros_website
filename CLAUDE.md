@@ -15,7 +15,7 @@ Static site for Noros Solutions LLC. Served by GitHub Pages from `main` (custom 
 | `summit-advisory.html` | Consulting page |
 | `sponsor.html` | Sponsorship tiers (Founding Partner, Venue Partner, Friend of Noros), mailto CTA. Linked from the homepage footer, moved off the homepage Oct 2026 |
 | `workshop-prep.html` | Pre-workshop form for registered attendees (AI tools used, familiarity with Projects/skills/connectors/scheduled tasks/agents, biggest time sink). Not linked from the nav; `noindex` |
-| `host-a-workshop.html` | Venue host form (Venue Partner): room, screen, wifi, timing, arrangement. Linked from the Venue Partner tier on `sponsor.html`. `?ref=…` fills a hidden Referred-by field |
+| `host-a-workshop.html` | Venue host form (Venue Partner): room, seating, wifi, timing, arrangement. Jami brings the projector and screen; attendees bring charged laptops, so no screen or outlet questions. Linked from the Venue Partner tier on `sponsor.html`. `?ref=…` fills a hidden Referred-by field |
 | `beta.html` | Beta study companion. Separate, self-contained, doesn't use `tokens.css` |
 | `tokens.css` | All colors and theme tokens, shared by the six main pages and the course portal |
 

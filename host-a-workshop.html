@@ -112,9 +112,9 @@
   <p class="sub">The Overlook Workshop is one hour of hands-on AI for local business owners, about 8 to 12 people with laptops. Tell me about your space and I'll follow up to plan a date.</p>
 
   <div class="what">
-    <div><b>You provide</b><p>The room for about 90 minutes, wifi if you have it, and a place to plug in.</p></div>
-    <div><b>I bring</b><p>The workshop, a projector, adapters, a backup hotspot, chairs if you need them, and the sign-ups.</p></div>
-    <div><b>You get</b><p>Free seats for your team, and a room of neighbors who now know your space.</p></div>
+    <div><b>You provide</b><p>The room for about 90 minutes, and guest wifi if you have it.</p></div>
+    <div><b>I bring</b><p>The workshop, a projector and screen, a backup hotspot, chairs if you need them, and the sign-ups.</p></div>
+    <div><b>You get</b><p>A free seat for you, and a room of neighbors who now know your space.</p></div>
   </div>
 
   <div class="card">
@@ -189,17 +189,6 @@
         <p class="form-help">I can bring folding chairs if needed.</p>
       </div>
       <div class="form-group">
-        <label class="form-label" for="screen">Something to show slides on?</label>
-        <select class="form-input form-select" id="screen" name="screen" required>
-          <option value="" selected disabled>Choose one</option>
-          <option>TV with an HDMI input</option>
-          <option>Projector and screen</option>
-          <option>A blank light wall</option>
-          <option>Nothing yet</option>
-        </select>
-        <p class="form-help">I bring a projector and adapters.</p>
-      </div>
-      <div class="form-group">
         <label class="form-label" for="wifi">Guest wifi</label>
         <select class="form-input form-select" id="wifi" name="wifi" required>
           <option value="" selected disabled>Choose one</option>
@@ -209,15 +198,6 @@
           <option>No guest wifi</option>
         </select>
         <p class="form-help">I can bring a hotspot as backup.</p>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="power">Outlets near where people sit</label>
-        <select class="form-input form-select" id="power" name="power" required>
-          <option value="" selected disabled>Choose one</option>
-          <option>Plenty</option>
-          <option>A few</option>
-          <option>Not sure</option>
-        </select>
       </div>
       <div class="form-group full">
         <span class="form-label" id="extras-label">Also available</span>
@@ -252,7 +232,7 @@
       <div class="form-group full">
         <span class="form-label" id="arrangement-label">What would work for you?</span>
         <div class="checks" role="group" aria-labelledby="arrangement-label">
-          <label class="check"><input type="checkbox" name="arrangement" value="Free seats for you or your team"> <span>Free seats for you or your team</span></label>
+          <label class="check"><input type="checkbox" name="arrangement" value="A free seat for you"> <span>A free seat for you</span></label>
           <label class="check"><input type="checkbox" name="arrangement" value="Promotion to my audience and on noros.life"> <span>Promotion to my audience and on noros.life</span></label>
           <label class="check"><input type="checkbox" name="arrangement" value="A room fee"> <span>A room fee</span></label>
           <label class="check"><input type="checkbox" name="arrangement" value="Let’s talk"> <span>Let’s talk</span></label>
@@ -316,7 +296,7 @@
     if (note) { note.style.color = ''; note.innerHTML = noteHTML; }
 
     var payload = { extras: picked('extras'), times: picked('times'), arrangement: picked('arrangement') };
-    ['website', 'ref', 'name', 'email', 'phone', 'role', 'venue', 'venue_type', 'venue_type_other', 'town', 'capacity', 'tables', 'screen', 'wifi', 'power', 'dates', 'paperwork', 'notes'].forEach(function (k) { payload[k] = val(k); });
+    ['website', 'ref', 'name', 'email', 'phone', 'role', 'venue', 'venue_type', 'venue_type_other', 'town', 'capacity', 'tables', 'wifi', 'dates', 'paperwork', 'notes'].forEach(function (k) { payload[k] = val(k); });
 
     try {
       var res = await fetch(ENDPOINT, {
