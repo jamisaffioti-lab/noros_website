@@ -228,6 +228,12 @@
   if (!form) return;
   var ENDPOINT = 'https://summit-intake-271700678332.us-east4.run.app/api/occ-prep';
   var note = document.getElementById('prepNote');
+
+  // Closes 8:00 PM Eastern, Nov 18, 2026 (the server enforces this too)
+  if (Date.now() >= Date.parse('2026-11-18T20:00:00-05:00')) {
+    form.innerHTML = '<div class="form-thanks"><h3>This questionnaire has closed.</h3><p>Thanks for stopping by. See you at Ocean County College on November 19. Questions? Write to hello@noros.life.</p></div>';
+    return;
+  }
   var noteHTML = note ? note.innerHTML : '';
 
   // ?session=OCC-Nov19 in the link fills the hidden session field
