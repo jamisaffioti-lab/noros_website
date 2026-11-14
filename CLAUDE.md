@@ -15,6 +15,7 @@ Static site for Noros Solutions LLC. Served by GitHub Pages from `main` (custom 
 | `summit-advisory.html` | Consulting page |
 | `sponsor.html` | Sponsorship tiers (Founding Partner, Venue Partner, Friend of Noros), mailto CTA. Linked from the homepage footer, moved off the homepage Oct 2026 |
 | `workshop-prep.html` | Pre-workshop form for registered attendees (AI tools used, familiarity with Projects/skills/connectors/scheduled tasks/agents, biggest time sink). Not linked from the nav; `noindex` |
+| `occ-prep.html` | Student pre-session questionnaire for the Ocean County College talk (Nov 19, 2026). Not linked from the nav; `noindex` |
 | `host-a-workshop.html` | Venue host form (Venue Partner): room, seating, wifi, timing, arrangement. Jami brings the projector and screen; attendees bring charged laptops, so no screen or outlet questions. Linked from the Venue Partner tier on `sponsor.html`. `?ref=…` fills a hidden Referred-by field |
 | `beta.html` | Beta study companion. Separate, self-contained, doesn't use `tokens.css` |
 | `tokens.css` | All colors and theme tokens, shared by the six main pages and the course portal |
@@ -33,6 +34,7 @@ Static site for Noros Solutions LLC. Served by GitHub Pages from `main` (custom 
 | Overlook Course application | `overlook.html` | Noros intake app on Cloud Run, `POST /api/apply` (Sheet "Applications" tab + emails) |
 | Summit Advisory lead | `summit-advisory.html` | Same intake app, `POST /api/lead` |
 | Workshop pre-work (attendees, linked from the before-you-come email; not in the nav, `noindex`) | `workshop-prep.html` | Same intake app, `POST /api/prework` (Sheet "Workshop Prep" tab + email to hello@). `?session=…` in the link fills a hidden Session field |
+| OCC student questionnaire (shared by the college host; not in the nav, `noindex`) | `occ-prep.html` | Same intake app, `POST /api/occ-prep` (Sheet "OCC Students" tab + email to hello@). Everything optional; email only required if they opt in to news. `?session=…` fills a hidden Session field |
 | Venue host | `host-a-workshop.html` | Same intake app, `POST /api/host` (Sheet "Venue Hosts" tab + email to hello@ + a copy to the host) |
 | Contact, workshop interest | `index.html` | Formspree `xpqnlwja` |
 
